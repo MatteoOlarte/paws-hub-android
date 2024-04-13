@@ -20,7 +20,6 @@
             android:layout_height="wrap_content">
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_main__toolbar"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
@@ -28,11 +27,10 @@
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <View
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@id/activity_main__navigation"
-        style="@style/Theme.PawsHubAndroid.BottomNavigation.Stroke"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/activity_main__navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/activity_main__navigation"
@@ -43,4 +41,5 @@
         app:menu="@menu/activity_main_navigation_menu"
         tools:layout_editor_absoluteX="0dp"
         style="@style/Theme.PawsHubAndroid.BottomNavigation"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

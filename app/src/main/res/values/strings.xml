@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Paws Hub</string>
+    <string name="welcome_msg">
+        Welcome to Our App!
+        If you already have an account, please sign in.
+        Don't have an account yet? Register now!
+    </string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Password</string>
     <string name="txt_pets">Pets</string>
     <string name="txt_profile">Profile</string>
+    <string name="email_hint">Enter your email address</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="confirm_password_hint">Confirm your password</string>
+    <string name="personal_info_title">Personal Information</string>
+    <string name="account_info_title">Account Information</string>
+    <string name="username_hint">User Name</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
 </resources>

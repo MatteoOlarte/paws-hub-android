@@ -16,8 +16,10 @@
         <item name="android:windowLightNavigationBar">true</item>
 
         <!-- Primary Colors -->
-        <item name="colorPrimary">#1DA1F2</item>
-        <item name="colorPrimaryContainer">#AD1DA1F2</item>
+        <item name="colorPrimary">#007BC7</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#9DCAE6</item>
+        <item name="colorOnPrimaryContainer">#002033</item>
     </style>
 
     <style name="Theme.PawsHubAndroid" parent="Base.Theme.PawsHubAndroid" />
