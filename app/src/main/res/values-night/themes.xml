@@ -1,0 +1,6 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.PawsHubAndroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+    </style>
+</resources>

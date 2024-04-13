@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/activity_main__pet_menu_item"
+        android:title="@string/txt_pets"
+        android:icon="@drawable/baseline_person_24"/>
+
+    <item
+        android:id="@+id/activity_main__profile_menu_item"
+        android:title="@string/txt_profile"
+        android:icon="@drawable/baseline_person_24"/>
+</menu>
