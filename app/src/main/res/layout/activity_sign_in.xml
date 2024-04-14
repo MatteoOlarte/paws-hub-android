@@ -6,7 +6,7 @@
     android:id="@+id/activity_sign_in__layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignInActivity">
+    tools:context=".activities.SignInActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_sign_in__layout_1"

@@ -6,36 +6,32 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.elevation.SurfaceColors
-import com.software3.paws_hub_android.R
-import com.software3.paws_hub_android.databinding.ActivityMainBinding
+import com.software3.paws_hub_android.databinding.ActivitySignUpBinding
 
-class MainActivity : AppCompatActivity() {
-    /*
-    * MVVM
-    * */
-    private lateinit var binding: ActivityMainBinding
+class SignUpActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
+        binding = ActivitySignUpBinding.inflate(this.layoutInflater)
         initUI()
-        setSupportActionBar(binding.activityMainToolbar)
         setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this))
-    }
-
-    private fun setStatusBarColor(color: Int) {
-        window.statusBarColor = color
-        window.navigationBarColor = color
+        setSupportActionBar(binding.toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun initUI() {
         enableEdgeToEdge()
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.activityMainLayout) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.activitySignUpLayoutMain) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun setStatusBarColor(color: Int) {
+        window.statusBarColor = color
+        window.navigationBarColor = color
     }
 }

@@ -2,9 +2,7 @@
 <resources>
     <string name="app_name">Paws Hub</string>
     <string name="welcome_msg">
-        ¡Bienvenido!
-        Si ya tienes una cuenta, inicia sesión.
-        ¿No tienes una cuenta aún? ¡Regístrate ahora!
+
     </string>
     <string name="sign_up">
         Registrarse
