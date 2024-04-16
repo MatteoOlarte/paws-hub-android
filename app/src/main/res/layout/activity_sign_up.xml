@@ -6,7 +6,7 @@
     android:id="@+id/activity_sign_up__layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SignInActivity">
+    tools:context=".view.SignInActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_sign_up__layout_1"
@@ -27,127 +27,125 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:trackColor="?colorPrimaryContainer"
                 app:indicatorColor="?colorPrimary"
                 app:elevation="0dp"/>
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <LinearLayout
-        android:id="@+id/activity_sign_up__layout_2"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="20dp"
-        android:gravity="center|top"
         app:layout_constraintTop_toBottomOf="@id/activity_sign_up__layout_1"
         app:layout_constraintBottom_toBottomOf="parent">
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
+            android:id="@+id/activity_sign_up__layout_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username_hint">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user_name_input"
-                android:autofillHints="emailAddress"
-                android:inputType="textEmailAddress"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="20dp"
+            android:gravity="center|top">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/first_name_hint">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fist_name_input"
+                    android:autofillHints="emailAddress"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/text_email"
-            app:helperText="@string/email_hint">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user_email_input"
-                android:autofillHints="emailAddress"
-                android:inputType="textEmailAddress"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/last_name_hint">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/last_name_input"
+                    android:autofillHints="emailAddress"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/text_password"
-            app:counterEnabled="true"
-            app:endIconMode="password_toggle"
-            app:helperText="@string/password_hint">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user_password_input"
-                android:inputType="textPassword"
-                android:autofillHints="password"
+            <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/text_password"
-            app:endIconMode="password_toggle"
-            app:helperText="@string/confirm_password_hint"
-            app:counterEnabled="true">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user_password_confirm_input"
-                android:inputType="textPassword"
-                android:autofillHints="password"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:hint="@string/username_hint">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_name_input"
+                    android:autofillHints="emailAddress"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/first_name_hint">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fist_name_input"
-                android:autofillHints="emailAddress"
-                android:inputType="textEmailAddress"
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/last_name_hint">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/last_name_input"
-                android:autofillHints="emailAddress"
-                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_email"
+                app:helperText="@string/email_hint">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_email_input"
+                    android:autofillHints="emailAddress"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/text_password"
+                app:counterEnabled="true"
+                app:endIconMode="password_toggle"
+                app:helperText="@string/password_hint">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_password_input"
+                    android:inputType="textPassword"
+                    android:autofillHints="password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_password"
+                app:endIconMode="password_toggle"
+                app:helperText="@string/confirm_password_hint"
+                app:counterEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_password_confirm_input"
+                    android:inputType="textPassword"
+                    android:autofillHints="password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <Space
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"/>
 
-        <Space
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_up"/>
-    </LinearLayout>
-
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"/>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

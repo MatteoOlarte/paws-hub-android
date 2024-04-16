@@ -6,7 +6,7 @@
     android:id="@+id/activity_sign_in__layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SignInActivity">
+    tools:context=".view.SignInActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/activity_sign_in__layout_1"
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:trackColor="?colorPrimaryContainer"
                 app:indicatorColor="?colorPrimary"
                 app:elevation="0dp"/>
@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/text_email">
@@ -59,7 +59,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/text_password"

@@ -20,6 +20,11 @@
         <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryContainer">#9DCAE6</item>
         <item name="colorOnPrimaryContainer">#002033</item>
+
+        <item name="colorSecondary">#3B5464</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSecondaryContainer">#C8DAE6</item>
+        <item name="colorOnSecondaryContainer">#1E2B33</item>
     </style>
 
     <style name="Theme.PawsHubAndroid" parent="Base.Theme.PawsHubAndroid" />

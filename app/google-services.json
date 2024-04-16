@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "473509333055",
+    "project_id": "software3proyecto-5de32",
+    "storage_bucket": "software3proyecto-5de32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473509333055:android:d762b35b4973cbb242508a",
+        "android_client_info": {
+          "package_name": "com.software3.paws_hub_android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkUVkkniePDyy6Aah5wAytaNR3ew-evBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,48 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PawsHubAndroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Base.Theme.PawsHubAndroid" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Background's Colors -->
+        <item name="android:windowBackground">@color/black</item>
+        <item name="colorSurface">@color/black_elevated</item>
+        <item name="colorSurfaceContainer">@color/black_elevated_2</item>
 
+
+        <!-- Status' Colors -->
+        <item name="android:statusBarColor">@color/black_elevated</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Navigation's Colors -->
+        <item name="android:navigationBarColor">@color/black_elevated</item>
+        <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- Primary Colors -->
+        <item name="colorPrimary">#7FBEE6</item>
+        <item name="colorOnPrimary">#002F4C</item>
+        <item name="colorPrimaryContainer">#003F66</item>
+        <item name="colorOnPrimaryContainer">#9DCAE6</item>
+
+        <item name="colorSecondary">#BBD5E6</item>
+        <item name="colorOnSecondary">#2D404C</item>
+        <item name="colorSecondaryContainer">#3C5666</item>
+        <item name="colorOnSecondaryContainer">#C8DAE6</item>
     </style>
+
+    <style name="Theme.PawsHubAndroid" parent="Base.Theme.PawsHubAndroid" />
+
+    <style name="Theme.PawsHubAndroid.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.PawsHubAndroid.BottomNavigation</item>
+    </style>
+
+    <style name="ThemeOverlay.PawsHubAndroid.BottomNavigation" parent="">
+        <item name="colorSecondaryContainer">@color/black_elevated</item>
+        <item name="colorSurfaceContainer">@color/black</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="strokeWidth">10dp</item>
+        <item name="strokeColor">@color/black_elevated_3</item>
+    </style>
+
+    <style name="Theme.PawsHubAndroid.BottomNavigation.Stroke">
+        <item name="backgroundColor">@color/black_elevated_2</item>
+    </style>
+
 </resources>

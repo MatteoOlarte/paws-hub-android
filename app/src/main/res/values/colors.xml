@@ -17,6 +17,9 @@
 
     <color name="black">#000000</color>
     <color name="black_elevated">#1c1c1e</color>
+    <color name="black_elevated_2">#323235</color>
+    <color name="black_elevated_3">#57575b</color>
+
 
     <color name="white">#FFFFFF</color>
     <color name="white_elevated">#f7f7f7</color>

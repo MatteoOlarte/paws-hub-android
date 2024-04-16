@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_welcome__layout"
-    tools:context=".activities.WelcomeActivity">
+    tools:context=".view.WelcomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
             android:textAllCaps="true"
+            android:elevation="5dp"
             style="@style/Widget.Material3.Button"/>
 
         <com.google.android.material.button.MaterialButton
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
             android:textAllCaps="true"
-            style="@style/Widget.Material3.Button.OutlinedButton"/>
+            android:elevation="5dp"
+            style="@style/Widget.Material3.Button.TonalButton"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
