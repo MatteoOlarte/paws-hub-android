@@ -9,7 +9,7 @@ import com.software3.paws_hub_android.model.firebase.UserDataDAO
 
 
 class UserViewModel: ViewModel() {
-    val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+    private val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
     val userData = MutableLiveData<UserData>()
     val isGuestUser = MutableLiveData<Boolean>()
     fun checkUserLoggedInStatus() = isGuestUser.postValue(currentUser == null)

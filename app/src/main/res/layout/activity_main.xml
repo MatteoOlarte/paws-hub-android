@@ -15,8 +15,11 @@
         app:layout_constraintBottom_toTopOf="@id/activity_main__navigation">
 
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/dsdsdfsdfsdf"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
+            android:layout_width="match_parent"
+            android:name="com.software3.paws_hub_android.view.ProfileFragment"
+            tools:layout="@layout/fragment_profile"/>
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

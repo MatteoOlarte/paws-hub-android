@@ -30,10 +30,11 @@ class MainActivity : AppCompatActivity() {
         userViewModel.isGuestUser.observe(this) {
             if (it) navigateToWelcomeActivity()
         }
-
+        /*
         userViewModel.userData.observe(this) {
             binding.activityMainToolbar.title = it.uName
         }
+        */
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToWelcomeActivity() {
-        Intent(this.applicationContext, MainActivity::class.java).also {
+        Intent(this.applicationContext, WelcomeActivity::class.java).also {
             startActivity(it)
         }
     }
