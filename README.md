@@ -26,6 +26,16 @@ Unit Test
      }
      ```
 
+
+     ```kotlin
+     private fun validateFields(fields: List<String?>): Boolean {
+        for (f in fields) {
+            if (f.isNullOrBlank()) return false
+        }
+        return true
+     }
+     ```
+
      
 
          
