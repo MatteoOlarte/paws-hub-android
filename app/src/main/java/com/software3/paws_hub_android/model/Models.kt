@@ -1,6 +1,6 @@
 package com.software3.paws_hub_android.model
 
-data class User(
+data class UserData(
     val _id: String,
     var fName: String,
     var lName: String,

@@ -1,14 +1,12 @@
 package com.software3.paws_hub_android.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
-import com.software3.paws_hub_android.AuthState
-import com.software3.paws_hub_android.model.User
+import com.software3.paws_hub_android.core.AuthState
+import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.model.firebase.FirebaseEmailAuth
-import com.software3.paws_hub_android.model.firebase.FirebaseUserDAO
+import com.software3.paws_hub_android.model.firebase.UserDataDAO
 
 
 class EmailSignUpViewModel : ViewModel() {
@@ -21,7 +19,7 @@ class EmailSignUpViewModel : ViewModel() {
     var password1: String? = null
     var password2: String? = null
 
-    fun register() {
+    fun registerUser() {
         val fields = listOf(fName, lName, uName, email, password1, password2)
         if (!validateFields(fields)) {
             message = "mensaje para campos vacios"
@@ -49,10 +47,10 @@ class EmailSignUpViewModel : ViewModel() {
             val frUser = it.user
 
             if (frUser != null) {
-                val user: User = userOf(frUser)
-                val dal = FirebaseUserDAO(user)
+                val user: UserData = userOf(frUser)
+                val dal = UserDataDAO()
 
-                dal.save().addOnSuccessListener {
+                dal.save(user).addOnSuccessListener {
                     authState.postValue(AuthState.SUCCESS)
                 }.addOnFailureListener {
                     authState.postValue(AuthState.FAILED)
@@ -61,8 +59,8 @@ class EmailSignUpViewModel : ViewModel() {
         }
     }
 
-    private fun userOf(fUser: FirebaseUser): User {
-        return User(
+    private fun userOf(fUser: FirebaseUser): UserData {
+        return UserData(
             _id = fUser.uid,
             fName = fName!!,
             lName = lName!!,

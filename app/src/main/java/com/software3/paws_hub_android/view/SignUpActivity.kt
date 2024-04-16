@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.elevation.SurfaceColors
-import com.software3.paws_hub_android.AuthState
+import com.software3.paws_hub_android.core.AuthState
 import com.software3.paws_hub_android.databinding.ActivitySignUpBinding
 import com.software3.paws_hub_android.viewmodel.EmailSignUpViewModel
 
@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
         }
         binding.registerButton.setOnClickListener {
             initViewModel()
-            authViewModel.register()
+            authViewModel.registerUser()
         }
     }
 
