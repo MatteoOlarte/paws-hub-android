@@ -4,6 +4,8 @@ Unit Test
   - Selected fragments 
     
 
+     Caso de prueba:
+     
      ```kotlin
      private fun isAnyBlank(fields: List<String?>): Boolean{
          for(f in fields) {
@@ -19,7 +21,7 @@ Unit Test
      import org.junit.Test
      class testFields{
        @Test fun nullFields(){
-           assertTrue()
+           assertTrue(true, isAnyBlank())
        }
      }
      ```
