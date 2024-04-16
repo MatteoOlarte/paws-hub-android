@@ -1,9 +1,11 @@
 package com.software3.paws_hub_android.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.software3.paws_hub_android.AuthState
-import com.software3.paws_hub_android.model.FirebaseEmailAuth
+import com.software3.paws_hub_android.model.User
+import com.software3.paws_hub_android.model.firebase.FirebaseEmailAuth
 
 
 class EmailSignUpViewModel : ViewModel() {
@@ -36,7 +38,9 @@ class EmailSignUpViewModel : ViewModel() {
 
         val auth = FirebaseEmailAuth(email!!, password1!!)
         authState.postValue(AuthState.PENDING)
+
         auth.createUser().addOnSuccessListener {
+            Log.d("EmailSignUpViewModel", it.user?.email ?: "null")
             authState.postValue(AuthState.SUCCESS)
         }.addOnFailureListener {
             message = it.message ?: ""

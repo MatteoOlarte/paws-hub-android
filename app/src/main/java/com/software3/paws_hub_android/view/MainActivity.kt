@@ -1,17 +1,21 @@
 package com.software3.paws_hub_android.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.elevation.SurfaceColors
+import com.google.firebase.auth.FirebaseAuth
+import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
-    /*
-    * MVVM
-    * */
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +23,32 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         initUI()
-        setSupportActionBar(binding.activityMainToolbar)
         setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this))
+        setSupportActionBar(binding.activityMainToolbar)
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        Log.d("MainActivity", currentUser?.email ?: "s")
+        if (currentUser == null) {
+            Intent(this.applicationContext, WelcomeActivity::class.java). also {
+                startActivity(it)
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        this.menuInflater.inflate(R.menu.activity_main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId) {
+        R.id.activity_main__logout -> {
+            FirebaseAuth.getInstance().signOut()
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setStatusBarColor(color: Int) {

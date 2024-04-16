@@ -32,7 +32,7 @@ class SignUpActivity : AppCompatActivity() {
                 AuthState.FAILED -> onAuthFailed()
                 AuthState.SUCCESS -> onAuthSuccess()
                 AuthState.PENDING -> onAuthPending()
-                null -> onAuthFailed()
+                else -> onAuthFailed()
             }
         }
         binding.registerButton.setOnClickListener {

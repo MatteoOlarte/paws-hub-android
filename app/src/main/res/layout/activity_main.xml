@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
+                app:menu="@menu/activity_main_menu"
                 app:title="Paws Hub"/>
         </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

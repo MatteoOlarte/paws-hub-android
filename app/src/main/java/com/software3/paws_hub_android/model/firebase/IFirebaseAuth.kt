@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.model
+package com.software3.paws_hub_android.model.firebase
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult

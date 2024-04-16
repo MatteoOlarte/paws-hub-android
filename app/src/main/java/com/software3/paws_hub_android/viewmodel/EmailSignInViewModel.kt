@@ -2,11 +2,13 @@ package com.software3.paws_hub_android.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.AuthState
-import com.software3.paws_hub_android.model.FirebaseEmailAuth
+import com.software3.paws_hub_android.model.firebase.FirebaseEmailAuth
 
 
 class EmailSignInViewModel: ViewModel() {
+    private val db = FirebaseFirestore.getInstance()
     val authState = MutableLiveData<AuthState>()
     var message: String = ""
     var email: String? = null
