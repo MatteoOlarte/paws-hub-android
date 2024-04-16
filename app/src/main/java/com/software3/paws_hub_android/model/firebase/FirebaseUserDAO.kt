@@ -5,9 +5,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.model.User
 
 
-internal class FirebaseUser(private val user: User) : IFirebaseObject {
+internal class FirebaseUserDAO(private val user: User) : IFirebaseObject {
     private val db = FirebaseFirestore.getInstance()
-    override fun save(o: IFirebaseObject): Task<Void> {
+    override fun save(): Task<Void> {
         val map = hashMapOf(
             "_id" to user._id,
             "first_name" to user.fName,

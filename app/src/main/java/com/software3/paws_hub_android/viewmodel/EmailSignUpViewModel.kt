@@ -3,9 +3,12 @@ package com.software3.paws_hub_android.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
 import com.software3.paws_hub_android.AuthState
 import com.software3.paws_hub_android.model.User
 import com.software3.paws_hub_android.model.firebase.FirebaseEmailAuth
+import com.software3.paws_hub_android.model.firebase.FirebaseUserDAO
 
 
 class EmailSignUpViewModel : ViewModel() {
@@ -39,13 +42,36 @@ class EmailSignUpViewModel : ViewModel() {
         val auth = FirebaseEmailAuth(email!!, password1!!)
         authState.postValue(AuthState.PENDING)
 
-        auth.createUser().addOnSuccessListener {
-            Log.d("EmailSignUpViewModel", it.user?.email ?: "null")
-            authState.postValue(AuthState.SUCCESS)
-        }.addOnFailureListener {
+        auth.createUser().addOnFailureListener {
             message = it.message ?: ""
             authState.postValue(AuthState.FAILED)
+        }.addOnSuccessListener {
+            val frUser = it.user
+
+            if (frUser != null) {
+                val user: User = userOf(frUser)
+                val dal = FirebaseUserDAO(user)
+
+                dal.save().addOnSuccessListener {
+                    authState.postValue(AuthState.SUCCESS)
+                }.addOnFailureListener {
+                    authState.postValue(AuthState.FAILED)
+                }
+            }
         }
+    }
+
+    private fun userOf(fUser: FirebaseUser): User {
+        return User(
+            _id = fUser.uid,
+            fName = fName!!,
+            lName = lName!!,
+            uName = uName!!,
+            city = null,
+            photo = null,
+            email = fUser.email,
+            phoneNumber = fUser.phoneNumber
+        )
     }
 
     private fun validateFields(fields: List<String?>): Boolean {
