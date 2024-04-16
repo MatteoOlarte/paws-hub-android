@@ -36,6 +36,14 @@ Unit Test
      }
      ```
 
+Integration Test
+
+  - Caso de prueba:
+
+     Verificar si el usuario introduce (email,contraseña) correctas sera dirigido a el punto de entrada MainActivity.kt
+     
+
+
      
 
          
