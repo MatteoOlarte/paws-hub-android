@@ -12,11 +12,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.elevation.SurfaceColors
 import com.software3.paws_hub_android.AuthState
 import com.software3.paws_hub_android.databinding.ActivitySignInBinding
-import com.software3.paws_hub_android.viewmodel.EmailAuthViewModel
+import com.software3.paws_hub_android.viewmodel.EmailSignInViewModel
+
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
-    private val authViewModel: EmailAuthViewModel by viewModels()
+    private val authViewModel: EmailSignInViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,11 +58,11 @@ class SignInActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         authViewModel.email = binding.userEmailInput.text.toString().lowercase()
-        authViewModel.password1 = binding.userPasswordInput.text.toString()
+        authViewModel.password = binding.userPasswordInput.text.toString()
     }
 
     private fun onAuthSuccess() {
-        binding.toolbarProgressIndicator.visibility = View.INVISIBLE
+        binding.toolbarProgressIndicator.visibility = View.GONE
         binding.loginButton.isEnabled = true
         Intent(this.applicationContext, MainActivity::class.java). also {
             startActivity(it)
@@ -74,8 +75,8 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun onAuthFailed() {
-        Toast.makeText(this, "ERROR", Toast.LENGTH_LONG).show()
-        binding.toolbarProgressIndicator.visibility = View.INVISIBLE
+        binding.toolbarProgressIndicator.visibility = View.GONE
         binding.loginButton.isEnabled = true
+        Toast.makeText(this, "ERROR ${authViewModel.message}", Toast.LENGTH_LONG).show()
     }
 }

@@ -42,5 +42,19 @@
             android:textAllCaps="true"
             android:elevation="5dp"
             style="@style/Widget.Material3.Button.TonalButton"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/welcome_activity_btn_google_auth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/google_auth"
+            android:textAllCaps="true"
+            style="@style/Widget.Material3.Button.OutlinedButton"/>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,4 +18,5 @@
     <string name="username_hint">User Name</string>
     <string name="first_name_hint">First Name</string>
     <string name="last_name_hint">Last Name</string>
+    <string name="google_auth">Google</string>
 </resources>

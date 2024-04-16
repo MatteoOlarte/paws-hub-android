@@ -12,11 +12,12 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.elevation.SurfaceColors
 import com.software3.paws_hub_android.AuthState
 import com.software3.paws_hub_android.databinding.ActivitySignUpBinding
-import com.software3.paws_hub_android.viewmodel.EmailAuthViewModel
+import com.software3.paws_hub_android.viewmodel.EmailSignUpViewModel
+
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
-    private val authViewModel: EmailAuthViewModel by viewModels()
+    private val authViewModel: EmailSignUpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +66,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun onAuthSuccess() {
-        binding.toolbarProgressIndicator.visibility = View.INVISIBLE
+        binding.toolbarProgressIndicator.visibility = View.GONE
+        binding.registerButton.isEnabled = true
         Intent(this.applicationContext, MainActivity::class.java). also {
             startActivity(it)
         }
@@ -77,8 +79,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun onAuthFailed() {
-        Toast.makeText(this, "ERROR", Toast.LENGTH_LONG).show()
-        binding.toolbarProgressIndicator.visibility = View.INVISIBLE
+        binding.toolbarProgressIndicator.visibility = View.GONE
         binding.registerButton.isEnabled = true
+        Toast.makeText(this, "ERROR ${authViewModel.message}", Toast.LENGTH_LONG).show()
     }
 }
