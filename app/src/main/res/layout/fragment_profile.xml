@@ -46,54 +46,34 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/fragment_profile_name"
+                android:id="@+id/profile_fragment__full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="sample name"
-
                 tools:ignore="hardCodedText" />
 
             <TextView
-                android:id="@+id/fragment_profile_nickname"
+                android:id="@+id/profile_fragment__user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:text="sample nick"
-
                 tools:ignore="hardCodedText" />
 
             <TextView
-                android:id="@+id/fragment_profile_pet_preference"
+                android:id="@+id/profile_fragment__user_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="sample pet"
-
                 tools:ignore="hardCodedText" />
-
-            <TextView
-                android:id="@+id/fragment_profile_job_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="sample job"
-
-                tools:ignore="hardCodedText" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Update"
-                android:visibility="gone" />
 
         </LinearLayout>
-
     </LinearLayout>
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
