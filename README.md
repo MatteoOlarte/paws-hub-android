@@ -2,9 +2,6 @@
 --------
 Unit Test
   - Selected fragments 
-    
-
-     Caso de prueba:
      
      ```kotlin
      public fun validatePasswords(p1: String, p2: String) = p1 == p2
@@ -16,6 +13,8 @@ Unit Test
         return emailRegex.matches(email)
     }
     ```
+
+    A los dos fragmentos anteriores se aplica la siguiente prueba unitario
 
      ```kotlin
      package com.software3.paws_hub_android.viewmode
@@ -38,6 +37,8 @@ Unit Test
      }
      ```
 
+
+    *Esto dio como resultado satisfactorio* la prueba para el primer fragmento ´´´´kotlin EmailValidatorUnitTest()´´´ verifica si un email en este caso (example@gmail.com) se esta validando correctamente sobre firebase
 
      ```kotlin
      private fun validateFields(fields: List<String?>): Boolean {
