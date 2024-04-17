@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/activity_main__pet_menu_item"
-        android:title="@string/txt_pets"
+        android:id="@+id/activity_main__navigate_home"
+        android:title="Opcion 1"
         android:icon="@drawable/baseline_person_24"/>
 
     <item
-        android:id="@+id/activity_main__profile_menu_item"
-        android:title="@string/txt_profile"
+        android:id="@+id/activity_main__navigate_"
+        android:title="Opcion 2"
+        android:icon="@drawable/baseline_person_24"/>
+
+
+    <item
+        android:id="@+id/activity_main__navigate_profile"
+        android:title="Opcion 3"
         android:icon="@drawable/baseline_person_24"/>
 </menu>

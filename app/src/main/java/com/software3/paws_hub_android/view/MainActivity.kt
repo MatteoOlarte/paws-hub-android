@@ -9,6 +9,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import com.google.android.material.elevation.SurfaceColors
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
@@ -26,15 +28,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.activityMainToolbar)
         userViewModel.checkUserLoggedInStatus()
         userViewModel.fetchUserData()
-
         userViewModel.isGuestUser.observe(this) {
             if (it) navigateToWelcomeActivity()
         }
-        /*
-        userViewModel.userData.observe(this) {
-            binding.activityMainToolbar.title = it.uName
-        }
-        */
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -67,11 +63,23 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this))
+        binding.activityMainNavigation.setOnItemSelectedListener(::onNavigationOptionsItemSelected)
     }
 
     private fun navigateToWelcomeActivity() {
         Intent(this.applicationContext, WelcomeActivity::class.java).also {
             startActivity(it)
         }
+    }
+
+    private fun onNavigationOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.activity_main__navigate_profile -> {
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<ProfileFragment>(R.id.activity_main__fragment_view)
+            }
+            true
+        }
+        else -> false
     }
 }
