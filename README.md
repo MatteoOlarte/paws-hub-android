@@ -78,8 +78,17 @@ Integration Test
     Redireccion al punto de entrada MainActivity.kt
 
     
-     
+   (VieWModel - View)
+   -Caso de prueba:
 
+   Ingresar (Email,password) Invalidos
+   Email = example@gmail.com
+   Password = example1
+
+   - Salida Esperada
+   ERROR Datos incorrectos o no se encuentra registrado
+
+  
 
      
 
