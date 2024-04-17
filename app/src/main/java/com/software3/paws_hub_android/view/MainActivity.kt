@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -27,8 +28,12 @@ class MainActivity : AppCompatActivity() {
         initUI()
         setSupportActionBar(binding.activityMainToolbar)
         userViewModel.isGuestUser.observe(this) {
-            if (it)
-                navigateToWelcomeActivity()
+            if (it) navigateToWelcomeActivity()
+        }
+        userViewModel.isLoading.observe(this) { isLoading ->
+            isLoading?.let {
+                binding.toolbarProgressIndicator.visibility = if (it) View.VISIBLE else View.GONE
+            }
         }
         userViewModel.checkUserLoggedInStatus()
     }
@@ -43,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             userViewModel.logoutCurrentUser()
             true
         }
+
         else -> {
             super.onOptionsItemSelected(item)
         }
@@ -79,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
         else -> false
     }
 }

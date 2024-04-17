@@ -9,10 +9,11 @@ import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.model.firebase.UserDataDAO
 
 
-class UserViewModel: ViewModel() {
+class UserViewModel : ViewModel() {
     private val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
     val userData = MutableLiveData<UserData>()
     val isGuestUser = MutableLiveData<Boolean>()
+    val isLoading = MutableLiveData<Boolean>()
     fun checkUserLoggedInStatus() = isGuestUser.postValue(currentUser == null)
 
     fun fetchUserData() {
@@ -21,9 +22,12 @@ class UserViewModel: ViewModel() {
         }
 
         val dal = UserDataDAO()
+        isLoading.postValue(true)
         dal.get(currentUser.uid).addOnSuccessListener {
-            val data = dal.cast(it)
-            userData.postValue(data)
+            dal.cast(it).also { value ->
+                isLoading.postValue(false)
+                userData.postValue(value)
+            }
         }.addOnFailureListener {
 
         }

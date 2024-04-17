@@ -2,14 +2,11 @@ package com.software3.paws_hub_android.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.FragmentProfileBinding
 import com.software3.paws_hub_android.viewmodel.UserViewModel
 
@@ -29,19 +26,26 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         userViewModel.userData.observe(viewLifecycleOwner) {
+            binding.root.visibility = View.VISIBLE
             it?.let { user ->
                 binding.profileFragmentFullName.text = "${user.fName} ${user.lName}"
-                binding.profileFragmentUserEmail.text = user.uName
-                binding.profileFragmentUserEmail.text = user.email
+                binding.profileFragmentUserName.text = "@${user.uName}"
+                binding.profileFragmentUserBio.text = ""
             }
         }
-        userViewModel.fetchUserData()
+        showUserProfile()
         return binding.root
+    }
+
+    private fun showUserProfile() {
+        userViewModel.fetchUserData()
+        binding.root.visibility = View.INVISIBLE
     }
 
     companion object {

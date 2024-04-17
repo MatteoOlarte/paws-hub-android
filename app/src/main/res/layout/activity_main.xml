@@ -32,6 +32,15 @@
                 android:minHeight="?attr/actionBarSize"
                 app:menu="@menu/activity_main_menu"
                 app:title="Paws Hub"/>
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/toolbar_progress_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:trackColor="?colorPrimaryContainer"
+                app:indicatorColor="?colorPrimary"
+                app:elevation="0dp"/>
         </com.google.android.material.appbar.AppBarLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
