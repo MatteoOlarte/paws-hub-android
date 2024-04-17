@@ -7,22 +7,34 @@ Unit Test
      Caso de prueba:
      
      ```kotlin
-     private fun isAnyBlank(fields: List<String?>): Boolean{
-         for(f in fields) {
-            if(f.isNullOrBlank()) return true
-         }
-         return false
-     }
+     public fun validatePasswords(p1: String, p2: String) = p1 == p2
      ```
 
+    ```kotlin
+    public fun validateEmail(email: String): Boolean {
+        val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+        return emailRegex.matches(email)
+    }
+    ```
+
      ```kotlin
-     import org.junit.Assert.assertFalse
-     import org.junit.Assert.assertTrue
-     import org.junit.Test
-     class testFields{
-       @Test fun nullFields(){
-           assertTrue(true, isAnyBlank())
-       }
+     package com.software3.paws_hub_android.viewmode
+     import org.junit.jupiter.api.Assertions.*
+     import org.junit.jupiter.api.Test
+
+     class EmailSignUpViewModelTest{
+     @Test
+     fun EmailValidatorUnitTest(){
+        var emailTestCase : String? = "example@gmail.com"
+        assertEquals(true,EmailSignUpViewModel().validateEmail(emailTestCase!!))
+        }
+   
+     @Test
+     fun  PasswordConfirmator(){
+        var pass : String? = "123"
+        var confPass : String? = "123"
+        assertEquals(true,EmailSignUpViewModel().validatePasswords(pass!!,confPass!!))
+        }
      }
      ```
 
@@ -37,43 +49,41 @@ Unit Test
      ```
 
      ```kotlin
-     import org.junit.Assert.assertFalse
-     import org.junit.Assert.assertTrue
      import org.junit.Test
-     class testFields{
-       @Test fun nullFields(){
-           assertTrue(true, validateFields())
-       }
+     import org.junit.jupiter.api.Assertions.*
+
+     class EmailSignInViewModelTest{
+        @Test
+        fun validateFields_Check(){
+        var email : String? = "email@gmail.com"
+        var password : String? = "email12345"
+        val fieldsOfTestCase = listOf(email,password)
+        assertEquals(true,EmailSignInViewModel().validateFields(fieldsOfTestCase))
+        }
      }
      ```
 
-     ```kotlin
-
-      private fun validateEmail(email: String): Boolean {
-        val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
-        return emailRegex.matches(email)
-    }     
-     ```
-
-     ```kotlin
-     import org.junit.Assert.assertFalse
-     import org.junit.Assert.assertTrue
-     import org.junit.Test
-     class testFields{
-       @Test fun nullFields(){
-           assertEquals(true, validateEmail()) 
-       }
-     }
-     ```
+     
      
 Integration Test
   (Firebase integration)
   - Caso de prueba:
+    
+     Ingresar (Email,Password) validos
+     Email = example@gmail.com
+     Password = example1234
 
-     Verificar si el usuario introduce (email,contraseña) correctas sera dirigido a el punto de entrada MainActivity.kt
+  - Salida esperada
+
+    Redireccion al punto de entrada MainActivity.kt
+
+    
      
 
 
      
+
+         
+
 
          
