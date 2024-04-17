@@ -26,11 +26,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         initUI()
         setSupportActionBar(binding.activityMainToolbar)
-        userViewModel.checkUserLoggedInStatus()
-        userViewModel.fetchUserData()
         userViewModel.isGuestUser.observe(this) {
-            if (it) navigateToWelcomeActivity()
+            if (it)
+                navigateToWelcomeActivity()
         }
+        userViewModel.checkUserLoggedInStatus()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
             userViewModel.logoutCurrentUser()
             true
         }
-
         else -> {
             super.onOptionsItemSelected(item)
         }

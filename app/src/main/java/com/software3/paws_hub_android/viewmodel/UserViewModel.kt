@@ -30,6 +30,6 @@ class UserViewModel: ViewModel() {
 
     fun logoutCurrentUser() {
         FirebaseAuth.getInstance().signOut()
-        checkUserLoggedInStatus()
+        isGuestUser.postValue(true)
     }
 }
