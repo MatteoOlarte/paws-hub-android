@@ -2,6 +2,7 @@ package com.software3.paws_hub_android.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -27,12 +28,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         initUI()
         setSupportActionBar(binding.activityMainToolbar)
-        userViewModel.isGuestUser.observe(this) {
-            if (it) navigateToWelcomeActivity()
-        }
-        userViewModel.isLoading.observe(this) { isLoading ->
-            isLoading?.let {
-                binding.toolbarProgressIndicator.visibility = if (it) View.VISIBLE else View.GONE
+        userViewModel.isGuestUser.observe(this) { isGuestUser ->
+            isGuestUser?.let {
+                if (it) navigateToWelcomeActivity()
             }
         }
         userViewModel.checkUserLoggedInStatus()
@@ -85,7 +83,14 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        R.id.activity_main__navigate_create -> {
 
+            true
+        }
+        R.id.activity_main__navigate_home -> {
+
+            true
+        }
         else -> false
     }
 }
