@@ -1,0 +1,14 @@
+package com.software3.paws_hub_android.viewmodel
+
+import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+
+class EmailSignInViewModelTest{
+    @Test
+    fun validateFields_Check(){
+        var email : String? = "email@gmail.com"
+        var password : String? = "email12345"
+        val fieldsOfTestCase = listOf(email,password)
+        assertEquals(true,EmailSignInViewModel().validateFields(fieldsOfTestCase))
+    }
+}
