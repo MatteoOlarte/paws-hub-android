@@ -38,7 +38,8 @@ Unit Test
      ```
 
 
-    *Esto dio como resultado satisfactorio* la prueba para el primer fragmento ´´´´kotlin EmailValidatorUnitTest()´´´ verifica si un email en este caso (example@gmail.com) se esta validando correctamente sobre firebase
+    *Esto dio como resultado satisfactorio* la prueba para el primer fragmento ´´´kotlin EmailValidatorUnitTest()´´´ verifica si el email ingresado por un usuario en este caso (example@gmail.com) se esta validando correctamente sobre firebase
+
 
      ```kotlin
      private fun validateFields(fields: List<String?>): Boolean {
