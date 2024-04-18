@@ -98,7 +98,7 @@ Integration Test
    - Salida Esperada
    ERROR Datos incorrectos o no se encuentra registrado
 
-<<<
+
 
 
 Resumen
