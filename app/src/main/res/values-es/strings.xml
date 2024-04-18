@@ -20,8 +20,8 @@
     <string name="personal_info_title">Información Personal</string>
     <string name="account_info_title">Información de la Cuenta</string>
     <string name="username_hint">Nombre de Usuario</string>
-    <string name="first_name_hint">Primer Nombre</string>
-    <string name="last_name_hint">Apellido</string>
+    <string name="first_name_hint">Nombres</string>
+    <string name="last_name_hint">Apellidos</string>
     <string name="google_auth">Google</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="share_profile">Compartir Perfil</string>
