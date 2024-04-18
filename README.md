@@ -60,6 +60,8 @@ Unit Test
      import org.junit.Test
      import org.junit.jupiter.api.Assertions.*
 
+
+     Prueba Unitaria
      class EmailSignInViewModelTest{
         @Test
         fun validateFields_Check(){
@@ -71,6 +73,7 @@ Unit Test
      }
      ```
 
+    Esta prueba valida si los campos que se deben llenar al momento del loggin son validados, es decir aquellos campos que poseen constraints de NOT NULL deberan validarse para evitar errores
      
      
 Integration Test
@@ -96,7 +99,7 @@ Integration Test
    - Salida Esperada
    ERROR Datos incorrectos o no se encuentra registrado
 
-  
+
 
      
 
