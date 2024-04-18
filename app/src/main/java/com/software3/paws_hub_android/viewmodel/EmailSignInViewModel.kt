@@ -15,7 +15,7 @@ class EmailSignInViewModel: ViewModel() {
     fun login() {
         val fields = listOf(email, password)
         if (!validateFields(fields)) {
-            message = "mensaje para campos vacios"
+            message = "error_fields_required"
             authState.postValue(AuthState.FAILED)
             return
         }

@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.google.android.material.elevation.SurfaceColors
+import com.software3.paws_hub_android.DiscoverFragment
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
 import com.software3.paws_hub_android.viewmodel.UserViewModel
@@ -79,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         R.id.activity_main__navigate_profile -> {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<ProfileFragment>(R.id.activity_main__fragment_view)
+                replace(binding.activityMainFragmentView.id, ProfileFragment())
             }
             true
         }
@@ -88,7 +89,10 @@ class MainActivity : AppCompatActivity() {
             true
         }
         R.id.activity_main__navigate_home -> {
-
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace(binding.activityMainFragmentView.id, DiscoverFragment())
+            }
             true
         }
         else -> false

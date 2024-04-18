@@ -9,7 +9,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.elevation.SurfaceColors
+import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.AuthState
 import com.software3.paws_hub_android.databinding.ActivitySignUpBinding
 import com.software3.paws_hub_android.viewmodel.EmailSignUpViewModel
@@ -68,7 +70,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun onAuthSuccess() {
         binding.toolbarProgressIndicator.visibility = View.GONE
         binding.registerButton.isEnabled = true
-        Intent(this.applicationContext, MainActivity::class.java). also {
+        Intent(this.applicationContext, MainActivity::class.java).also {
             startActivity(it)
         }
     }
@@ -78,9 +80,19 @@ class SignUpActivity : AppCompatActivity() {
         binding.registerButton.isEnabled = false
     }
 
-    private fun onAuthFailed() {
-        binding.toolbarProgressIndicator.visibility = View.GONE
-        binding.registerButton.isEnabled = true
-        Toast.makeText(this, "ERROR ${authViewModel.message}", Toast.LENGTH_LONG).show()
+    private fun onAuthFailed() = MaterialAlertDialogBuilder(this).setTitle("Error")
+        .setMessage(getErrorMessage(authViewModel.message))
+        .setPositiveButton("Error") { dialog, _ ->
+            binding.toolbarProgressIndicator.visibility = View.GONE
+            binding.registerButton.isEnabled = true
+            dialog.dismiss()
+        }
+        .show()
+
+    private fun getErrorMessage(error: String) = when (error) {
+        "error_fields_required" -> getString(R.string.error_fields_required)
+        "error_invalid_email" -> getString(R.string.error_invalid_email)
+        "error_password_mismatch" -> getString(R.string.error_password_mismatch)
+        else -> error
     }
 }
