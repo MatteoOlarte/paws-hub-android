@@ -3,10 +3,7 @@
 Unit Test
   - Selected fragments 
      
-     ```kotlin
-     public fun validatePasswords(p1: String, p2: String) = p1 == p2
-     ```
-
+     
     ```kotlin
     public fun validateEmail(email: String): Boolean {
         val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
@@ -14,20 +11,31 @@ Unit Test
     }
     ```
 
-    A los dos fragmentos anteriores se aplica la siguiente prueba unitario
+    Prueba Unitaria:
 
      ```kotlin
-     package com.software3.paws_hub_android.viewmode
-     import org.junit.jupiter.api.Assertions.*
-     import org.junit.jupiter.api.Test
-
      class EmailSignUpViewModelTest{
      @Test
      fun EmailValidatorUnitTest(){
         var emailTestCase : String? = "example@gmail.com"
         assertEquals(true,EmailSignUpViewModel().validateEmail(emailTestCase!!))
-        }
-   
+         }
+     ```
+     Explicacion:
+ 
+     Esta prueba valida si el email ingresado por el usuario es correcto de acuerdo a los parametros seleccionados, es decir debe contener caracteres como @, en este caso en particular se hizo uso del email 
+     example@gmail.com (Valido correctamente)
+
+
+
+     ```kotlin
+     public fun validatePasswords(p1: String, p2: String) = p1 == p2
+     ```
+
+     
+     Prueba Unitaria:
+    
+     ```kotlin
      @Test
      fun  PasswordConfirmator(){
         var pass : String? = "123"
@@ -37,9 +45,7 @@ Unit Test
      }
      ```
 
-
-    *Esto dio como resultado satisfactorio* la prueba para el primer fragmento ´´´kotlin EmailValidatorUnitTest()´´´ verifica si el email ingresado por un usuario en este caso (example@gmail.com) se esta validando correctamente sobre firebase
-
+    Esta prueba valida si la contraseña que crea el usuario b
 
      ```kotlin
      private fun validateFields(fields: List<String?>): Boolean {
