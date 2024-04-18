@@ -45,7 +45,7 @@ Unit Test
      }
      ```
 
-    Esta prueba valida si la contraseña que crea el usuario b
+    Esta prueba valida si la contraseña que crea el usuario, en su doble confirmacion es correcta, es decir si las dos contraseñas (Password y ConfirmPassword) son iguales, en este caso en particular se observa que se valida correctamente
 
      ```kotlin
      private fun validateFields(fields: List<String?>): Boolean {
