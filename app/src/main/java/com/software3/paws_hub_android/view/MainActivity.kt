@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
         setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this))
         binding.activityMainNavigation.setOnItemSelectedListener(::onNavigationOptionsItemSelected)
+        binding.activityMainToolbar.title = getString(R.string.discover)
     }
 
     private fun navigateToWelcomeActivity() {
@@ -76,20 +77,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun onNavigationOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.activity_main__navigate_profile -> {
-            //esto funciona per mal
+            //esto funciona  mal
             supportFragmentManager.commit {
-                setReorderingAllowed(true)
+                binding.activityMainToolbar.title = getString(R.string.profile)
                 binding.activityMainAppbarLayout.setExpanded(true)
+                setReorderingAllowed(true)
                 replace(binding.activityMainFragmentView.id, ProfileFragment())
             }
             true
         }
         R.id.activity_main__navigate_create -> {
-
-            true
+            false
         }
         R.id.activity_main__navigate_home -> {
+            //esto tambien funciona  mal
             supportFragmentManager.commit {
+                binding.activityMainToolbar.title = getString(R.string.discover)
+                binding.activityMainAppbarLayout.setExpanded(true)
                 setReorderingAllowed(true)
                 replace(binding.activityMainFragmentView.id, DiscoverFragment())
             }

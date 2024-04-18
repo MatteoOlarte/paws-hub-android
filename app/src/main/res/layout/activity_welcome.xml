@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/material_on_surface_emphasis_high_type"
-            android:textSize="34sp"
+            android:textSize="50sp"
             android:layout_marginBottom="16dp"
             android:text="@string/app_name"
             android:fontFamily="@font/dancing_script"/>
@@ -47,6 +47,7 @@
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginVertical="16dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/google_auth"
+            android:visibility="gone"
             android:textAllCaps="true"
             style="@style/Widget.Material3.Button.OutlinedButton"/>
 
