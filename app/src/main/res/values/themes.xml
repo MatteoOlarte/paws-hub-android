@@ -32,6 +32,10 @@
         <item name="colorOnTertiaryContainer">#1E2B33</item>
     </style>
 
+    <style name="Theme.PawsHubAndroid.Toolbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:background">?attr/colorSurface</item>
+    </style>
+
     <style name="Theme.PawsHubAndroid" parent="Base.Theme.PawsHubAndroid" />
 
     <style name="Theme.PawsHubAndroid.BottomNavigation" parent="Widget.Material3.BottomNavigationView">

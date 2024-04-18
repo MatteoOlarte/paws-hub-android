@@ -2,16 +2,13 @@ package com.software3.paws_hub_android.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.google.android.material.elevation.SurfaceColors
 import com.software3.paws_hub_android.DiscoverFragment
@@ -34,6 +31,7 @@ class MainActivity : AppCompatActivity() {
                 if (it) navigateToWelcomeActivity()
             }
         }
+
         userViewModel.checkUserLoggedInStatus()
     }
 
@@ -78,8 +76,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun onNavigationOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.activity_main__navigate_profile -> {
+            //esto funciona per mal
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
+                binding.activityMainAppbarLayout.setExpanded(true)
                 replace(binding.activityMainFragmentView.id, ProfileFragment())
             }
             true

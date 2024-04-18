@@ -23,6 +23,6 @@
     <string name="error_invalid_email">Invalid email address</string>
     <string name="error_password_mismatch">Passwords do not match</string>
     <string name="error_wrong_password">Incorrect password.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="discover">Discover</string>
+    <string name="profile">Profile</string>
 </resources>

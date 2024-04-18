@@ -26,15 +26,17 @@
             android:id="@+id/activity_main__appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true">
+            app:liftOnScroll="false">
             <com.google.android.material.appbar.MaterialToolbar
+                style="@style/Theme.PawsHubAndroid.Toolbar"
                 android:id="@+id/activity_main__toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:menu="@menu/activity_main_menu"
-                app:title="Paws Hub"/>
+                app:title="Paws Hub"
+                />
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/toolbar_progress_indicator"
                 android:layout_width="match_parent"
@@ -45,7 +47,6 @@
                 app:indicatorColor="?colorPrimary"
                 app:elevation="0dp"/>
         </com.google.android.material.appbar.AppBarLayout>
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.divider.MaterialDivider

@@ -23,4 +23,6 @@
     <string name="error_invalid_email">Correo electrónico inválido</string>
     <string name="error_password_mismatch">Las contraseñas no coinciden</string>
     <string name="error_wrong_password">Contraseña incorrecta.</string>
+    <string name="discover">Descubrir</string>
+    <string name="profile">Perfil</string>
 </resources>
