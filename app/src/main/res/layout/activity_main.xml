@@ -18,18 +18,21 @@
             android:id="@+id/activity_main__fragment_view"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            tools:layout="@layout/fragment_profile"
+            android:name="com.software3.paws_hub_android.DiscoverFragment"
+            tools:layout="@layout/fragment_discover"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/activity_main__appbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:liftOnScroll="true">
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/activity_main__toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:menu="@menu/activity_main_menu"
                 app:title="Paws Hub"/>
             <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -37,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:visibility="invisible"
+                android:visibility="gone"
                 app:trackColor="?colorPrimaryContainer"
                 app:indicatorColor="?colorPrimary"
                 app:elevation="0dp"/>

@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Paws Hub</string>
-    <string name="welcome_msg">
-
-    </string>
-    <string name="sign_up">
-        Registrarse
-    </string>
-    <string name="sign_in">
-        Iniciar Sesión
-    </string>
+    <string name="sign_up">Registrarse</string>
+    <string name="sign_in">Iniciar Sesión</string>
     <string name="txt_pets">Pets</string>
     <string name="txt_profile">Profile</string>
     <string name="text_email">Email</string>
@@ -25,4 +18,9 @@
     <string name="google_auth">Google</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="share_profile">Compartir Perfil</string>
+    <string name="error_msg_title">Error</string>
+    <string name="error_fields_required">Por favor, complete todos los campos de texto</string>
+    <string name="error_invalid_email">Correo electrónico inválido</string>
+    <string name="error_password_mismatch">Las contraseñas no coinciden</string>
+    <string name="error_wrong_password">Contraseña incorrecta.</string>
 </resources>

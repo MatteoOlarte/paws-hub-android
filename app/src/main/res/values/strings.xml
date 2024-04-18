@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Paws Hub</string>
-    <string name="welcome_msg">
-
-    </string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="text_email">Email</string>
@@ -21,4 +18,11 @@
     <string name="google_auth">Google</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="share_profile">Share Profile</string>
+    <string name="error_msg_title">Error</string>
+    <string name="error_fields_required">Please fill in all the text fields</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_wrong_password">Incorrect password.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -22,17 +22,17 @@ class EmailSignUpViewModel : ViewModel() {
     fun registerUser() {
         val fields = listOf(fName, lName, uName, email, password1, password2)
         if (!validateFields(fields)) {
-            message = "mensaje para campos vacios"
+            message = "error_fields_required"
             authState.postValue(AuthState.FAILED)
             return
         }
         if (!validateEmail(email!!)) {
-            message = "mensaje para email invalido"
+            message = "error_invalid_email"
             authState.postValue(AuthState.FAILED)
             return
         }
         if (!validatePasswords(password1!!, password2!!)) {
-            message = "mensaje para pass invalido"
+            message = "error_password_mismatch"
             authState.postValue(AuthState.FAILED)
             return
         }
