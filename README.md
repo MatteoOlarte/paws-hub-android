@@ -1,8 +1,10 @@
 # Testing
 --------
-Unit Test
-  - Selected fragments 
+Unit Test 
      
+     Prueba 01
+
+     Fragmento Seleccionado
      
     ```kotlin
     public fun validateEmail(email: String): Boolean {
@@ -27,6 +29,9 @@ Unit Test
      example@gmail.com (Valido correctamente)
 
 
+      Prueba 02
+
+      Fragmento Seleccionado
 
      ```kotlin
      public fun validatePasswords(p1: String, p2: String) = p1 == p2
@@ -44,9 +49,15 @@ Unit Test
         }
      }
      ```
-
+    Esxplicacion:
+    
     Esta prueba valida si la contraseña que crea el usuario, en su doble confirmacion es correcta, es decir si las dos contraseñas (Password y ConfirmPassword) son iguales, en este caso en particular se observa que se valida correctamente
 
+
+    Prueba 03
+
+    Fragmento Seleccionado
+    
      ```kotlin
      private fun validateFields(fields: List<String?>): Boolean {
         for (f in fields) {
@@ -56,6 +67,9 @@ Unit Test
      }
      ```
 
+
+      Prueba Unitaria;
+      
      ```kotlin
      import org.junit.Test
      import org.junit.jupiter.api.Assertions.*
@@ -73,6 +87,8 @@ Unit Test
      }
      ```
 
+    Explicacion:
+    
     Esta prueba valida si los campos que se deben llenar al momento del loggin son validados, es decir aquellos campos que poseen constraints de NOT NULL deberan validarse para evitar errores
      
      
