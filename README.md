@@ -2,109 +2,118 @@
 --------
 Unit Test 
      
-     Prueba 01
+- Prueba 01
 
-     Fragmento Seleccionado
+Fragmento Seleccionado
      
-    ```kotlin
-    public fun validateEmail(email: String): Boolean {
-        val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
-        return emailRegex.matches(email)
-    }
-    ```
+```kotlin
+public fun validateEmail(email: String): Boolean {
+   val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+   return emailRegex.matches(email)
+}
+```
 
-    Prueba Unitaria:
+Prueba Unitaria:
 
-     ```kotlin
-     class EmailSignUpViewModelTest{
-     @Test
-     fun EmailValidatorUnitTest(){
-        var emailTestCase : String? = "example@gmail.com"
-        assertEquals(true,EmailSignUpViewModel().validateEmail(emailTestCase!!))
-         }
-     ```
-     Explicacion:
+```kotlin
+class EmailSignUpViewModelTest{
+@Test
+fun EmailValidatorUnitTest(){
+   var emailTestCase : String? = "example@gmail.com"
+   assertEquals(true,EmailSignUpViewModel().validateEmail(emailTestCase!!))
+}
+```
+Explicacion:
  
-     Esta prueba valida si el email ingresado por el usuario es correcto de acuerdo a los parametros seleccionados, es decir debe contener caracteres como @, en este caso en particular se hizo uso del email 
-     example@gmail.com (Valido correctamente)
+Esta prueba valida si el email ingresado por el usuario es correcto de acuerdo a los parametros seleccionados, es decir debe contener caracteres como @, en este caso en particular se hizo uso del email 
+example@gmail.com (Valido correctamente)
 
+  
+- Prueba 02
 
-      Prueba 02
+ Fragmento Seleccionado
 
-      Fragmento Seleccionado
-
-     ```kotlin
-     public fun validatePasswords(p1: String, p2: String) = p1 == p2
-     ```
+```kotlin
+public fun validatePasswords(p1: String, p2: String) = p1 == p2
+```
 
      
-     Prueba Unitaria:
+Prueba Unitaria:
     
-     ```kotlin
-     @Test
-     fun  PasswordConfirmator(){
-        var pass : String? = "123"
-        var confPass : String? = "123"
-        assertEquals(true,EmailSignUpViewModel().validatePasswords(pass!!,confPass!!))
-        }
-     }
-     ```
-    Esxplicacion:
+```kotlin
+  @Test
+  fun  PasswordConfirmator(){
+     var pass : String? = "123"
+     var confPass : String? = "123"
+     assertEquals(true,EmailSignUpViewModel().validatePasswords(pass!!,confPass!!))
+  }
+```
+Esxplicacion:
     
-    Esta prueba valida si la contraseña que crea el usuario, en su doble confirmacion es correcta, es decir si las dos contraseñas (Password y ConfirmPassword) son iguales, en este caso en particular se observa que se valida correctamente
+Esta prueba valida si la contraseña que crea el usuario, en su doble confirmacion es correcta, es decir si las dos contraseñas (Password y ConfirmPassword) son iguales, en este caso en particular se observa que se valida correctamente
 
 
-    Prueba 03
+- Prueba 03
 
-    Fragmento Seleccionado
+Fragmento Seleccionado
     
-     ```kotlin
-     private fun validateFields(fields: List<String?>): Boolean {
-        for (f in fields) {
-            if (f.isNullOrBlank()) return false
-        }
-        return true
-     }
-     ```
+```kotlin
+private fun validateFields(fields: List<String?>): Boolean {
+   for (f in fields) {
+      if (f.isNullOrBlank()) return false
+   }  
+   return true
+}
+```
 
 
-      Prueba Unitaria;
+Prueba Unitaria;
       
-     ```kotlin
-     import org.junit.Test
-     import org.junit.jupiter.api.Assertions.*
+```kotlin
+import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
 
 
-     Prueba Unitaria
-     class EmailSignInViewModelTest{
-        @Test
-        fun validateFields_Check(){
-        var email : String? = "email@gmail.com"
-        var password : String? = "email12345"
-        val fieldsOfTestCase = listOf(email,password)
-        assertEquals(true,EmailSignInViewModel().validateFields(fieldsOfTestCase))
-        }
-     }
-     ```
+Prueba Unitaria
+class EmailSignInViewModelTest{
+  @Test
+  fun validateFields_Check(){
+    var email : String? = "email@gmail.com" 
+    var password : String? = "email12345"
+    val fieldsOfTestCase = listOf(email,password)
+    assertEquals(true,EmailSignInViewModel().validateFields(fieldsOfTestCase))
+  }
+}
+```
 
-    Explicacion:
+Explicacion:
     
-    Esta prueba valida si los campos que se deben llenar al momento del loggin son validados, es decir aquellos campos que poseen constraints de NOT NULL deberan validarse para evitar errores
+Esta prueba valida si los campos que se deben llenar al momento del loggin son validados, es decir aquellos campos que poseen constraints de NOT NULL deberan validarse para evitar errores
      
      
 Integration Test
+
+- Prueba 04
+  
   (Firebase integration)
   - Caso de prueba:
     
-     Ingresar (Email,Password) validos
+     Ingresar el (Email,Password) validos
      Email = example@gmail.com
      Password = example1234
 
   - Salida esperada
 
     Redireccion al punto de entrada MainActivity.kt
+  
+  - Explicacion
+ 
+    Esta prueba pretende validar y verificar si el servicio en la nube Firebase Auth esta conectando correctamente con la aplicacion, al ingresar las credenciales se espera que se valida sobre el Auth Firebase y determine si estas estan activas dando como resultado verdadero o no (dando como resultado falso), asi entonces al ingresar los datos del caso de prueba y dar click en ingresar se esta probando la integracion de firebase (inmediatanmente da el click de ingresar)
     
+- Prueba 05
+  
    (VieWModel - View)
+  
    -Caso de prueba:
 
    Ingresar (Email,password) Invalidos
@@ -114,7 +123,12 @@ Integration Test
    - Salida Esperada
    ERROR Datos incorrectos o no se encuentra registrado
 
+  . Explicaicon
 
+  Esta prueba valida la interaccion entre los modulos del ViewModel y View a partir de el caso de prueba, especificamente al ingresar los datos VALIDOS/INVALIDOS el modulo View tiene que interactuar con el ViewModel para que este utilize el Modelo y valide los datos, ademas de comunicar con la View para que muestra un SnackBar (pantalla emergente) en caso de que los datos sean incorrectos.
+
+- Prueba 06
+  
 
 
 Resumen
