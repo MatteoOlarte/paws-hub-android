@@ -129,6 +129,8 @@ Integration Test
 
 - Prueba 06
 
+  
+
 - Prueba 07
 
   Caso de prueba
@@ -140,7 +142,8 @@ Integration Test
   Correcta Adaptacion de los layouts de acuerdo a la configuracion del sistema
 
   Explicacion
-  
+
+  Esta prueba pretende validar y verificar si los widgets que estan en la aplicacion se adaptan segun el MODO (OSCURO,CLARO) utilizado en el Sistema operativo, lo realiza cambiando el modo o tema del sistema y observando como cambia los layouts de la aplicacion
 
 
 Resumen
