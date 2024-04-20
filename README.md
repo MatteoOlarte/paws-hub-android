@@ -132,20 +132,20 @@ Integration Test
 
  (ViewModel - Model)
 
-- Caso de prueba
-     FirstName: Hello
-     LastName: World
-     UserName: HelloWorld
-     Email: hello@gmail.com
-     Password: hello123
+     - Caso de prueba
+          FirstName: Hello
+          LastName: World
+          UserName: HelloWorld
+          Email: hello@gmail.com
+          Password: hello123
 
-- Salida Esperada
+     - Salida Esperada
     
-Paso al layout principal de manera satisfactoria
+     Paso al layout principal de manera satisfactoria
 
-- Explicacion de la prueba:
+     - Explicacion de la prueba:
     
-  Esta prueba pretende validar y verificar la interaccion entre los modulo ViewModel y View, a partir de el registro de un nuevo usuario, ya que al realizar dicha accion el modulo ViewModel usa al Model para poder verificar todos los campos, ademas de agregar a la base de datos
+       Esta prueba pretende validar y verificar la interaccion entre los modulo ViewModel y View, a partir de el registro de un nuevo usuario, ya que al realizar dicha accion el modulo ViewModel usa al Model para poder verificar todos los campos, ademas de agregar a la base de datos
     
 - Prueba 07
 
@@ -167,13 +167,13 @@ Paso al layout principal de manera satisfactoria
   
   - Caso de prueba:
   
-    Registro de usuario:
-         Email: hello10@gmail.com
-         Password: hello123
+         Registro de usuario:
+              Email: hello10@gmail.com
+              Password: hello123
     
-    Inicio de sesión con credenciales incorrectas:
-         Email: hello123@gmail.com
-         Password: hello10
+         Inicio de sesión con credenciales incorrectas:
+              Email: hello123@gmail.com
+              Password: hello10
     
   - Salida Esperada:
   
