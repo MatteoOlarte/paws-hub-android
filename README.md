@@ -130,22 +130,25 @@ Integration Test
 
 - Prueba 06
 
- (ViewModel - Model)
-
-     - Caso de prueba
-          FirstName: Hello
-          LastName: World
-          UserName: HelloWorld
-          Email: hello@gmail.com
-          Password: hello123
-
-- Salida Esperada
+  (ViewModel - Model)
+  
+  - Caso de prueba:
+  
+            Registro de nuevo usuario:
+              FirstName: Hello
+              LastName: World
+              UserName: HelloWorld
+              Email: hello@gmail.com
+              Password: hello123
     
-Paso al layout principal de manera satisfactoria
-
-- Explicacion de la prueba:
+  - Salida Esperada:
+  
+    Se espera que el usuario se registre con éxito y sea redirigido al layout principal de la aplicación.
     
-  Esta prueba pretende validar y verificar la interaccion entre los modulo ViewModel y View, a partir de el registro de un nuevo usuario, ya que al realizar dicha accion el modulo ViewModel usa al Model para poder verificar todos los campos, ademas de agregar a la base de datos
+  - Explicación de la prueba:
+  
+    Esta prueba valida y verifica la interacción entre los módulos ViewModel y Model al registrar un nuevo usuario. Se espera que el ViewModel utilice el Model para verificar todos los campos proporcionados por el usuario, además de agregar la información a la base de datos. El objetivo es asegurarse de que el registro sea exitoso y que el usuario sea dirigido correctamente al layout principal de la aplicación.
+
     
 - Prueba 07
 
@@ -210,3 +213,5 @@ Resumen
 |05|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con View (LOGIN)|EMAIL: example@gmail.com : PASSWORD: exampl11234|CORRECTO|
 |06|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con Model (REGISTRO)|FirstName: Hello ; LastName: World ; UserWorld: HelloWorld ; Email: hello@gmail.com ; Password: hello123|Correcto|
 |07|Black Box|Toda la aplicacion (frames)| Cambiar modo o tema del sistema a oscuro o claro|INCORRECTO|
+|08|INTEGRACION|BASE DE DATOS - FIREBASE|Registro de usuario: Email: hello10@gmail.com ; Password: hello123. Inicio de sesion con credenciales incorrectas: Email: hello123@gmail.com ; Password: hello10|INCORRECTO|
+|09|INTERFAZ DE USUARIO|TODA LA APLICACION (SCROLL)|Ocultar la barra superior al hacer scroll en la pantalla de inicio o perfil|INCORRECTO|
