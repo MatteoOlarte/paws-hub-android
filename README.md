@@ -1,79 +1,165 @@
 # Testing
 --------
-Unit Test
-  - Selected fragments 
-    
-
-     Caso de prueba:
+Unit Test 
      
-     ```kotlin
-     private fun isAnyBlank(fields: List<String?>): Boolean{
-         for(f in fields) {
-            if(f.isNullOrBlank()) return true
-         }
-         return false
-     }
-     ```
+- Prueba 01
 
-     ```kotlin
-     import org.junit.Assert.assertFalse
-     import org.junit.Assert.assertTrue
-     import org.junit.Test
-     class testFields{
-       @Test fun nullFields(){
-           assertTrue(true, isAnyBlank())
-       }
-     }
-     ```
+Fragmento Seleccionado
+     
+```kotlin
+public fun validateEmail(email: String): Boolean {
+   val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+   return emailRegex.matches(email)
+}
+```
+
+Prueba Unitaria:
+
+```kotlin
+class EmailSignUpViewModelTest{
+@Test
+fun EmailValidatorUnitTest(){
+   var emailTestCase : String? = "example@gmail.com"
+   assertEquals(true,EmailSignUpViewModel().validateEmail(emailTestCase!!))
+}
+```
+Explicacion:
+ 
+Esta prueba valida si el email ingresado por el usuario es correcto de acuerdo a los parametros seleccionados, es decir debe contener caracteres como @, en este caso en particular se hizo uso del email 
+example@gmail.com (Valido correctamente)
+
+  
+- Prueba 02
+
+ Fragmento Seleccionado
+
+```kotlin
+public fun validatePasswords(p1: String, p2: String) = p1 == p2
+```
+
+     
+Prueba Unitaria:
+    
+```kotlin
+  @Test
+  fun  PasswordConfirmator(){
+     var pass : String? = "123"
+     var confPass : String? = "123"
+     assertEquals(true,EmailSignUpViewModel().validatePasswords(pass!!,confPass!!))
+  }
+```
+Esxplicacion:
+    
+Esta prueba valida si la contraseña que crea el usuario, en su doble confirmacion es correcta, es decir si las dos contraseñas (Password y ConfirmPassword) son iguales, en este caso en particular se observa que se valida correctamente
 
 
-     ```kotlin
-     private fun validateFields(fields: List<String?>): Boolean {
-        for (f in fields) {
-            if (f.isNullOrBlank()) return false
-        }
-        return true
-     }
-     ```
+- Prueba 03
 
-     ```kotlin
-     import org.junit.Assert.assertFalse
-     import org.junit.Assert.assertTrue
-     import org.junit.Test
-     class testFields{
-       @Test fun nullFields(){
-           assertTrue(true, validateFields())
-       }
-     }
-     ```
+Fragmento Seleccionado
+    
+```kotlin
+private fun validateFields(fields: List<String?>): Boolean {
+   for (f in fields) {
+      if (f.isNullOrBlank()) return false
+   }  
+   return true
+}
+```
 
-     ```kotlin
 
-      private fun validateEmail(email: String): Boolean {
-        val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
-        return emailRegex.matches(email)
-    }     
-     ```
+Prueba Unitaria;
+      
+```kotlin
+import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
 
-     ```kotlin
-     import org.junit.Assert.assertFalse
-     import org.junit.Assert.assertTrue
-     import org.junit.Test
-     class testFields{
-       @Test fun nullFields(){
-           assertEquals(true, validateEmail()) 
-       }
-     }
-     ```
+
+Prueba Unitaria
+class EmailSignInViewModelTest{
+  @Test
+  fun validateFields_Check(){
+    var email : String? = "email@gmail.com" 
+    var password : String? = "email12345"
+    val fieldsOfTestCase = listOf(email,password)
+    assertEquals(true,EmailSignInViewModel().validateFields(fieldsOfTestCase))
+  }
+}
+```
+
+Explicacion:
+    
+Esta prueba valida si los campos que se deben llenar al momento del loggin son validados, es decir aquellos campos que poseen constraints de NOT NULL deberan validarse para evitar errores
+     
      
 Integration Test
+
+- Prueba 04
+  
   (Firebase integration)
   - Caso de prueba:
+    
+     Ingresar el (Email,Password) validos
+     Email = example@gmail.com
+     Password = example1234
 
-     Verificar si el usuario introduce (email,contraseña) correctas sera dirigido a el punto de entrada MainActivity.kt
+  - Salida esperada
+
+    Redireccion al punto de entrada MainActivity.kt
+  
+  - Explicacion
+ 
+    Esta prueba pretende validar y verificar si el servicio en la nube Firebase Auth esta conectando correctamente con la aplicacion, al ingresar las credenciales se espera que se valida sobre el Auth Firebase y determine si estas estan activas dando como resultado verdadero o no (dando como resultado falso), asi entonces al ingresar los datos del caso de prueba y dar click en ingresar se esta probando la integracion de firebase (inmediatanmente da el click de ingresar)
+    
+- Prueba 05
+  
+   (VieWModel - View)
+  
+   -Caso de prueba:
+
+   Ingresar (Email,password) Invalidos
+   Email = example@gmail.com
+   Password = example1
+
+   - Salida Esperada
+   ERROR Datos incorrectos o no se encuentra registrado
+
+  . Explicaicon
+
+  Esta prueba valida la interaccion entre los modulos del ViewModel y View a partir de el caso de prueba, especificamente al ingresar los datos VALIDOS/INVALIDOS el modulo View tiene que interactuar con el ViewModel para que este utilize el Modelo y valide los datos, ademas de comunicar con la View para que muestra un SnackBar (pantalla emergente) en caso de que los datos sean incorrectos.
+
+- Prueba 06
+
+  
+
+- Prueba 07
+
+  Caso de prueba
+
+  Cambiar configuracion del sistema (modo oscuro y modo claro)
+
+  Salida Esperada
+
+  Correcta Adaptacion de los layouts de acuerdo a la configuracion del sistema
+
+  Explicacion
+
+  Esta prueba pretende validar y verificar si los widgets que estan en la aplicacion se adaptan segun el MODO (OSCURO,CLARO) utilizado en el Sistema operativo, lo realiza cambiando el modo o tema del sistema y observando como cambia los layouts de la aplicacion
+
+
+Resumen
+
+|ID|TIPOPRUEBA|ENTORNOPRUEBA|CASOPRUEBA|CORRECTA/INCORRECTA|
+|-|-|-|-|-|
+|01|UNITARIA |INGRESO DE EMAIL SOBRE EL LOGGIN |EMAIL: example@gmail.com | CORRECTO|
+|02|UNITARIA|INGRESO DE PASSWORD AL REGISTRARSE, CONFIRMACION DE CONTRASEÑA|PASSWORD:123 ; PASSWORD:123|CORRECTO|
+|03|UNITARIA|INGRESO DE EMAIL Y PASSWORD SOBRE EL LOGGIN|EMAIL: example@gmail.comk ; PASSWORD: email12345|CORRECTO|
+|04|INTEGRACION|INTEGRACION DE FIREBASE AUTH (LOGIN)|EMAIL:example@gmail.com ; PASSWORD: example1234|CORRECTO|
+|05|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con View (LOGIN)|EMAIL: example@gmail.com : PASSWORD: exampl11234|CORRECTO|
+
+
      
 
+         
 
-     
 
          
