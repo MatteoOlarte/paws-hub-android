@@ -128,6 +128,18 @@ Integration Test
   Esta prueba valida la interaccion entre los modulos del ViewModel y View a partir de el caso de prueba, especificamente al ingresar los datos VALIDOS/INVALIDOS el modulo View tiene que interactuar con el ViewModel para que este utilize el Modelo y valide los datos, ademas de comunicar con la View para que muestra un SnackBar (pantalla emergente) en caso de que los datos sean incorrectos.
 
 - Prueba 06
+
+- Prueba 07
+
+  Caso de prueba
+
+  Cambiar configuracion del sistema (modo oscuro y modo claro)
+
+  Salida Esperada
+
+  Correcta Adaptacion de los layouts de acuerdo a la configuracion del sistema
+
+  Explicacion
   
 
 
