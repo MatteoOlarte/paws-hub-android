@@ -3,9 +3,9 @@
 --------
 Unit Test 
      
-- Prueba 01
+- Prueba Unitaria 01: Validación de Email
 
-Fragmento Seleccionado
+Fragmento Seleccionado:
      
 ```kotlin
 public fun validateEmail(email: String): Boolean {
@@ -14,7 +14,7 @@ public fun validateEmail(email: String): Boolean {
 }
 ```
 
-Prueba Unitaria:
+Caso de Prueba y Resultado:
 
 ```kotlin
 class EmailSignUpViewModelTest{
@@ -24,22 +24,20 @@ fun EmailValidatorUnitTest(){
    assertEquals(true,EmailSignUpViewModel().validateEmail(emailTestCase!!))
 }
 ```
-- Explicacion:
+
+- Explicación de la prueba:
  
-Esta prueba valida si el email ingresado por el usuario es correcto de acuerdo a los parametros seleccionados, es decir debe contener caracteres como @, en este caso en particular se hizo uso del email 
-example@gmail.com (Valido correctamente)
-
+Esta prueba valida si el email ingresado por el usuario es correcto según los parámetros seleccionados, es decir, debe contener caracteres como @. En este caso en particular se utilizó el email "example@gmail.com" y se validó correctamente.
   
-- Prueba 02
+- Prueba Unitaria 02: Validación de Contraseñas
 
- Fragmento Seleccionado
+ Fragmento Seleccionado:
 
 ```kotlin
 public fun validatePasswords(p1: String, p2: String) = p1 == p2
 ```
-
      
-Prueba Unitaria:
+Caso de Prueba y Resultado:
     
 ```kotlin
   @Test
@@ -49,14 +47,15 @@ Prueba Unitaria:
      assertEquals(true,EmailSignUpViewModel().validatePasswords(pass!!,confPass!!))
   }
 ```
-- Esxplicacion:
+
+- Explicación de la prueba:
     
-Esta prueba valida si la contraseña que crea el usuario, en su doble confirmacion es correcta, es decir si las dos contraseñas (Password y ConfirmPassword) son iguales, en este caso en particular se observa que se valida correctamente
+Esta prueba valida si la contraseña que el usuario crea, en su doble confirmación, es correcta; es decir, si las dos contraseñas (Password y ConfirmPassword) son iguales. En este caso en particular, se observa que se valida correctamente.
 
 
-- Prueba 03
+- Prueba Unitaria 03: Validación de Campos
 
-Fragmento Seleccionado
+Fragmento Seleccionado:
     
 ```kotlin
 private fun validateFields(fields: List<String?>): Boolean {
@@ -67,8 +66,7 @@ private fun validateFields(fields: List<String?>): Boolean {
 }
 ```
 
-
-Prueba Unitaria;
+Caso de Prueba y Resultado:
       
 ```kotlin
 import org.junit.Test
@@ -87,53 +85,47 @@ class EmailSignInViewModelTest{
 }
 ```
 
-- Explicacion:
+- Explicación de la prueba:
     
-Esta prueba valida si los campos que se deben llenar al momento del loggin son validados, es decir aquellos campos que poseen constraints de NOT NULL deberan validarse para evitar errores
-     
+Esta prueba valida si los campos que se deben llenar al momento del inicio de sesión son validados, es decir, aquellos campos que poseen restricciones de NOT NULL deben validarse para evitar errores.  
      
 Integration Test
 
-- Prueba 04
+- Prueba de Integración 04: Integración con Firebase
   
-  (Firebase integration)
-  - Caso de prueba:
+  - Caso de prueba (Firebase integration):
     
      Ingresar el (Email,Password) validos
      Email = example@gmail.com
      Password = example1234
 
-  - Salida esperada
+  - Salida esperada:
 
     Redireccion al punto de entrada MainActivity.kt
   
-  - Explicacion
+  - Explicación de la prueba:
  
-    Esta prueba pretende validar y verificar si el servicio en la nube Firebase Auth esta conectando correctamente con la aplicacion, al ingresar las credenciales se espera que se valida sobre el Auth Firebase y determine si estas estan activas dando como resultado verdadero o no (dando como resultado falso), asi entonces al ingresar los datos del caso de prueba y dar click en ingresar se esta probando la integracion de firebase (inmediatanmente da el click de ingresar)
+    Esta prueba pretende validar y verificar si el servicio en la nube Firebase Auth está conectando correctamente con la aplicación. Al ingresar las credenciales, se espera que se validen en Auth Firebase y determinen si están activas, dando como resultado verdadero o falso. Al ingresar los datos del caso de prueba y hacer clic en "Ingresar", se está probando la integración de Firebase.
     
-- Prueba 05
-  
-   (VieWModel - View)
-  
-  - Caso de prueba:
+- Prueba de Integración 05: Interacción entre ViewModel y View
+
+  - Caso de prueba (VieWModel - View):
 
    Ingresar (Email,password) Invalidos
    Email = example@gmail.com
    Password = example1
 
-  - Salida Esperada
+  - Salida esperada:
      
    ERROR Datos incorrectos o no se encuentra registrado
 
-  - Explicaicon
+  - Explicación de la prueba:
 
-  Esta prueba valida la interaccion entre los modulos del ViewModel y View a partir de el caso de prueba, especificamente al ingresar los datos VALIDOS/INVALIDOS el modulo View tiene que interactuar con el ViewModel para que este utilize el Modelo y valide los datos, ademas de comunicar con la View para que muestra un SnackBar (pantalla emergente) en caso de que los datos sean incorrectos.
+  Esta prueba valida la interacción entre los módulos del ViewModel y View. Al ingresar los datos válidos/inválidos, el módulo View debe interactuar con el ViewModel para que este utilice el Modelo y valide los datos, además de comunicar con la View para que muestre un SnackBar en caso de que los datos sean incorrectos.
 
-- Prueba 06
-
-  (ViewModel - Model)
+- Prueba de Integración 06: Registro de Nuevo Usuario
   
-  - Caso de prueba:
+  - Caso de prueba (ViewModel - Model):
   
             Registro de nuevo usuario:
                  FirstName: Hello
@@ -142,7 +134,7 @@ Integration Test
                  Email: hello@gmail.com
                  Password: hello123
     
-  - Salida Esperada:
+  - Salida esperada:
   
     Se espera que el usuario se registre con éxito y sea redirigido al layout principal de la aplicación.
     
@@ -151,25 +143,23 @@ Integration Test
     Esta prueba valida y verifica la interacción entre los módulos ViewModel y Model al registrar un nuevo usuario. Se espera que el ViewModel utilice el Model para verificar todos los campos proporcionados por el usuario, además de agregar la información a la base de datos. El objetivo es asegurarse de que el registro sea exitoso y que el usuario sea dirigido correctamente al layout principal de la aplicación.
 
     
-- Prueba 07
+- Prueba de Integración 07: Adaptación de Layouts al Modo Oscuro/Claro
 
-  - Caso de prueba
+  - Caso de prueba (Black Box):
 
   Cambiar configuracion del sistema (modo oscuro y modo claro)
 
-  - Salida Esperada
+  - Salida esperada:
 
   Correcta Adaptacion de los layouts de acuerdo a la configuracion del sistema
 
-  - Explicacion
+  - Explicación de la prueba:
 
-  Esta prueba pretende validar y verificar si los widgets que estan en la aplicacion se adaptan segun el MODO (OSCURO,CLARO) utilizado en el Sistema operativo, lo realiza cambiando el modo o tema del sistema y observando como cambia los layouts de la aplicacion
+  Esta prueba pretende validar y verificar si los widgets que están en la aplicación se adaptan según el modo (oscuro, claro) utilizado en el sistema operativo. Se realiza cambiando el modo o tema del sistema y observando cómo cambian los layouts de la aplicación.
 
-  - Prueba 08
-
-  (Base de datos - Firebase)
+  - Prueba de Integración 08: Base de Datos / Firebase
   
-  - Caso de prueba:
+  - Caso de prueba (Base de datos - Firebase):
   
          Registro de usuario:
               Email: hello10@gmail.com
@@ -179,7 +169,7 @@ Integration Test
               Email: hello123@gmail.com
               Password: hello10
     
-  - Salida Esperada:
+  - Salida esperada:
   
     Se espera que al intentar iniciar sesión con credenciales incorrectas, se lance un error indicando que las credenciales son incorrectas. Además, al registrar el usuario, se espera que la creación en la base de datos Firebase sea exitosa.
     
@@ -187,15 +177,13 @@ Integration Test
   
     Se sospecha que hay un error en la creación del usuario en la base de datos Firebase, ya que al intentar iniciar sesión con credenciales incorrectas (intercambiadas), se inicia sesión brevemente antes de cerrarse automáticamente. Esto sugiere un problema en la autenticación de Firebase o en la creación del usuario en la base de datos.
     
-- Prueba 09
-
-  (Interfaz de usuario)
+- Prueba de Integración 09: Interfaz de Usuario
   
-  - Caso de prueba:
+  - Caso de prueba (Interfaz de usuario):
   
     Ocultar la barra superior al hacer scroll en la pantalla de inicio o perfil.
     
-  - Salida Esperada:
+  - Salida esperada:
   
     Se espera que al hacer scroll en la pantalla de inicio o perfil, la barra superior se oculte para mejorar la experiencia del usuario.
     
@@ -203,37 +191,33 @@ Integration Test
   
     Actualmente, al hacer scroll en la pantalla de inicio, la barra superior desaparece correctamente. Sin embargo, al hacer scroll en la pantalla de perfil, la barra superior no se oculta correctamente y permanece bloqueada, lo que afecta la experiencia del usuario. Esta prueba tiene como objetivo verificar y corregir este comportamiento incorrecto.
 
-- Prueba 10
-
-  (Interfaz de usuario)
+- Prueba de Integración 10: Interfaz de Usuario
   
-  - Caso de prueba:
+  - Caso de prueba (Interfaz de usuario):
   
     Ocultar la barra superior al hacer scroll en la pantalla de inicio o perfil.
     
-  - Salida Esperada:
+  - Salida esperada:
   
     Se espera que al hacer scroll en la pantalla de inicio o perfil, la barra superior se oculte para mejorar la experiencia del usuario.
     
   - Explicación de la prueba:
   
-    En ocasiones, la barra superior se ocultaba sin motivo aparente, lo que afectaba la experiencia del usuario. Este problema ha sido solucionado.
+    En ocasiones, la barra superior se ocultaba sin motivo aparente, lo que afectaba la experiencia del usuario.
 
-- Prueba 11
-
-  (Interfaz de usuario)
+- Prueba de Integración 11: Interfaz de Usuario
   
-  - Caso de prueba:
+  - Caso de prueba (Interfaz de usuario):
   
     Funcionamiento del modo oscuro.
     
-  - Salida Esperada:
+  - Salida esperada:
   
     Se espera que la aplicación funcione correctamente en modo oscuro y que se inicie sin problemas incluso si el teléfono está en modo oscuro.
     
   - Explicación de la prueba:
   
-    Anteriormente, el modo oscuro no funcionaba correctamente y la aplicación no se iniciaba si el teléfono estaba en modo oscuro. Estos problemas han sido solucionados.
+    Anteriormente, el modo oscuro no funcionaba correctamente y la aplicación no se iniciaba si el teléfono estaba en modo oscuro.
         
 Resumen
 
