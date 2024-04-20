@@ -143,6 +143,7 @@ Integration Test
 
   - Explicacion de la prueba
     Esta prueba pretende validar y verificar la interaccion entre los modulo ViewModel y View, a partir de el registro de un nuevo usuario, ya que al realizar dicha accion el modulo ViewModel usa al Model para poder verificar todos los campos, ademas de agregar a la base de datos
+    
 - Prueba 07
 
   Caso de prueba
@@ -157,7 +158,44 @@ Integration Test
 
   Esta prueba pretende validar y verificar si los widgets que estan en la aplicacion se adaptan segun el MODO (OSCURO,CLARO) utilizado en el Sistema operativo, lo realiza cambiando el modo o tema del sistema y observando como cambia los layouts de la aplicacion
 
+  - Prueba 08
 
+  (Base de datos - Firebase)
+  
+  - Caso de prueba:
+  
+    Registro de usuario:
+    Email: hello10@gmail.com
+    Password: hello123
+    
+    Inicio de sesión con credenciales incorrectas:
+    Email: hello123@gmail.com
+    Password: hello10
+    
+  - Salida Esperada:
+  
+    Se espera que al intentar iniciar sesión con credenciales incorrectas, se lance un error indicando que las credenciales son incorrectas. Además, al registrar el usuario, se espera que la creación en la base de datos Firebase sea exitosa.
+    
+  - Explicación de la prueba:
+  
+    Se sospecha que hay un error en la creación del usuario en la base de datos Firebase, ya que al intentar iniciar sesión con credenciales incorrectas (intercambiadas), se inicia sesión brevemente antes de cerrarse automáticamente. Esto sugiere un problema en la autenticación de Firebase o en la creación del usuario en la base de datos.
+    
+- Prueba 09
+
+  (Interfaz de usuario)
+  
+  - Caso de prueba:
+  
+    Ocultar la barra superior al hacer scroll en la pantalla de inicio o perfil.
+    
+  - Salida Esperada:
+  
+    Se espera que al hacer scroll en la pantalla de inicio o perfil, la barra superior se oculte para mejorar la experiencia del usuario.
+    
+  - Explicación de la prueba:
+  
+    Actualmente, al hacer scroll en la pantalla de inicio, la barra superior desaparece correctamente. Sin embargo, al hacer scroll en la pantalla de perfil, la barra superior no se oculta correctamente y permanece bloqueada, lo que afecta la experiencia del usuario. Esta prueba tiene como objetivo verificar y corregir este comportamiento incorrecto.
+        
 Resumen
 
 |ID|TIPOPRUEBA|ENTORNOPRUEBA|CASOPRUEBA|CORRECTA/INCORRECTA|
@@ -169,10 +207,3 @@ Resumen
 |05|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con View (LOGIN)|EMAIL: example@gmail.com : PASSWORD: exampl11234|CORRECTO|
 |06|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con Model (REGISTRO)|FirstName: Hello ; LastName: World ; UserWorld: HelloWorld ; Email: hello@gmail.com ; Password: hello123|Correcto|
 |07|Black Box|Toda la aplicacion (frames)| Cambiar modo o tema del sistema a oscuro o claro|INCORRECTO|
-
-     
-
-         
-
-
-         
