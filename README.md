@@ -202,6 +202,38 @@ Integration Test
   - Explicación de la prueba:
   
     Actualmente, al hacer scroll en la pantalla de inicio, la barra superior desaparece correctamente. Sin embargo, al hacer scroll en la pantalla de perfil, la barra superior no se oculta correctamente y permanece bloqueada, lo que afecta la experiencia del usuario. Esta prueba tiene como objetivo verificar y corregir este comportamiento incorrecto.
+
+- Prueba 10
+
+  (Interfaz de usuario)
+  
+  - Caso de prueba:
+  
+    Ocultar la barra superior al hacer scroll en la pantalla de inicio o perfil.
+    
+  - Salida Esperada:
+  
+    Se espera que al hacer scroll en la pantalla de inicio o perfil, la barra superior se oculte para mejorar la experiencia del usuario.
+    
+  - Explicación de la prueba:
+  
+    En ocasiones, la barra superior se ocultaba sin motivo aparente, lo que afectaba la experiencia del usuario. Este problema ha sido solucionado.
+
+- Prueba 11
+
+  (Interfaz de usuario)
+  
+  - Caso de prueba:
+  
+    Funcionamiento del modo oscuro.
+    
+  - Salida Esperada:
+  
+    Se espera que la aplicación funcione correctamente en modo oscuro y que se inicie sin problemas incluso si el teléfono está en modo oscuro.
+    
+  - Explicación de la prueba:
+  
+    Anteriormente, el modo oscuro no funcionaba correctamente y la aplicación no se iniciaba si el teléfono estaba en modo oscuro. Estos problemas han sido solucionados.
         
 Resumen
 
@@ -216,3 +248,5 @@ Resumen
 |07|Black Box|Toda la aplicacion (frames)| Cambiar modo o tema del sistema a oscuro o claro|INCORRECTO|
 |08|INTEGRACION|BASE DE DATOS - FIREBASE|Registro de usuario: Email: hello10@gmail.com ; Password: hello123. Inicio de sesion con credenciales incorrectas: Email: hello123@gmail.com ; Password: hello10|INCORRECTO|
 |09|INTERFAZ DE USUARIO|TODA LA APLICACION (SCROLL)|Ocultar la barra superior al hacer scroll en la pantalla de inicio o perfil|INCORRECTO|
+|10|INTERFAZ DE USUARIO|TODA LA APLICACION (SCROLL)|Ocultar la barra superior al hacer scroll en la pantalla de inicio o perfil|CORRECTO|
+|11|INTERFAZ DE USUARIO|TODA LA APLICACION (MODO OSCURO)|Funcionamiento del modo oscuro|CORRECTO|
