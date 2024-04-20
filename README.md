@@ -133,11 +133,11 @@ Integration Test
  (ViewModel - Model)
 
 - Caso de prueba
-FirstName: Hello
-LastName: World
-UserName: HelloWorld
-Email: hello@gmail.com
-Password: hello123
+     FirstName: Hello
+     LastName: World
+     UserName: HelloWorld
+     Email: hello@gmail.com
+     Password: hello123
 
 - Salida Esperada
     
@@ -168,12 +168,12 @@ Paso al layout principal de manera satisfactoria
   - Caso de prueba:
   
     Registro de usuario:
-    Email: hello10@gmail.com
-    Password: hello123
+         Email: hello10@gmail.com
+         Password: hello123
     
     Inicio de sesión con credenciales incorrectas:
-    Email: hello123@gmail.com
-    Password: hello10
+         Email: hello123@gmail.com
+         Password: hello10
     
   - Salida Esperada:
   
