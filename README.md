@@ -135,11 +135,11 @@ Integration Test
   - Caso de prueba:
   
             Registro de nuevo usuario:
-              FirstName: Hello
-              LastName: World
-              UserName: HelloWorld
-              Email: hello@gmail.com
-              Password: hello123
+                 FirstName: Hello
+                 LastName: World
+                 UserName: HelloWorld
+                 Email: hello@gmail.com
+                 Password: hello123
     
   - Salida Esperada:
   
