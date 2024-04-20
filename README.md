@@ -129,8 +129,20 @@ Integration Test
 
 - Prueba 06
 
-  
+ (ViewModel - Model)
 
+  - Caso de prueba
+    FirstName: Hello
+    LastName: World
+    UserName: HelloWorld
+    Email: hello@gmail.com
+    Password: hello123
+
+  - Salida Esperada
+    Paso al layout principal de manera satisfactoria
+
+  - Explicacion de la prueba
+    Esta prueba pretende validar y verificar la interaccion entre los modulo ViewModel y View, a partir de el registro de un nuevo usuario, ya que al realizar dicha accion el modulo ViewModel usa al Model para poder verificar todos los campos, ademas de agregar a la base de datos
 - Prueba 07
 
   Caso de prueba
@@ -155,7 +167,8 @@ Resumen
 |03|UNITARIA|INGRESO DE EMAIL Y PASSWORD SOBRE EL LOGGIN|EMAIL: example@gmail.comk ; PASSWORD: email12345|CORRECTO|
 |04|INTEGRACION|INTEGRACION DE FIREBASE AUTH (LOGIN)|EMAIL:example@gmail.com ; PASSWORD: example1234|CORRECTO|
 |05|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con View (LOGIN)|EMAIL: example@gmail.com : PASSWORD: exampl11234|CORRECTO|
-
+|06|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con Model (REGISTRO)|FirstName: Hello ; LastName: World ; UserWorld: HelloWorld ; Email: hello@gmail.com ; Password: hello123|Correcto|
+|07|Black Box|Toda los frames| Cambiar modo o tema del sistema a oscuro o claro|INCORRECTO|
 
      
 
