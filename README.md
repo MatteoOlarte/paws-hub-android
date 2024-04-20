@@ -168,7 +168,7 @@ Resumen
 |04|INTEGRACION|INTEGRACION DE FIREBASE AUTH (LOGIN)|EMAIL:example@gmail.com ; PASSWORD: example1234|CORRECTO|
 |05|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con View (LOGIN)|EMAIL: example@gmail.com : PASSWORD: exampl11234|CORRECTO|
 |06|INTEGRACION|INTEGRACION DE LOS MODULOS ViewModel con Model (REGISTRO)|FirstName: Hello ; LastName: World ; UserWorld: HelloWorld ; Email: hello@gmail.com ; Password: hello123|Correcto|
-|07|Black Box|Toda los frames| Cambiar modo o tema del sistema a oscuro o claro|INCORRECTO|
+|07|Black Box|Toda la aplicacion (frames)| Cambiar modo o tema del sistema a oscuro o claro|INCORRECTO|
 
      
 
