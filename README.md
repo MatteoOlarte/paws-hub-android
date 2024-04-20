@@ -23,7 +23,7 @@ fun EmailValidatorUnitTest(){
    assertEquals(true,EmailSignUpViewModel().validateEmail(emailTestCase!!))
 }
 ```
-Explicacion:
+- Explicacion:
  
 Esta prueba valida si el email ingresado por el usuario es correcto de acuerdo a los parametros seleccionados, es decir debe contener caracteres como @, en este caso en particular se hizo uso del email 
 example@gmail.com (Valido correctamente)
@@ -48,7 +48,7 @@ Prueba Unitaria:
      assertEquals(true,EmailSignUpViewModel().validatePasswords(pass!!,confPass!!))
   }
 ```
-Esxplicacion:
+- Esxplicacion:
     
 Esta prueba valida si la contraseña que crea el usuario, en su doble confirmacion es correcta, es decir si las dos contraseñas (Password y ConfirmPassword) son iguales, en este caso en particular se observa que se valida correctamente
 
@@ -86,7 +86,7 @@ class EmailSignInViewModelTest{
 }
 ```
 
-Explicacion:
+- Explicacion:
     
 Esta prueba valida si los campos que se deben llenar al momento del loggin son validados, es decir aquellos campos que poseen constraints de NOT NULL deberan validarse para evitar errores
      
@@ -114,16 +114,17 @@ Integration Test
   
    (VieWModel - View)
   
-   -Caso de prueba:
+   - Caso de prueba:
 
    Ingresar (Email,password) Invalidos
    Email = example@gmail.com
    Password = example1
 
    - Salida Esperada
+     
    ERROR Datos incorrectos o no se encuentra registrado
 
-  . Explicaicon
+   - Explicaicon
 
   Esta prueba valida la interaccion entre los modulos del ViewModel y View a partir de el caso de prueba, especificamente al ingresar los datos VALIDOS/INVALIDOS el modulo View tiene que interactuar con el ViewModel para que este utilize el Modelo y valide los datos, ademas de comunicar con la View para que muestra un SnackBar (pantalla emergente) en caso de que los datos sean incorrectos.
 
@@ -139,22 +140,24 @@ Integration Test
     Password: hello123
 
   - Salida Esperada
+    
     Paso al layout principal de manera satisfactoria
 
-  - Explicacion de la prueba
+  - Explicacion de la prueba:
+    
     Esta prueba pretende validar y verificar la interaccion entre los modulo ViewModel y View, a partir de el registro de un nuevo usuario, ya que al realizar dicha accion el modulo ViewModel usa al Model para poder verificar todos los campos, ademas de agregar a la base de datos
     
 - Prueba 07
 
-  Caso de prueba
+  - Caso de prueba
 
   Cambiar configuracion del sistema (modo oscuro y modo claro)
 
-  Salida Esperada
+  - Salida Esperada
 
   Correcta Adaptacion de los layouts de acuerdo a la configuracion del sistema
 
-  Explicacion
+  - Explicacion
 
   Esta prueba pretende validar y verificar si los widgets que estan en la aplicacion se adaptan segun el MODO (OSCURO,CLARO) utilizado en el Sistema operativo, lo realiza cambiando el modo o tema del sistema y observando como cambia los layouts de la aplicacion
 
