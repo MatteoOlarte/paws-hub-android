@@ -9,8 +9,10 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.elevation.SurfaceColors
-import com.software3.paws_hub_android.AuthState
+import com.software3.paws_hub_android.R
+import com.software3.paws_hub_android.core.AuthState
 import com.software3.paws_hub_android.databinding.ActivitySignInBinding
 import com.software3.paws_hub_android.viewmodel.EmailSignInViewModel
 
@@ -32,7 +34,7 @@ class SignInActivity : AppCompatActivity() {
                 AuthState.FAILED -> onAuthFailed()
                 AuthState.SUCCESS -> onAuthSuccess()
                 AuthState.PENDING -> onAuthPending()
-                null -> onAuthFailed()
+                else -> onAuthFailed()
             }
         }
         binding.loginButton.setOnClickListener {
@@ -74,9 +76,16 @@ class SignInActivity : AppCompatActivity() {
         binding.loginButton.isEnabled = false
     }
 
-    private fun onAuthFailed() {
-        binding.toolbarProgressIndicator.visibility = View.GONE
-        binding.loginButton.isEnabled = true
-        Toast.makeText(this, "ERROR ${authViewModel.message}", Toast.LENGTH_LONG).show()
+    private fun onAuthFailed() = MaterialAlertDialogBuilder(this).setTitle("Error")
+        .setMessage(getErrorMessage(authViewModel.message))
+        .setPositiveButton("Error") { dialog, _ ->
+            binding.toolbarProgressIndicator.visibility = View.GONE
+            binding.loginButton.isEnabled = true
+            dialog.dismiss()
+        }
+        .show()
+    private fun getErrorMessage(error: String) = when (error) {
+        "error_fields_required" -> getString(R.string.error_fields_required)
+        else -> error
     }
 }

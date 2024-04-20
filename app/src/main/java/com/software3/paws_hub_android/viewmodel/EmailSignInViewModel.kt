@@ -2,8 +2,8 @@ package com.software3.paws_hub_android.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.software3.paws_hub_android.AuthState
-import com.software3.paws_hub_android.model.FirebaseEmailAuth
+import com.software3.paws_hub_android.core.AuthState
+import com.software3.paws_hub_android.model.firebase.FirebaseEmailAuth
 
 
 class EmailSignInViewModel: ViewModel() {
@@ -15,18 +15,19 @@ class EmailSignInViewModel: ViewModel() {
     fun login() {
         val fields = listOf(email, password)
         if (!validateFields(fields)) {
-            message = "mensaje para campos vacios"
+            message = "error_fields_required"
             authState.postValue(AuthState.FAILED)
             return
         }
 
         val auth = FirebaseEmailAuth(email!!, password!!)
         authState.postValue(AuthState.PENDING)
-        auth.signInUser().addOnSuccessListener {
-            authState.postValue(AuthState.SUCCESS)
-        }.addOnFailureListener {
+
+        auth.signInUser().addOnFailureListener {
             message = it.message ?: ""
             authState.postValue(AuthState.FAILED)
+        }.addOnSuccessListener {
+            authState.postValue(AuthState.SUCCESS)
         }
     }
 

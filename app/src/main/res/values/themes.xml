@@ -25,6 +25,15 @@
         <item name="colorOnSecondary">#FFFFFF</item>
         <item name="colorSecondaryContainer">#C8DAE6</item>
         <item name="colorOnSecondaryContainer">#1E2B33</item>
+
+        <item name="colorTertiary">#3B5464</item>
+        <item name="colorOnTertiary">#FFFFFF</item>
+        <item name="colorTertiaryContainer">#C8DAE6</item>
+        <item name="colorOnTertiaryContainer">#1E2B33</item>
+    </style>
+
+    <style name="Theme.PawsHubAndroid.Toolbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:background">?attr/colorSurface</item>
     </style>
 
     <style name="Theme.PawsHubAndroid" parent="Base.Theme.PawsHubAndroid" />
