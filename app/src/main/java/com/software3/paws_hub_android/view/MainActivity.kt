@@ -25,13 +25,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         initUI()
-        setSupportActionBar(binding.activityMainToolbar)
         userViewModel.isGuestUser.observe(this) { isGuestUser ->
             isGuestUser?.let {
                 if (it) navigateToWelcomeActivity()
             }
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         userViewModel.checkUserLoggedInStatus()
     }
 
@@ -45,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             userViewModel.logoutCurrentUser()
             true
         }
-
         else -> {
             super.onOptionsItemSelected(item)
         }
@@ -64,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        setSupportActionBar(binding.activityMainToolbar)
         setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this))
         binding.activityMainNavigation.setOnItemSelectedListener(::onNavigationOptionsItemSelected)
         binding.activityMainToolbar.title = getString(R.string.discover)
@@ -75,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Cambiar esto segun las fucking issues
     private fun onNavigationOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.activity_main__navigate_profile -> {
             //esto funciona  mal
