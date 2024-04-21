@@ -25,4 +25,11 @@
     <string name="error_wrong_password">Contraseña incorrecta.</string>
     <string name="discover">Descubrir</string>
     <string name="profile">Perfil</string>
+    <string name="username_helper_text">El nombre de usuario no debe contener caracteres especiales ni espacios, y debe ser único.</string>
+    <string name="profile_image_content_description">Foto de perfil</string>
+    <string name="edit_profile_picture_content_description">Editar Foto de Perfil</string>
+    <string name="txt_country">País</string>
+    <string name="txt_city">Ciudad</string>
+    <string name="txt_phone_number">Número de Teléfono</string>
+    <string name="txt_confirm">Confirmar</string>
 </resources>

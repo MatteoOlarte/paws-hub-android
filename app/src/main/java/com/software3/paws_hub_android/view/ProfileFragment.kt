@@ -1,6 +1,7 @@
 package com.software3.paws_hub_android.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,11 @@ class ProfileFragment : Fragment() {
                 binding.profileFragmentFullName.text = "${user.fName} ${user.lName}"
                 binding.profileFragmentUserName.text = "@${user.uName}"
                 binding.profileFragmentUserBio.text = ""
+            }
+        }
+        binding.editProfileButton.setOnClickListener {
+            Intent(this.context, EditProfileActivity::class.java).also {
+                startActivity(it)
             }
         }
         showUserProfile()

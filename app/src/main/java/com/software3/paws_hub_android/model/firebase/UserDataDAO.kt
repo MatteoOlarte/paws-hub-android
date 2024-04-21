@@ -27,6 +27,10 @@ internal class UserDataDAO : IFirebaseObject<UserData> {
         return db.collection("users").document(id).get()
     }
 
+    override fun delete(obj: UserData): Task<Void> {
+        throw NotImplementedError()
+    }
+
     override fun cast(doc: DocumentSnapshot): UserData {
         return UserData(
             _id = doc.id,

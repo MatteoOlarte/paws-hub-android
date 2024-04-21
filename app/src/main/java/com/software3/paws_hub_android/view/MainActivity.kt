@@ -69,11 +69,11 @@ class MainActivity : AppCompatActivity() {
         binding.activityMainToolbar.title = getString(R.string.discover)
     }
 
-    private fun navigateToWelcomeActivity() {
+    private fun navigateToWelcomeActivity() =
         Intent(this.applicationContext, WelcomeActivity::class.java).also {
             startActivity(it)
         }
-    }
+
 
     private fun onNavigationOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.activity_main__navigate_profile -> {
@@ -86,9 +86,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
         R.id.activity_main__navigate_create -> {
             false
         }
+
         R.id.activity_main__navigate_home -> {
             //esto tambien funciona  mal
             supportFragmentManager.commit {
@@ -99,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
         else -> false
     }
 }

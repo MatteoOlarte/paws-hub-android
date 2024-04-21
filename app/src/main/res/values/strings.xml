@@ -25,4 +25,11 @@
     <string name="error_wrong_password">Incorrect password.</string>
     <string name="discover">Discover</string>
     <string name="profile">Profile</string>
+    <string name="username_helper_text">Username must not contain special characters or spaces, and must be unique.</string>
+    <string name="profile_image_content_description">Profile picture</string>
+    <string name="edit_profile_picture_content_description">Edit Profile Picture</string>
+    <string name="txt_country">Country</string>
+    <string name="txt_city">City</string>
+    <string name="txt_phone_number">Phone Number</string>
+    <string name="txt_confirm">Confirm</string>
 </resources>
