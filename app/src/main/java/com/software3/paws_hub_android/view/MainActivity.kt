@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setStatusBarColor(color: Int) {
         this.window.statusBarColor = color
-        this.window.navigationBarColor = color
     }
 
     private fun initUI() {

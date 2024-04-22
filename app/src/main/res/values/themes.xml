@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PawsHubAndroid" parent="Theme.Material3.Light.NoActionBar">
+    <style name="Base.Theme.PawsHubAndroid" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Background's Colors -->
         <item name="android:windowBackground">@color/white</item>
         <item name="colorSurface">@color/white_elevated</item>
@@ -32,10 +32,6 @@
         <item name="colorOnTertiaryContainer">#1E2B33</item>
     </style>
 
-    <style name="Theme.PawsHubAndroid.Toolbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
-        <item name="android:background">?attr/colorSurface</item>
-    </style>
-
     <style name="Theme.PawsHubAndroid" parent="Base.Theme.PawsHubAndroid" />
 
     <style name="Theme.PawsHubAndroid.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
@@ -43,14 +39,7 @@
     </style>
 
     <style name="ThemeOverlay.PawsHubAndroid.BottomNavigation" parent="">
-        <item name="colorSecondaryContainer">@color/white_elevated_2</item>
         <item name="colorSurfaceContainer">@color/white</item>
         <item name="colorPrimary">@color/white</item>
-        <item name="strokeWidth">10dp</item>
-        <item name="strokeColor">@color/white_elevated_3</item>
-    </style>
-
-    <style name="Theme.PawsHubAndroid.BottomNavigation.Stroke">
-        <item name="backgroundColor">@color/white_elevated_2</item>
     </style>
 </resources>

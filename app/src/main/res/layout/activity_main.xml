@@ -14,21 +14,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/activity_main__navigation">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/activity_main__fragment_view"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:name="com.software3.paws_hub_android.DiscoverFragment"
-            tools:layout="@layout/fragment_discover"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
-
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/activity_main__appbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:liftOnScroll="false">
             <com.google.android.material.appbar.MaterialToolbar
-                style="@style/Theme.PawsHubAndroid.Toolbar"
                 android:id="@+id/activity_main__toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,6 +27,7 @@
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:menu="@menu/activity_main_menu"
                 app:title="Paws Hub"
+                style="@style/Widget.Material3.Toolbar.Surface"
                 />
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/toolbar_progress_indicator"
@@ -47,6 +39,14 @@
                 app:indicatorColor="?colorPrimary"
                 app:elevation="0dp"/>
         </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/activity_main__fragment_view"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:name="com.software3.paws_hub_android.DiscoverFragment"
+            tools:layout="@layout/fragment_discover"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.divider.MaterialDivider
