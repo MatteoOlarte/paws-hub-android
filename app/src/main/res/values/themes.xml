@@ -42,7 +42,7 @@
         <item name="materialThemeOverlay">@style/ThemeOverlay.PawsHubAndroid.BottomNavigation</item>
     </style>
 
-    <style name="Theme.PawsHubAndroid.Toolbar.SurfaceVariant" parent="Widget.Material3.Toolbar.Surface">
+    <style name="Theme.PawsHubAndroid.Toolbar.SurfaceVariant" parent="Widget.Material3.Toolbar">
         <item name="android:background">@color/md_theme_light_surfaceVariant</item>
     </style>
 
