@@ -2,39 +2,33 @@ package com.software3.paws_hub_android.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.software3.paws_hub_android.core.AuthState
-import com.software3.paws_hub_android.model.firebase.FirebaseEmailAuth
+import com.software3.paws_hub_android.core.enums.TransactionState
+import com.software3.paws_hub_android.core.ex.containsBlackOrNulls
+import com.software3.paws_hub_android.model.dal.FirebaseEmailAuth
 
 
 class EmailSignInViewModel: ViewModel() {
-    val authState = MutableLiveData<AuthState>()
+    val authState = MutableLiveData<TransactionState>()
     var message: String = ""
     var email: String? = null
     var password: String? = null
 
     fun login() {
         val fields = listOf(email, password)
-        if (!validateFields(fields)) {
+        if (fields.containsBlackOrNulls()) {
             message = "error_fields_required"
-            authState.postValue(AuthState.FAILED)
+            authState.postValue(TransactionState.FAILED)
             return
         }
 
         val auth = FirebaseEmailAuth(email!!, password!!)
-        authState.postValue(AuthState.PENDING)
+        authState.postValue(TransactionState.PENDING)
 
         auth.signInUser().addOnFailureListener {
             message = it.message ?: ""
-            authState.postValue(AuthState.FAILED)
+            authState.postValue(TransactionState.FAILED)
         }.addOnSuccessListener {
-            authState.postValue(AuthState.SUCCESS)
+            authState.postValue(TransactionState.SUCCESS)
         }
-    }
-
-    private fun validateFields(fields: List<String?>): Boolean {
-        for (f in fields) {
-            if (f.isNullOrBlank()) return false
-        }
-        return true
     }
 }

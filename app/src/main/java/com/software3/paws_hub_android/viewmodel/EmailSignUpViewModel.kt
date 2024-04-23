@@ -3,14 +3,16 @@ package com.software3.paws_hub_android.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
-import com.software3.paws_hub_android.core.AuthState
+import com.software3.paws_hub_android.core.enums.TransactionState
+import com.software3.paws_hub_android.core.ex.containsBlackOrNulls
+import com.software3.paws_hub_android.core.ex.isEmailAddress
 import com.software3.paws_hub_android.model.UserData
-import com.software3.paws_hub_android.model.firebase.FirebaseEmailAuth
-import com.software3.paws_hub_android.model.firebase.UserDataDAO
+import com.software3.paws_hub_android.model.dal.FirebaseEmailAuth
+import com.software3.paws_hub_android.model.dal.UserDataObject
 
 
 class EmailSignUpViewModel : ViewModel() {
-    val authState = MutableLiveData<AuthState>()
+    val authState = MutableLiveData<TransactionState>()
     var message: String = ""
     var fName: String? = null
     var lName: String? = null
@@ -21,39 +23,39 @@ class EmailSignUpViewModel : ViewModel() {
 
     fun registerUser() {
         val fields = listOf(fName, lName, uName, email, password1, password2)
-        if (!validateFields(fields)) {
+        if (fields.containsBlackOrNulls()) {
             message = "error_fields_required"
-            authState.postValue(AuthState.FAILED)
+            authState.postValue(TransactionState.FAILED)
             return
         }
-        if (!validateEmail(email!!)) {
+        if (email.isEmailAddress()) {
             message = "error_invalid_email"
-            authState.postValue(AuthState.FAILED)
+            authState.postValue(TransactionState.FAILED)
             return
         }
         if (!validatePasswords(password1!!, password2!!)) {
             message = "error_password_mismatch"
-            authState.postValue(AuthState.FAILED)
+            authState.postValue(TransactionState.FAILED)
             return
         }
 
         val auth = FirebaseEmailAuth(email!!, password1!!)
-        authState.postValue(AuthState.PENDING)
+        authState.postValue(TransactionState.PENDING)
 
         auth.createUser().addOnFailureListener {
             message = it.message ?: ""
-            authState.postValue(AuthState.FAILED)
+            authState.postValue(TransactionState.FAILED)
         }.addOnSuccessListener {
             val frUser = it.user
 
             if (frUser != null) {
                 val user: UserData = userOf(frUser)
-                val dal = UserDataDAO()
+                val dal = UserDataObject()
 
                 dal.save(user).addOnSuccessListener {
-                    authState.postValue(AuthState.SUCCESS)
+                    authState.postValue(TransactionState.SUCCESS)
                 }.addOnFailureListener {
-                    authState.postValue(AuthState.FAILED)
+                    authState.postValue(TransactionState.FAILED)
                 }
             }
         }
@@ -70,18 +72,6 @@ class EmailSignUpViewModel : ViewModel() {
             email = fUser.email,
             phoneNumber = fUser.phoneNumber
         )
-    }
-
-    private fun validateFields(fields: List<String?>): Boolean {
-        for (f in fields) {
-            if (f.isNullOrBlank()) return false
-        }
-        return true
-    }
-
-    private fun validateEmail(email: String): Boolean {
-        val emailRegex = Regex("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
-        return emailRegex.matches(email)
     }
 
     private fun validatePasswords(p1: String, p2: String) = p1 == p2

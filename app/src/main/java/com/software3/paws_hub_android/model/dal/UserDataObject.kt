@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.model.firebase
+package com.software3.paws_hub_android.model.dal
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
@@ -6,7 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.model.UserData
 
 
-internal class UserDataDAO : IFirebaseObject<UserData> {
+class UserDataObject : IFirebaseObject<UserData> {
     private val db = FirebaseFirestore.getInstance()
 
     override fun save(obj: UserData): Task<Void> {
@@ -37,7 +37,7 @@ internal class UserDataDAO : IFirebaseObject<UserData> {
             fName = doc.get("first_name") as String,
             lName = doc.get("last_name") as String,
             uName = doc.get("user_name") as String,
-            email = doc.get("user_name") as String?,
+            email = doc.get("email") as String?,
             city = doc.get("city") as String?,
             photo = doc.get("profile_photo") as String?,
             phoneNumber = doc.get("phone_number") as String?

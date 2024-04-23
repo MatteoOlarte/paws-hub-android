@@ -1,39 +1,63 @@
 package com.software3.paws_hub_android.view
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.elevation.SurfaceColors
 import com.software3.paws_hub_android.databinding.ActivityEditProfileBinding
+import com.software3.paws_hub_android.model.UserData
+import com.software3.paws_hub_android.viewmodel.EditProfileViewModel
+import com.software3.paws_hub_android.viewmodel.UserViewModel
 
 
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
+    private val profileViewModel: EditProfileViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(this.layoutInflater)
-        enableEdgeToEdge()
         initUI()
+        initObservers()
+        userViewModel.fetchUserData()
     }
 
     private fun initUI() {
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.mainLayout) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        paintStatusBar()
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.confirmButton.setOnClickListener {
+            with(binding) {
+                profileViewModel.updateUserData(
+                    fName = userFirstNameInput.text.toString(),
+                    lName = userLastNameInput.text.toString(),
+                    uName = userNameInput.text.toString(),
+                    email = userEmailInput.text.toString(),
+                    phone = userPhoneNumberInput.text.toString(),
+                    city = userCityInput.text.toString()
+                )
+            }
+        }
     }
 
-    private fun paintStatusBar() {
-        val color = SurfaceColors.SURFACE_0.getColor(this)
-        this.window.statusBarColor = color
-        this.window.navigationBarColor = color
+    private fun initObservers() {
+        userViewModel.userdata.observe(this) { userdata ->
+            userdata?.let(::updateTextFields)
+        }
+        profileViewModel.transactionState.observe(this) {
+            Toast.makeText(this, "Update Status ${it.name}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun updateTextFields(data: UserData) {
+        //falta cargar foto de perfil
+        binding.userFirstNameInput.setText(data.fName)
+        binding.userLastNameInput.setText(data.lName)
+        binding.userEmailInput.setText(data.email)
+        binding.userPhoneNumberInput.setText(data.phoneNumber)
+        binding.userNameInput.setText(data.uName)
+        binding.userCityInput.setText(data.city)
     }
 }

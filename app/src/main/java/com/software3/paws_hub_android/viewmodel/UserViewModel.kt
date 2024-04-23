@@ -1,35 +1,33 @@
 package com.software3.paws_hub_android.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.model.UserData
-import com.software3.paws_hub_android.model.firebase.UserDataDAO
+import com.software3.paws_hub_android.model.dal.UserDataObject
 
 
 class UserViewModel : ViewModel() {
     private val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-    val userData = MutableLiveData<UserData>()
+    val userdata = MutableLiveData<UserData>()
     val isGuestUser = MutableLiveData<Boolean>()
-    val isLoading = MutableLiveData<Boolean>()
-    fun checkUserLoggedInStatus() = isGuestUser.postValue(currentUser == null)
+    val transactionState = MutableLiveData<TransactionState>()
 
     fun fetchUserData() {
-        if (currentUser == null) {
+        val user = currentUser
+        val dal = UserDataObject()
+
+        if (user == null) {
+            transactionState.postValue(TransactionState.FAILED)
             return
         }
-
-        val dal = UserDataDAO()
-        isLoading.postValue(true)
-        dal.get(currentUser.uid).addOnSuccessListener {
-            dal.cast(it).also { value ->
-                isLoading.postValue(false)
-                userData.postValue(value)
+        dal.get(user.uid).addOnSuccessListener {
+            dal.cast(it).also { data ->
+                userdata.postValue(data)
+                transactionState.postValue(TransactionState.SUCCESS)
             }
-        }.addOnFailureListener {
-
         }
     }
 
@@ -37,4 +35,6 @@ class UserViewModel : ViewModel() {
         FirebaseAuth.getInstance().signOut()
         isGuestUser.postValue(true)
     }
+
+    fun checkUserLoggedInStatus() = isGuestUser.postValue(currentUser == null)
 }

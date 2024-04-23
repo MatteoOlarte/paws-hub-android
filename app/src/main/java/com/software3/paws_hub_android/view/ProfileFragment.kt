@@ -32,7 +32,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        userViewModel.userData.observe(viewLifecycleOwner) {
+        userViewModel.userdata.observe(viewLifecycleOwner) {
             binding.root.visibility = View.VISIBLE
             it?.let { user ->
                 binding.profileFragmentFullName.text = "${user.fName} ${user.lName}"
