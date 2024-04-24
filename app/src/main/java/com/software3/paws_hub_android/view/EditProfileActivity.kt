@@ -30,13 +30,13 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.confirmButton.setOnClickListener {
             with(binding) {
-                profileViewModel.updateUserData(
+                profileViewModel.updateUser(UserData(
                     fName = userFirstNameInput.text.toString(),
                     lName = userLastNameInput.text.toString(),
                     uName = userNameInput.text.toString(),
                     email = userEmailInput.text.toString(),
-                    phone = userPhoneNumberInput.text.toString(),
-                    city = userCityInput.text.toString()
+                    phoneNumber = userPhoneNumberInput.text.toString(),
+                    city = userCityInput.text.toString())
                 )
             }
         }

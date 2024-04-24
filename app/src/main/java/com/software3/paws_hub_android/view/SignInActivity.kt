@@ -11,14 +11,16 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.elevation.SurfaceColors
 import com.software3.paws_hub_android.R
+import com.software3.paws_hub_android.core.enums.AuthProvider
 import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.databinding.ActivitySignInBinding
-import com.software3.paws_hub_android.viewmodel.EmailSignInViewModel
+import com.software3.paws_hub_android.model.UserData
+import com.software3.paws_hub_android.viewmodel.SignInViewModel
 
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
-    private val authViewModel: EmailSignInViewModel by viewModels()
+    private val authViewModel: SignInViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +39,9 @@ class SignInActivity : AppCompatActivity() {
             }
         }
         binding.loginButton.setOnClickListener {
-            initViewModel()
-            authViewModel.login()
+            val userData: UserData = getUserFromActivity()
+            val password: String = binding.userPasswordInput.text.toString()
+            authViewModel.loginIn(userData, password, AuthProvider.EMAIL_PASSWORD)
         }
     }
 
@@ -57,15 +60,15 @@ class SignInActivity : AppCompatActivity() {
         window.navigationBarColor = color
     }
 
-    private fun initViewModel() {
-        authViewModel.email = binding.userEmailInput.text.toString().lowercase()
-        authViewModel.password = binding.userPasswordInput.text.toString()
-    }
+    private fun getUserFromActivity() = UserData(
+        email = binding.userEmailInput.text.toString().lowercase(),
+        phoneNumber = null
+    )
 
     private fun onAuthSuccess() {
         binding.toolbarProgressIndicator.visibility = View.GONE
         binding.loginButton.isEnabled = true
-        Intent(this.applicationContext, MainActivity::class.java). also {
+        Intent(this.applicationContext, MainActivity::class.java).also {
             startActivity(it)
         }
     }
@@ -76,13 +79,14 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun onAuthFailed() = MaterialAlertDialogBuilder(this).setTitle("Error")
-        .setMessage(getErrorMessage(authViewModel.message))
+        .setMessage(getErrorMessage(authViewModel.errorstr))
         .setPositiveButton("Error") { dialog, _ ->
             binding.toolbarProgressIndicator.visibility = View.GONE
             binding.loginButton.isEnabled = true
             dialog.dismiss()
         }
         .show()
+
     private fun getErrorMessage(error: String) = when (error) {
         "error_fields_required" -> getString(R.string.error_fields_required)
         else -> error
