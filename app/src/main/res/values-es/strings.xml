@@ -32,4 +32,6 @@
     <string name="txt_city">Ciudad</string>
     <string name="txt_phone_number">Número de Teléfono</string>
     <string name="txt_confirm">Confirmar</string>
+    <string name="profile_updated_success">¡Perfil actualizado correctamente!</string>
+    <string name="profile_update_error">Se produjo un error al actualizar tu perfil. Por favor, inténtalo de nuevo más tarde.</string>
 </resources>

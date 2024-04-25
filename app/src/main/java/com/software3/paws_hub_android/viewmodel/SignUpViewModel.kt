@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.software3.paws_hub_android.core.enums.AuthProvider
 import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.model.UserData
-import com.software3.paws_hub_android.model.dal.UserDataObject
+import com.software3.paws_hub_android.model.dal.entity.UserDataObject
 import com.software3.paws_hub_android.model.dal.auth.FirebaseEmailAuth
 import com.software3.paws_hub_android.model.dal.auth.IFirebaseAuth
 

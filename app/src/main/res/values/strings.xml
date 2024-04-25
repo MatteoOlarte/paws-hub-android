@@ -32,4 +32,7 @@
     <string name="txt_city">City</string>
     <string name="txt_phone_number">Phone Number</string>
     <string name="txt_confirm">Confirm</string>
+    <string name="profile_updated_success">Profile updated successfully!</string>
+    <string name="profile_update_error">An error occurred while updating your profile. Please try again later.</string>
+
 </resources>
