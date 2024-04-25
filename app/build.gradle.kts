@@ -63,4 +63,6 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
     implementation(libs.play.services.auth)
 
+    // Other Dependencies
+    implementation(libs.picasso)
 }

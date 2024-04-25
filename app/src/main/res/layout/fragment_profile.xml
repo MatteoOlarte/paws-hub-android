@@ -33,8 +33,7 @@
                     android:id="@+id/profile_fragment__profile_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="15dp"
-                    android:contentDescription="profile photo"
+                    android:contentDescription="@string/profile_image_content_description"
                     android:scaleType="fitXY"/>
             </com.google.android.material.card.MaterialCardView>
             <Space

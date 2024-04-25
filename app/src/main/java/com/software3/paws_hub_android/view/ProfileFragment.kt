@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.software3.paws_hub_android.databinding.FragmentProfileBinding
 import com.software3.paws_hub_android.viewmodel.UserViewModel
+import com.squareup.picasso.Picasso
 
 
 class ProfileFragment : Fragment() {
@@ -35,6 +36,7 @@ class ProfileFragment : Fragment() {
         userViewModel.userdata.observe(viewLifecycleOwner) {
             binding.root.visibility = View.VISIBLE
             it?.let { user ->
+                Picasso.get().load(user.photo).into(binding.profileFragmentProfileImage)
                 binding.profileFragmentFullName.text = "${user.fName} ${user.lName}"
                 binding.profileFragmentUserName.text = "@${user.uName}"
                 binding.profileFragmentUserBio.text = ""

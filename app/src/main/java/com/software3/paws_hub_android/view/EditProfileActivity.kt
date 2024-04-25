@@ -9,6 +9,7 @@ import com.software3.paws_hub_android.databinding.ActivityEditProfileBinding
 import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.viewmodel.EditProfileViewModel
 import com.software3.paws_hub_android.viewmodel.UserViewModel
+import com.squareup.picasso.Picasso
 
 
 class EditProfileActivity : AppCompatActivity() {
@@ -67,7 +68,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun updateTextFields(data: UserData) {
-        //falta cargar foto de perfil
+        Picasso.get().load(data.photo).into(binding.profileImage)
         binding.userFirstNameInput.setText(data.fName)
         binding.userLastNameInput.setText(data.lName)
         binding.userEmailInput.setText(data.email)
