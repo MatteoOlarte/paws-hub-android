@@ -3,6 +3,7 @@ package com.software3.paws_hub_android.model.dal
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.software3.paws_hub_android.core.ex.toURI
 import com.software3.paws_hub_android.model.UserData
 
 
@@ -39,7 +40,7 @@ class UserDataObject : IFirebaseObject<UserData> {
             uName = doc.get("user_name") as String,
             email = doc.get("email") as String?,
             city = doc.get("city") as String?,
-            photo = doc.get("profile_photo") as String?,
+            photo = (doc.get("profile_photo") as String?)?.toURI(),
             phoneNumber = doc.get("phone_number") as String?
         )
     }

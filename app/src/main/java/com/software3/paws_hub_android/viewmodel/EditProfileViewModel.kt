@@ -1,36 +1,63 @@
 package com.software3.paws_hub_android.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.PhoneAuthCredential
 import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.model.dal.UserDataObject
+import com.software3.paws_hub_android.model.dal.storage.CloudStorage
 
-class EditProfileViewModel() : ViewModel() {
-    private val currentUser: FirebaseUser? = FirebaseAuth.getInstance().currentUser
-    val transactionState = MutableLiveData<TransactionState>()
 
-    fun updateUser(data: UserData) {
-        val user = currentUser
-        val dal = UserDataObject()
+class EditProfileViewModel : ViewModel() {
+    private val currentUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
+    private val userID: String = currentUser.uid
+    val state = MutableLiveData<TransactionState>()
+    val phoneURI = MutableLiveData<Uri?>()
 
-        if (user == null) {
-            transactionState.postValue(TransactionState.FAILED)
-            return;
+
+    fun setProfilePhotoURI(uri: Uri?) = uri?.let {
+        phoneURI.value = uri
+    }
+
+    fun updateProfile(
+        fName: String,
+        lName: String,
+        uName: String,
+        email: String,
+        city: String? = null,
+        phone: String? = null,
+    ) {
+        val userdata = UserData(userID, fName, lName, uName, city, email=email, phoneNumber=phone)
+        val uri: Uri? = phoneURI.value
+        val storage: CloudStorage
+
+        if (uri == null) {
+            return saveProfile(userdata)
         }
-        transactionState.postValue(TransactionState.PENDING)
-
-        dal.save(data).addOnFailureListener {
-            transactionState.postValue(TransactionState.FAILED)
+        state.value = TransactionState.PENDING
+        storage = CloudStorage(uri, userID)
+        storage.child("users").child("profile-photos")
+        storage.save().addOnFailureListener {
+            state.postValue(TransactionState.FAILED)
         }.addOnSuccessListener {
-            updateFirebaseProfile(data, user)
+            it.storage.downloadUrl.addOnSuccessListener { downloadURL ->
+                userdata.photo = downloadURL
+                saveProfile(userdata)
+            }.addOnFailureListener {
+                state.postValue(TransactionState.FAILED)
+            }
         }
     }
 
-    private fun updateFirebaseProfile(data: UserData, user: FirebaseUser) {
-
+    private fun saveProfile(userData: UserData) {
+        val dal = UserDataObject()
+        dal.save(userData).addOnFailureListener {
+            state.postValue(TransactionState.FAILED)
+        }.addOnSuccessListener {
+            state.postValue(TransactionState.SUCCESS)
+        }
     }
 }
