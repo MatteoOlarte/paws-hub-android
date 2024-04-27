@@ -1,6 +1,7 @@
 package com.software3.paws_hub_android.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.software3.paws_hub_android.databinding.FragmentProfileBinding
 import com.software3.paws_hub_android.viewmodel.UserViewModel
+import com.squareup.picasso.Picasso
 
 
 class ProfileFragment : Fragment() {
@@ -31,12 +33,18 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        userViewModel.userData.observe(viewLifecycleOwner) {
+        userViewModel.userdata.observe(viewLifecycleOwner) {
             binding.root.visibility = View.VISIBLE
             it?.let { user ->
+                Picasso.get().load(user.photo).into(binding.profileFragmentProfileImage)
                 binding.profileFragmentFullName.text = "${user.fName} ${user.lName}"
                 binding.profileFragmentUserName.text = "@${user.uName}"
                 binding.profileFragmentUserBio.text = ""
+            }
+        }
+        binding.editProfileButton.setOnClickListener {
+            Intent(this.context, EditProfileActivity::class.java).also {
+                startActivity(it)
             }
         }
         showUserProfile()
