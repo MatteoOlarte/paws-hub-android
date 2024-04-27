@@ -7,14 +7,16 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.software3.paws_hub_android.R
-import com.software3.paws_hub_android.core.AuthState
+import com.software3.paws_hub_android.core.enums.AuthProvider
+import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.databinding.ActivitySignUpBinding
-import com.software3.paws_hub_android.viewmodel.EmailSignUpViewModel
+import com.software3.paws_hub_android.model.UserData
+import com.software3.paws_hub_android.viewmodel.SignUpViewModel
 
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
-    private val authViewModel: EmailSignUpViewModel by viewModels()
+    private val authViewModel: SignUpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,15 +25,17 @@ class SignUpActivity : AppCompatActivity() {
 
         authViewModel.authState.observe(this) {
             when (it) {
-                AuthState.FAILED -> onAuthFailed()
-                AuthState.SUCCESS -> onAuthSuccess()
-                AuthState.PENDING -> onAuthPending()
+                TransactionState.FAILED -> onAuthFailed()
+                TransactionState.SUCCESS -> onAuthSuccess()
+                TransactionState.PENDING -> onAuthPending()
                 else -> onAuthFailed()
             }
         }
         binding.registerButton.setOnClickListener {
-            initViewModel()
-            authViewModel.registerUser()
+            val userData: UserData = getUserFromActivity()
+            val password: String = binding.userPasswordInput.text.toString()
+            val passwordConfirm: String = binding.userPasswordConfirmInput.text.toString()
+            authViewModel.createUser(userData, password, passwordConfirm, AuthProvider.EMAIL_PASSWORD)
         }
     }
 
@@ -41,14 +45,13 @@ class SignUpActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun initViewModel() {
-        authViewModel.fName = binding.fistNameInput.text.toString()
-        authViewModel.lName = binding.lastNameInput.text.toString()
-        authViewModel.uName = binding.userNameInput.text.toString()
-        authViewModel.email = binding.userEmailInput.text.toString().lowercase()
-        authViewModel.password1 = binding.userPasswordInput.text.toString()
-        authViewModel.password2 = binding.userPasswordConfirmInput.text.toString()
-    }
+    private fun getUserFromActivity() = UserData(
+        fName = binding.fistNameInput.text.toString(),
+        lName = binding.lastNameInput.text.toString(),
+        uName = binding.userNameInput.text.toString(),
+        email = binding.userEmailInput.text.toString().lowercase(),
+        phoneNumber = null
+    )
 
     private fun onAuthSuccess() {
         binding.toolbarProgressIndicator.visibility = View.GONE
@@ -64,7 +67,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun onAuthFailed() = MaterialAlertDialogBuilder(this).setTitle("Error")
-        .setMessage(getErrorMessage(authViewModel.message))
+        .setMessage(getErrorMessage(authViewModel.errorstr))
         .setPositiveButton("Error") { dialog, _ ->
             binding.toolbarProgressIndicator.visibility = View.GONE
             binding.registerButton.isEnabled = true

@@ -1,12 +1,13 @@
-package com.software3.paws_hub_android.model.firebase
+package com.software3.paws_hub_android.model.dal.entity
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.software3.paws_hub_android.core.ex.toURI
 import com.software3.paws_hub_android.model.UserData
 
 
-internal class UserDataDAO : IFirebaseObject<UserData> {
+class UserDataObject : IFirebaseObject<UserData> {
     private val db = FirebaseFirestore.getInstance()
 
     override fun save(obj: UserData): Task<Void> {
@@ -27,15 +28,19 @@ internal class UserDataDAO : IFirebaseObject<UserData> {
         return db.collection("users").document(id).get()
     }
 
+    override fun delete(obj: UserData): Task<Void> {
+        throw NotImplementedError()
+    }
+
     override fun cast(doc: DocumentSnapshot): UserData {
         return UserData(
             _id = doc.id,
             fName = doc.get("first_name") as String,
             lName = doc.get("last_name") as String,
             uName = doc.get("user_name") as String,
-            email = doc.get("user_name") as String?,
+            email = doc.get("email") as String?,
             city = doc.get("city") as String?,
-            photo = doc.get("profile_photo") as String?,
+            photo = (doc.get("profile_photo") as String?)?.toURI(),
             phoneNumber = doc.get("phone_number") as String?
         )
     }
