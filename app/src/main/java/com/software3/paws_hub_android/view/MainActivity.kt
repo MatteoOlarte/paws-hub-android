@@ -56,11 +56,11 @@ class MainActivity : AppCompatActivity() {
         binding.activityMainToolbar.title = getString(R.string.discover)
     }
 
-    private fun navigateToWelcomeActivity() {
+    private fun navigateToWelcomeActivity() =
         Intent(this.applicationContext, WelcomeActivity::class.java).also {
             startActivity(it)
         }
-    }
+
 
     //Cambiar esto segun las fucking issues
     private fun onNavigationOptionsItemSelected(item: MenuItem) = when (item.itemId) {
