@@ -4,13 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
-import com.google.android.material.elevation.SurfaceColors
 import com.software3.paws_hub_android.DiscoverFragment
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
@@ -47,26 +43,15 @@ class MainActivity : AppCompatActivity() {
             userViewModel.logoutCurrentUser()
             true
         }
+
         else -> {
             super.onOptionsItemSelected(item)
         }
     }
 
-    private fun setStatusBarColor(color: Int) {
-        this.window.statusBarColor = color
-        this.window.navigationBarColor = color
-    }
-
     private fun initUI() {
-        enableEdgeToEdge()
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.activityMainLayout) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
         setSupportActionBar(binding.activityMainToolbar)
-        setStatusBarColor(SurfaceColors.SURFACE_0.getColor(this))
+        setContentView(binding.root)
         binding.activityMainNavigation.setOnItemSelectedListener(::onNavigationOptionsItemSelected)
         binding.activityMainToolbar.title = getString(R.string.discover)
     }
