@@ -119,6 +119,7 @@
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:hint="@string/text_email">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -149,7 +150,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/username_hint"
                     app:helperText="@string/username_helper_text"
-                    app:startIconDrawable="@drawable/baseline_alternate_email_24">
+                    app:startIconDrawable="@drawable/baseline_alternate_email_24"
+                    app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/user_name_input"

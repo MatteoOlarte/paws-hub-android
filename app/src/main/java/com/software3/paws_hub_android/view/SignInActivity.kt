@@ -10,7 +10,7 @@ import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.enums.AuthProvider
 import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.databinding.ActivitySignInBinding
-import com.software3.paws_hub_android.model.UserData
+import com.software3.paws_hub_android.model.UserSignIn
 import com.software3.paws_hub_android.viewmodel.SignInViewModel
 
 
@@ -33,9 +33,9 @@ class SignInActivity : AppCompatActivity() {
             }
         }
         binding.loginButton.setOnClickListener {
-            val userData: UserData = getUserFromActivity()
+            val userSignIn: UserSignIn = getUserFromActivity()
             val password: String = binding.userPasswordInput.text.toString()
-            authViewModel.loginIn(userData, password, AuthProvider.EMAIL_PASSWORD)
+            authViewModel.loginIn(userSignIn, password, AuthProvider.EMAIL_PASSWORD)
         }
     }
 
@@ -45,9 +45,9 @@ class SignInActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun getUserFromActivity() = UserData(
+    private fun getUserFromActivity() = UserSignIn(
         email = binding.userEmailInput.text.toString().lowercase(),
-        phoneNumber = null
+        phone = null
     )
 
     private fun onAuthSuccess() {

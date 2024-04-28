@@ -46,6 +46,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun getUserFromActivity() = UserData(
+        _id = "",
         fName = binding.fistNameInput.text.toString(),
         lName = binding.lastNameInput.text.toString(),
         uName = binding.userNameInput.text.toString(),

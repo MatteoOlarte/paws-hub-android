@@ -7,6 +7,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.auth
 import com.software3.paws_hub_android.model.UserData
+import com.software3.paws_hub_android.model.UserSignIn
 
 
 class FirebaseEmailAuth : IFirebaseAuth {
@@ -22,9 +23,9 @@ class FirebaseEmailAuth : IFirebaseAuth {
         return instance.createUserWithEmailAndPassword(email, key)
     }
 
-    override fun signInUser(userData: UserData, key: String): Task<AuthResult> {
+    override fun signInUser(data: UserSignIn, key: String): Task<AuthResult> {
         val instance = Firebase.auth
-        val email: String? = userData.email
+        val email: String? = data.email
 
         if (email == null) {
             val result = TaskCompletionSource<AuthResult>()

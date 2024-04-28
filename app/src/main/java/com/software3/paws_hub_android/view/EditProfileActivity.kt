@@ -2,10 +2,10 @@ package com.software3.paws_hub_android.view
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.software3.paws_hub_android.R
@@ -46,11 +46,18 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        userViewModel.userdata.observe(this) { userdata ->
-            userdata?.let(::updateTextFields)
+        userViewModel.userdata.observe(this) {
+            it?.let(::updateUI)
         }
         profileViewModel.photoURI.observe(this) {
-            binding.profileImage.setImageURI(it)
+            Picasso.get().load(it).into(binding.profileImage)
+        }
+        profileViewModel.usernameAvailability.observe(this) {
+            if (it) {
+                binding.userNameInput.error = null
+                return@observe
+            }
+            binding.userNameInput.error = "username exixts"
         }
         profileViewModel.state.observe(this) {
             when (it) {
@@ -71,44 +78,20 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.editPhotoButton.setOnClickListener { imageResult.launch("image/*") }
-        binding.confirmButton.setOnClickListener { updateProfileFromData() }
-    }
-
-    private fun updateProfileFromData() {
-        with(binding) {
-            profileViewModel.updateProfile(
-                fName = userFirstNameInput.text.toString(),
-                lName = userLastNameInput.text.toString(),
-                uName = userNameInput.text.toString(),
-                email = userEmailInput.text.toString(),
-                city = userCityInput.text.toString(),
-                phone = userPhoneNumberInput.text.toString()
-            )
+        binding.confirmButton.setOnClickListener { onConfirmButtonClick() }
+        binding.userNameInput.doOnTextChanged { text, _, _, _ ->
+            profileViewModel.verifyUsernameAvailability(text.toString())
         }
     }
 
-    private fun updateTextFields(data: UserData) {
+    private fun updateUI(data: UserData) {
         profileViewModel.setProfilePhotoURI(data.photo)
-        Picasso.get().load(data.photo).into(binding.profileImage)
         binding.userFirstNameInput.setText(data.fName)
         binding.userLastNameInput.setText(data.lName)
         binding.userEmailInput.setText(data.email)
         binding.userPhoneNumberInput.setText(data.phoneNumber)
         binding.userNameInput.setText(data.uName)
         binding.userCityInput.setText(data.city)
-    }
-
-    private fun enableFieldsAndButtons(isEnabled: Boolean) {
-        with(binding) {
-            userFirstNameInput.isEnabled = isEnabled
-            userLastNameInput.isEnabled = isEnabled
-            userEmailInput.isEnabled = isEnabled
-            userPhoneNumberInput.isEnabled = isEnabled
-            userNameInput.isEnabled = isEnabled
-            userCityInput.isEnabled = isEnabled
-            confirmButton.isEnabled = isEnabled
-            editPhotoButton.isEnabled = isEnabled
-        }
     }
 
     private fun onPendingState() {
@@ -133,6 +116,32 @@ class EditProfileActivity : AppCompatActivity() {
         Snackbar.make(this, binding.coordinatorLayout, msg, Snackbar.LENGTH_SHORT).also {
             it.setAction("OK") { _ -> it.dismiss() }
             it.show()
+        }
+    }
+
+    private fun onConfirmButtonClick() {
+        with(binding) {
+            profileViewModel.updateProfile(
+                fName = userFirstNameInput.text.toString(),
+                lName = userLastNameInput.text.toString(),
+                uName = userNameInput.text.toString(),
+                email = userEmailInput.text.toString(),
+                city = userCityInput.text.toString(),
+                phone = userPhoneNumberInput.text.toString()
+            )
+        }
+    }
+
+    private fun enableFieldsAndButtons(isEnabled: Boolean) {
+        with(binding) {
+            userFirstNameInput.isEnabled = isEnabled
+            userLastNameInput.isEnabled = isEnabled
+            //userEmailInput.isEnabled = isEnabled
+            userPhoneNumberInput.isEnabled = isEnabled
+            userNameInput.isEnabled = isEnabled
+            userCityInput.isEnabled = isEnabled
+            confirmButton.isEnabled = isEnabled
+            editPhotoButton.isEnabled = isEnabled
         }
     }
 }

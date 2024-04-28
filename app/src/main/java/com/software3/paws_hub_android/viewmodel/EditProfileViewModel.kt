@@ -16,10 +16,17 @@ class EditProfileViewModel : ViewModel() {
     private val userID: String = currentUser.uid
     val state = MutableLiveData<TransactionState>()
     val photoURI = MutableLiveData<Uri?>()
-
+    val usernameAvailability = MutableLiveData<Boolean>()
 
     fun setProfilePhotoURI(uri: Uri?) = uri?.let {
         photoURI.value = uri
+    }
+
+    fun verifyUsernameAvailability(username: String) {
+        val dal = UserDataObject()
+        dal.isUsernameAvailable(userID, username) {
+            usernameAvailability.postValue(it)
+        }
     }
 
     fun updateProfile(
@@ -34,17 +41,16 @@ class EditProfileViewModel : ViewModel() {
         val uri: Uri? = photoURI.value
         val storage: CloudStorage
 
+        state.value = TransactionState.PENDING
         if (uri == null) {
             saveProfile(userdata)
             return
         }
-        state.value = TransactionState.PENDING
         storage = CloudStorage(uri, userID)
         storage.child("users").child("profile-photos")
         storage.save().addOnFailureListener {
             userdata.photo = photoURI.value
             saveProfile(userdata)
-            return@addOnFailureListener
         }.addOnSuccessListener {
             it.storage.downloadUrl.addOnSuccessListener { downloadURL ->
                 userdata.photo = downloadURL
@@ -57,10 +63,17 @@ class EditProfileViewModel : ViewModel() {
 
     private fun saveProfile(userData: UserData) {
         val dal = UserDataObject()
-        dal.save(userData).addOnFailureListener {
-            state.postValue(TransactionState.FAILED)
-        }.addOnSuccessListener {
-            state.postValue(TransactionState.SUCCESS)
+
+        dal.isUsernameAvailable(userID, userData.uName) {
+            if (!it) {
+                state.postValue(TransactionState.FAILED)
+                return@isUsernameAvailable
+            }
+            dal.save(userData).addOnFailureListener {
+                state.postValue(TransactionState.FAILED)
+            }.addOnSuccessListener {
+                state.postValue(TransactionState.SUCCESS)
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.software3.paws_hub_android.model.dal.entity
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.core.ex.toURI
@@ -43,5 +45,18 @@ class UserDataObject : IFirebaseObject<UserData> {
             photo = (doc.get("profile_photo") as String?)?.toURI(),
             phoneNumber = doc.get("phone_number") as String?
         )
+    }
+
+    fun isUsernameAvailable(id: String, username: String, callback: (Boolean) -> Unit) {
+        val document: CollectionReference = db.collection("users")
+
+        document.whereNotEqualTo("_id", id).whereEqualTo("user_name", username).get()
+            .addOnSuccessListener {
+                Log.d("user_data", it.toString())
+                callback(it.isEmpty)
+            }.addOnFailureListener {
+                Log.d("user_data", it.toString())
+                callback(false)
+            }
     }
 }

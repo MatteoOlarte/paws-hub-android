@@ -28,6 +28,8 @@ class UserViewModel : ViewModel() {
                 userdata.postValue(data)
                 transactionState.postValue(TransactionState.SUCCESS)
             }
+        }.addOnFailureListener {
+            transactionState.postValue(TransactionState.FAILED)
         }
     }
 
