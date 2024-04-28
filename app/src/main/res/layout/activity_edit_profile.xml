@@ -23,6 +23,7 @@
             app:liftOnScroll="false">
 
             <com.google.android.material.appbar.MaterialToolbar
+                style="@style/Theme.PawsHubAndroid.Toolbar.SurfaceVariant"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -69,6 +70,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.ElevatedButton"
                     android:id="@+id/edit_photo_button"
                     android:layout_width="125dp"
                     android:layout_height="0dp"
