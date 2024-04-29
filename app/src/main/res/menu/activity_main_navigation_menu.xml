@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/activity_main__navigate_home"
+        android:id="@+id/discoverFragment"
         android:title="@string/discover"
         android:icon="@drawable/ic_pet"/>
 
     <item
-        android:id="@+id/activity_main__navigate_create"
-        android:title="Create"
-        android:icon="@drawable/baseline_add_box_24"/>
-
+        android:id="@+id/petFinderFragment"
+        android:title="@string/deceptive_title_support_fragment"
+        android:icon="@drawable/ic_help_24"/>
 
     <item
-        android:id="@+id/activity_main__navigate_profile"
+        android:id="@+id/searchFragment"
+        android:title="@string/deceptive_title_lost_pets"
+        android:icon="@drawable/ic_search_24"/>
+
+    <item
+        android:id="@+id/profileFragment"
         android:title="@string/profile"
         android:icon="@drawable/baseline_person_24"/>
 </menu>

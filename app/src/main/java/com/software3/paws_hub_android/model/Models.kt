@@ -10,8 +10,11 @@ data class UserData(
     var city: String? = null,
     var photo: Uri? = null,
     var email: String? = null,
-    var phoneNumber: String? = null
-)
+    var phoneNumber: String? = null,
+    var preferredPet: String? = null
+) {
+    val fullName get() = "$fName $lName"
+}
 
 data class UserSignIn(
     var email: String?,

@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.software3.paws_hub_android.core.ex.slugify
 import com.software3.paws_hub_android.core.ex.toURI
 import com.software3.paws_hub_android.model.UserData
 
@@ -17,11 +18,12 @@ class UserDataObject : IFirebaseObject<UserData> {
             "_id" to obj._id,
             "first_name" to obj.fName,
             "last_name" to obj.lName,
-            "user_name" to obj.uName,
+            "user_name" to obj.uName.slugify(),
             "city" to obj.city,
             "profile_photo" to obj.photo,
             "email" to obj.email,
-            "phone_number" to obj.phoneNumber
+            "phone_number" to obj.phoneNumber,
+            "preferred_pet" to obj.preferredPet
         )
         return db.collection("users").document(obj._id).set(map)
     }
@@ -43,7 +45,8 @@ class UserDataObject : IFirebaseObject<UserData> {
             email = doc.get("email") as String?,
             city = doc.get("city") as String?,
             photo = (doc.get("profile_photo") as String?)?.toURI(),
-            phoneNumber = doc.get("phone_number") as String?
+            phoneNumber = doc.get("phone_number") as String?,
+            preferredPet = doc.get("preferred_pet") as String?
         )
     }
 

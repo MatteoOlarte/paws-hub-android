@@ -2,6 +2,7 @@ package com.software3.paws_hub_android.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -57,7 +58,7 @@ class EditProfileActivity : AppCompatActivity() {
                 binding.userNameInput.error = null
                 return@observe
             }
-            binding.userNameInput.error = "username exixts"
+            binding.userNameInput.error = getString(R.string.username_taken_error)
         }
         profileViewModel.state.observe(this) {
             when (it) {
@@ -68,9 +69,10 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
         cityViewModel.cites.observe(this) {
+            val adapter = ArrayAdapter(this, R.layout.layout_list_adapter, it)
             with(binding) {
                 if (userCityInput is MaterialAutoCompleteTextView) {
-                    userCityInput.setSimpleItems(it.toTypedArray())
+                    userCityInput.setAdapter(adapter)
                 }
             }
         }
@@ -82,6 +84,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding.userNameInput.doOnTextChanged { text, _, _, _ ->
             profileViewModel.verifyUsernameAvailability(text.toString())
         }
+        binding.userCityInput.setOnFocusChangeListener { _, _ -> binding.userCityInput.text = null }
     }
 
     private fun updateUI(data: UserData) {
@@ -91,6 +94,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding.userEmailInput.setText(data.email)
         binding.userPhoneNumberInput.setText(data.phoneNumber)
         binding.userNameInput.setText(data.uName)
+        binding.userPreferredPet.setText(data.preferredPet)
         binding.userCityInput.setText(data.city)
     }
 
@@ -127,7 +131,8 @@ class EditProfileActivity : AppCompatActivity() {
                 uName = userNameInput.text.toString(),
                 email = userEmailInput.text.toString(),
                 city = userCityInput.text.toString(),
-                phone = userPhoneNumberInput.text.toString()
+                phone = userPhoneNumberInput.text.toString(),
+                preferredPet = userPreferredPet.text.toString().lowercase()
             )
         }
     }

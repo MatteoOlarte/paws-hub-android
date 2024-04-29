@@ -13,3 +13,7 @@ fun String?.isEmailAddress(): Boolean {
 fun String.toURI(): Uri {
     return Uri.parse(this)
 }
+
+fun String.slugify(): String {
+    return this.replace(" ", "_").lowercase()
+}

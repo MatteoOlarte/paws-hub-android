@@ -15,9 +15,9 @@
     <string name="username_hint">User Name</string>
     <string name="first_name_hint">First Name</string>
     <string name="last_name_hint">Last Name</string>
-    <string name="google_auth">Google</string>
+    <string name="google_auth" translatable="false">Google</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="share_profile">Share Profile</string>
+    <string name="share_profile">Share</string>
     <string name="error_msg_title">Error</string>
     <string name="error_fields_required">Please fill in all the text fields</string>
     <string name="error_invalid_email">Invalid email address</string>
@@ -34,5 +34,8 @@
     <string name="txt_confirm">Confirm</string>
     <string name="profile_updated_success">Profile updated successfully!</string>
     <string name="profile_update_error">An error occurred while updating your profile. Please try again later.</string>
-
+    <string name="username_taken_error">This username is already taken. Please choose a different one.</string>
+    <string name="deceptive_title_lost_pets">Search</string>
+    <string name="deceptive_title_support_fragment">Help</string>
+    <string name="preferred_pet">Preferred Pet</string>
 </resources>

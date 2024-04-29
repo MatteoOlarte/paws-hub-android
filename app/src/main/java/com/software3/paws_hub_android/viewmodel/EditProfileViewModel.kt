@@ -36,8 +36,18 @@ class EditProfileViewModel : ViewModel() {
         email: String,
         city: String? = null,
         phone: String? = null,
+        preferredPet: String? = null
     ) {
-        val userdata = UserData(userID, fName, lName, uName, city, email=email, phoneNumber=phone)
+        val userdata = UserData(
+            _id = userID,
+            fName = fName,
+            lName = lName,
+            uName = uName,
+            city = city,
+            email = email,
+            phoneNumber = phone,
+            preferredPet = preferredPet
+        )
         val uri: Uri? = photoURI.value
         val storage: CloudStorage
 

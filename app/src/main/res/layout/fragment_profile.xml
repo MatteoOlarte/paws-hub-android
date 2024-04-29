@@ -1,111 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ProfileFragment">
+    android:orientation="vertical"
+    tools:context=".view.main_activity.ProfileFragment">
 
-    <LinearLayout
-        android:id="@+id/profile_fragment__profile_card"
-        android:layout_width="0dp"
+    <include
+        android:id="@+id/profile_container"
+        layout="@layout/layout_profile" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginVertical="8dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/buttons_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_profile_button"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp">
+            android:text="@string/edit_profile"
+            android:layout_marginEnd="3dp"
+            app:layout_constraintEnd_toStartOf="@+id/buttons_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                app:cardCornerRadius="100dp"
-                app:cardElevation="0dp">
-                <ImageView
-                    android:id="@+id/profile_fragment__profile_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/profile_image_content_description"
-                    android:scaleType="fitXY"/>
-            </com.google.android.material.card.MaterialCardView>
-            <Space
-                android:layout_width="16dp"
-                android:layout_height="match_parent"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/profile_fragment__full_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:text="Full Name"
-                    android:textSize="24sp"
-                    android:layout_weight="500"
-                    android:textColor="@color/material_on_surface_emphasis_high_type"
-                    tools:ignore="hardCodedText" />
-                <TextView
-                    android:id="@+id/profile_fragment__user_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="\@User_Name"
-                    android:textSize="17sp"
-                    tools:ignore="hardCodedText" />
-                <TextView
-                    android:id="@+id/profile_fragment__user_bio"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="bio"
-                    android:textSize="17sp"
-                    android:textColor="@color/material_on_surface_emphasis_medium"
-                    tools:ignore="hardCodedText"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/share_profile_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:id="@+id/edit_profile_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/edit_profile"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:visibility="gone"
-                android:id="@+id/share_profile_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/share_profile"/>
-        </LinearLayout>
-
-    </LinearLayout>
+            android:text="@string/share_profile"
+            android:layout_marginStart="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/buttons_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/profile_fragment__divider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintTop_toBottomOf="@id/profile_fragment__profile_card"/>
+        android:layout_marginBottom="10dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profile_pet_rview"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="15dp"
-        app:layout_constraintTop_toTopOf="@id/profile_fragment__divider"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent" />
+</androidx.appcompat.widget.LinearLayoutCompat>
