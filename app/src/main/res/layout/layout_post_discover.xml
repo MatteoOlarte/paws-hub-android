@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="600dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profile_photo_card"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_image"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="5dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_view_username">
+            <ImageView
+                android:id="@+id/profile_photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/profile_image_content_description"
+                android:scaleType="fitXY"
+                tools:layout_editor_absoluteX="39dp"
+                tools:layout_editor_absoluteY="12dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txt_view_full_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="17sp"
+            android:layout_marginVertical="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_photo_card"
+            app:layout_constraintTop_toTopOf="@+id/profile_photo_card"
+            tools:text="Full Name"/>
+
+        <TextView
+            android:id="@+id/txt_view_username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="0dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/material_on_surface_emphasis_medium"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_view_full_name"
+            app:layout_constraintTop_toBottomOf="@+id/txt_view_full_name"
+            tools:text="\@username" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
+
+            app:layout_constraintBottom_toTopOf="@+id/btn_view_post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_image"
+            tools:text="@tools:sample/lorem/random"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_view_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:id="@+id/btn_like_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_view_post" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:id="@+id/btn_save_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_like_post" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
