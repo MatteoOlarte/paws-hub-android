@@ -4,11 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.software3.paws_hub_android.R
@@ -20,12 +25,14 @@ import com.software3.paws_hub_android.viewmodel.UserViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
     private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        navController = (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment).navController
+        navController =
+            (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment).navController
         initUI()
         initObservers()
         initListeners()
@@ -51,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        val toolbarConfig = AppBarConfiguration(
+        appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.discoverFragment,
                 R.id.profileFragment,
@@ -61,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         )
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        setupActionBarWithNavController(navController, toolbarConfig)
+        setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navigationBar.setupWithNavController(navController)
     }
 
@@ -72,8 +79,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        navController.addOnDestinationChangedListener {_, _, _ ->
-            binding.appbarLayout.setExpanded(true)
+        navController.addOnDestinationChangedListener { _, it, _ -> onDestinationChanged(it) }
+        binding.floatingActionButton.setOnClickListener { onFloatingActionButtonClick() }
+    }
+
+    private fun onDestinationChanged(destination: NavDestination) {
+        binding.appbarLayout.setExpanded(true)
+        binding.floatingActionButton.visibility = when (destination.id) {
+            R.id.discoverFragment -> View.VISIBLE
+            R.id.petFinderFragment -> View.VISIBLE
+            else -> View.INVISIBLE
+        }
+    }
+
+    private fun onFloatingActionButtonClick() {
+        with(navController) {
+            when (currentDestination?.id) {
+                R.id.discoverFragment -> navigate(R.id.action_discoverFragment_to_postingFragment)
+                R.id.petFinderFragment -> navigate(R.id.action_petFinderFragment_to_postingFragment)
+                else -> {}
+            }
         }
     }
 
@@ -81,4 +106,8 @@ class MainActivity : AppCompatActivity() {
         Intent(this.applicationContext, WelcomeActivity::class.java).also {
             startActivity(it)
         }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 }

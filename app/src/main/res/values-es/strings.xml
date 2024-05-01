@@ -35,6 +35,12 @@
     <string name="profile_update_error">Se produjo un error al actualizar tu perfil. Por favor, inténtalo de nuevo más tarde.</string>
     <string name="username_taken_error">This username is already taken. Please choose a different one.</string>
     <string name="deceptive_title_lost_pets">Buscar</string>
-    <string name="deceptive_title_support_fragment">Ayudar</string>
     <string name="preferred_pet">Mascota Preferida</string>
+    <string name="post_page_title">Publicar</string>
+    <string name="question_pet_name">¿Cuál es el nombre de tu mascota?</string>
+    <string name="question_pet_age">¿Qué edad tiene tu mascota?</string>
+    <string name="upload_photo">Subir Foto</string>
+    <string name="post_body_hint">Escribe algo aquí…</string>
+    <string name="years_old">años</string>
+    <string name="publish">Publicar</string>
 </resources>

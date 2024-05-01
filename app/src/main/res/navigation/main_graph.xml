@@ -9,7 +9,15 @@
         android:id="@+id/discoverFragment"
         android:name="com.software3.paws_hub_android.view.main_activity.DiscoverFragment"
         android:label="@string/discover"
-        tools:layout="@layout/fragment_discover" />
+        tools:layout="@layout/fragment_discover" >
+        <action
+            android:id="@+id/action_discoverFragment_to_postingFragment"
+            app:destination="@id/postingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.software3.paws_hub_android.view.main_activity.ProfileFragment"
@@ -19,10 +27,23 @@
         android:id="@+id/petFinderFragment"
         android:name="com.software3.paws_hub_android.view.main_activity.PetFinderFragment"
         android:label="@string/deceptive_title_support_fragment"
-        tools:layout="@layout/fragment_pet_finder" />
+        tools:layout="@layout/fragment_pet_finder" >
+        <action
+            android:id="@+id/action_petFinderFragment_to_postingFragment"
+            app:destination="@id/postingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.software3.paws_hub_android.view.main_activity.SearchFragment"
         android:label="@string/deceptive_title_lost_pets"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/postingFragment"
+        android:name="com.software3.paws_hub_android.PostingFragment"
+        android:label="@string/post_page_title"
+        tools:layout="@layout/fragment_posting" />
 </navigation>

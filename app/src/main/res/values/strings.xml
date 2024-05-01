@@ -36,6 +36,13 @@
     <string name="profile_update_error">An error occurred while updating your profile. Please try again later.</string>
     <string name="username_taken_error">This username is already taken. Please choose a different one.</string>
     <string name="deceptive_title_lost_pets">Search</string>
-    <string name="deceptive_title_support_fragment">Help</string>
+    <string name="deceptive_title_support_fragment" translatable="false">Pet Finder</string>
     <string name="preferred_pet">Preferred Pet</string>
+    <string name="post_page_title">Post</string>
+    <string name="question_pet_name">What is your pet\'s name?</string>
+    <string name="question_pet_age">How old is your pet?</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="post_body_hint">Write something here…</string>
+    <string name="years_old">years old</string>
+    <string name="publish">Publish</string>
 </resources>

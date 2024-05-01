@@ -1,6 +1,7 @@
 package com.software3.paws_hub_android.model
 
 import android.net.Uri
+import com.google.type.DateTime
 
 data class UserData(
     val _id: String,
@@ -22,5 +23,11 @@ data class UserSignIn(
 )
 
 data class Post(
-    val _id: String
+    val _id: String,
+    val authorName: String,
+    val authorUsername: String,
+    val author: UserData,
+    val image: Uri,
+    val body: String,
+    val pupDate: DateTime
 )

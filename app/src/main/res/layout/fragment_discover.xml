@@ -6,7 +6,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="10dp"
+    android:paddingHorizontal="5dp"
     tools:context=".view.main_activity.DiscoverFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -31,21 +31,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
 
-            <include layout="@layout/adopt_post_layout" />
+            <include layout="@layout/layout_post_discover" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
