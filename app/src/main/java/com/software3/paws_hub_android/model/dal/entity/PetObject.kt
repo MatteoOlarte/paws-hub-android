@@ -1,6 +1,7 @@
 package com.software3.paws_hub_android.model.dal.entity
 
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.model.Pet
@@ -34,11 +35,29 @@ class PetObject: IFirebaseObject<Pet> {
     override fun cast(doc: DocumentSnapshot) = Pet(
         petID = doc.get("_id") as String,
         name = doc.get("name") as String,
-        birthDate = doc.get("birth_date") as Date,
-        weight = doc.get("weight") as Float,
+        birthDate = (doc.get("birth_date") as Timestamp).toDate(),
+        weight = (doc.get("weight") as Double).toFloat(),
         type = doc.get("type") as String,
         breed = doc.get("breed") as String,
         notes = doc.get("notes") as String?,
         ownerID = doc.get("owner_id") as String
     )
+
+    fun filterByOwner(ids: List<String>, callback: (List<Pet>) -> Any) {
+        if (ids.isEmpty()) {
+            callback(emptyList())
+            return
+        }
+
+        db.collection("pets").whereIn("_id", ids).get().addOnSuccessListener {
+            if (it.isEmpty) callback(emptyList())
+            val documents = it.documents
+            val pets = mutableListOf<Pet>()
+
+            documents.forEach { document -> pets.add(cast(document)) }
+            callback(pets)
+        }.addOnFailureListener {
+            callback(emptyList())
+        }
+    }
 }

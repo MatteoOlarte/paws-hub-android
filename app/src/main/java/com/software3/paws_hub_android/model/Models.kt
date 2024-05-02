@@ -9,11 +9,12 @@ data class UserData(
     var fName: String,
     var lName: String,
     var uName: String,
+    var pets: MutableList<String> = mutableListOf(),
     var city: String? = null,
     var photo: Uri? = null,
     var email: String? = null,
     var phoneNumber: String? = null,
-    var preferredPet: String? = null
+    var preferredPet: String? = null,
 ) {
     val fullName get() = "$fName $lName"
 }

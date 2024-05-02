@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -14,7 +14,8 @@ import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.databinding.FragmentPetPublishBinding
 import com.software3.paws_hub_android.model.PetPublish
-import com.software3.paws_hub_android.viewmodel.PetUploadViewModel
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
+import com.software3.paws_hub_android.viewmodel.PetPublishViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -22,7 +23,8 @@ import java.util.Date
 class PetPublishFragment : Fragment() {
     private var _biding: FragmentPetPublishBinding? = null
     private val binding get() = _biding!!
-    private val viewmodel: PetUploadViewModel by viewModels()
+    private val viewmodel: PetPublishViewModel by viewModels()
+    private val activityViewModel: MainActivityViewModel by activityViewModels()
     private val datePicker = MaterialDatePicker.Builder.datePicker()
         .setTitleText(R.string.question_pet_age)
         .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
@@ -86,7 +88,7 @@ class PetPublishFragment : Fragment() {
     private fun onPetPublish() {
         val petPublish = PetPublish(
             name =  binding.tfPetName.text.toString(),
-            weight = binding.tfPetWeight.text.toString().toFloat(),
+            weight = binding.tfPetWeight.text.toString().toFloatOrNull() ?: 0f,
             breed = binding.tfPetBreed.text.toString(),
             notes = binding.tfPetNotes.text.toString()
         )
@@ -112,14 +114,18 @@ class PetPublishFragment : Fragment() {
     }
 
     private fun onSuccessState() {
-        Toast.makeText(this.context, "SAVED", Toast.LENGTH_LONG).show()
+        val msg = getString(R.string.pet_upload_success_message)
+        activityViewModel.stopProgressIndicator()
+        activityViewModel.createSimpleSnackbarMessage(msg)
     }
 
     private fun onPendingState() {
-        Toast.makeText(this.context, "PENDING", Toast.LENGTH_LONG).show()
+        activityViewModel.startProgressIndicator()
     }
 
     private fun onFailureState() {
-        Toast.makeText(this.context, "FAILED", Toast.LENGTH_LONG).show()
+        val msg = getString(R.string.pet_upload_failure_message)
+        activityViewModel.stopProgressIndicator()
+        activityViewModel.createSimpleSnackbarMessage(msg)
     }
 }

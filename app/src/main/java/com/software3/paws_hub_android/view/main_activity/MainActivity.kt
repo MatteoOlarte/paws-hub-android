@@ -16,9 +16,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.snackbar.Snackbar
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
 import com.software3.paws_hub_android.view.WelcomeActivity
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.UserViewModel
 
 
@@ -27,12 +29,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val userViewModel: UserViewModel by viewModels()
+    private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        navController =
-            (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment).navController
+        navController = (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment).navController
         initUI()
         initObservers()
         initListeners()
@@ -76,11 +78,24 @@ class MainActivity : AppCompatActivity() {
         userViewModel.isGuestUser.observe(this) { isGuestUser ->
             isGuestUser?.let { if (it) navigateToWelcomeActivity() }
         }
+        mainActivityViewModel.showProgressIndicator.observe(this) {
+            binding.toolbarProgressIndicator.visibility = if (it) View.VISIBLE else View.GONE
+            binding.appbarLayout.setExpanded(true)
+        }
+        mainActivityViewModel.simpleSnackbarMessage.observe(this) { showSnackbarMessage(it) }
     }
 
     private fun initListeners() {
         navController.addOnDestinationChangedListener { _, it, _ -> onDestinationChanged(it) }
         binding.floatingActionButton.setOnClickListener { onFloatingActionButtonClick() }
+    }
+
+    private fun showSnackbarMessage(massage: String) {
+        val view = binding.coordinatorLayout
+        Snackbar.make(this, view, massage, Snackbar.LENGTH_LONG). also {
+            it.setAction("OK") { _ -> it.dismiss() }
+            it.show()
+        }
     }
 
     private fun onDestinationChanged(destination: NavDestination) {

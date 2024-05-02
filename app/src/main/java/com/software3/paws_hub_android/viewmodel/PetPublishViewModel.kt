@@ -9,13 +9,16 @@ import com.software3.paws_hub_android.core.ex.containsNulls
 import com.software3.paws_hub_android.model.Pet
 import com.software3.paws_hub_android.model.PetPublish
 import com.software3.paws_hub_android.model.PetType
+import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.model.dal.entity.PetObject
 import com.software3.paws_hub_android.model.dal.entity.PetTypeObject
+import com.software3.paws_hub_android.model.dal.entity.UserDataObject
 import java.util.Date
 import java.util.UUID
 
 
-class PetUploadViewModel : ViewModel() {
+class PetPublishViewModel : ViewModel() {
+
     val types = MutableLiveData<List<String>>()
     val breeds = MutableLiveData<PetType>()
     val state = MutableLiveData<TransactionState>()
@@ -59,6 +62,8 @@ class PetUploadViewModel : ViewModel() {
             state.value = TransactionState.FAILED
             return
         }
+
+        state.postValue(TransactionState.PENDING)
         pet = Pet(
             petID = uuid,
             name = publish.name,
@@ -72,7 +77,29 @@ class PetUploadViewModel : ViewModel() {
         dal.save(pet).addOnFailureListener {
             state.postValue(TransactionState.FAILED)
         }.addOnSuccessListener {
-            state.postValue(TransactionState.SUCCESS)
+            saveUserData(pet)
+        }
+    }
+
+    private fun saveUserData(pet: Pet) {
+        val userDAL = UserDataObject()
+        val userID: String? = Firebase.auth.currentUser?.uid
+
+        if (userID == null) {
+            state.postValue(TransactionState.FAILED)
+            return
+        }
+
+        userDAL.get(userID).addOnSuccessListener {
+            val userdata: UserData = userDAL.cast(it)
+            userdata.pets.add(pet.petID)
+            userDAL.save(userdata).addOnSuccessListener {
+                state.postValue(TransactionState.SUCCESS)
+            }.addOnFailureListener {
+                state.postValue(TransactionState.FAILED)
+            }
+        }.addOnFailureListener {
+            state.postValue(TransactionState.FAILED)
         }
     }
 }

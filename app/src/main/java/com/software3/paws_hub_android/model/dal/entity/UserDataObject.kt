@@ -6,8 +6,11 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.core.ex.slugify
+import com.software3.paws_hub_android.core.ex.toListOrEmpty
+import com.software3.paws_hub_android.core.ex.toMutableListOrEmpty
 import com.software3.paws_hub_android.core.ex.toURI
 import com.software3.paws_hub_android.model.UserData
+import java.lang.Exception
 
 
 class UserDataObject : IFirebaseObject<UserData> {
@@ -23,7 +26,8 @@ class UserDataObject : IFirebaseObject<UserData> {
             "profile_photo" to obj.photo,
             "email" to obj.email,
             "phone_number" to obj.phoneNumber,
-            "preferred_pet" to obj.preferredPet
+            "preferred_pet" to obj.preferredPet,
+            "pets" to obj.pets
         )
         return db.collection("users").document(obj._id).set(map)
     }
@@ -46,7 +50,8 @@ class UserDataObject : IFirebaseObject<UserData> {
             city = doc.get("city") as String?,
             photo = (doc.get("profile_photo") as String?)?.toURI(),
             phoneNumber = doc.get("phone_number") as String?,
-            preferredPet = doc.get("preferred_pet") as String?
+            preferredPet = doc.get("preferred_pet") as String?,
+            pets = doc.get("pets").toMutableListOrEmpty<String>()
         )
     }
 
