@@ -52,7 +52,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/postingFragment"
-        android:name="com.software3.paws_hub_android.PostingFragment"
+        android:name="com.software3.paws_hub_android.view.main_activity.PostingFragment"
         android:label="@string/post_page_title"
         tools:layout="@layout/fragment_posting" />
     <fragment

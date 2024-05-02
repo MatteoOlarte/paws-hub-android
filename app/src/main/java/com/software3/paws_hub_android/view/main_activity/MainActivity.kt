@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         initUI()
         initObservers()
         initListeners()
+        mainActivityViewModel.fetchUserdata()
     }
 
     override fun onResume() {
@@ -92,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSnackbarMessage(massage: String) {
         val view = binding.coordinatorLayout
-        Snackbar.make(this, view, massage, Snackbar.LENGTH_LONG). also {
+        Snackbar.make(this, view, massage, Snackbar.LENGTH_LONG).also {
             it.setAction("OK") { _ -> it.dismiss() }
             it.show()
         }

@@ -1,10 +1,11 @@
-package com.software3.paws_hub_android
+package com.software3.paws_hub_android.view.main_activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.software3.paws_hub_android.R
 
 
 class PostingFragment : Fragment() {

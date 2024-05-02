@@ -3,8 +3,7 @@ package com.software3.paws_hub_android.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.marginTop
+import android.view.ViewGroup.MarginLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.LayoutPetItemBinding
@@ -20,8 +19,7 @@ class PetAdapter(private val list: List<Pet>) : RecyclerView.Adapter<PetAdapter.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-        val margin = if (position > 0) 0 else 16
-        holder.render(item, margin)
+        holder.render(item, if (position > 0) 8 else 0)
     }
 
     override fun getItemCount(): Int = list.size
@@ -29,10 +27,11 @@ class PetAdapter(private val list: List<Pet>) : RecyclerView.Adapter<PetAdapter.
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = LayoutPetItemBinding.bind(view)
 
-        fun render(pet: Pet, margin: Int = 0) {
+        fun render(pet: Pet, gap: Int = 0) {
             binding.txtViewPetName.text = pet.name
             binding.txtViewPetWeight.text = "${pet.weight} KG"
             binding.txtViewPetAge.text = SimpleDateFormat.getDateInstance().format(pet.birthDate)
+            binding.cardContainer.layoutParams.apply { if (this is MarginLayoutParams) this.topMargin = gap }
         }
     }
 }

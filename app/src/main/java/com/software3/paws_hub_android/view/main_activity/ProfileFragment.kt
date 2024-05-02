@@ -2,11 +2,11 @@ package com.software3.paws_hub_android.view.main_activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +15,7 @@ import com.software3.paws_hub_android.adapters.PetAdapter
 import com.software3.paws_hub_android.databinding.FragmentProfileBinding
 import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.view.EditProfileActivity
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.UserViewModel
 import com.squareup.picasso.Picasso
 
@@ -23,6 +24,7 @@ class ProfileFragment : Fragment() {
     private var _biding: FragmentProfileBinding? = null
     private val binding get() = _biding!!
     private val userViewModel: UserViewModel by viewModels()
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -34,7 +36,6 @@ class ProfileFragment : Fragment() {
         initUI()
         initObservers()
         initListeners()
-        userViewModel.fetchUserData()
         return binding.root
     }
 
@@ -44,14 +45,15 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initUI() {
+        val userdata: UserData? = mainActivityViewModel.userdata.value
         binding.rcvPetsList.layoutManager = LinearLayoutManager(requireContext())
+        userdata?.let {
+            updateProfileCard(it)
+            userViewModel.fetchUserPets(it)
+        }
     }
 
     private fun initObservers() {
-        userViewModel.userdata.observe(viewLifecycleOwner) {
-            it?.let(::updateProfileCard)
-            userViewModel.fetchUserPets(it)
-        }
         userViewModel.pets.observe(viewLifecycleOwner) {
             binding.rcvPetsList.adapter = PetAdapter(it)
         }
