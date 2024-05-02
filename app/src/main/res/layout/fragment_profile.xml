@@ -27,7 +27,7 @@
             app:layout_constraintGuide_percent="0.5"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/edit_profile_button"
+            android:id="@+id/btn_edit_profile"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,10 +39,10 @@
             tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/share_profile_button"
+            android:id="@+id/btn_add_pet"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/share_profile"
+            android:text="@string/add_pet_button"
             android:layout_marginStart="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/buttons_guideline"

@@ -45,4 +45,16 @@
     <string name="post_body_hint">Write something here…</string>
     <string name="years_old">years old</string>
     <string name="publish">Publish</string>
+    <string name="question_pet_weight">What is your pet\'s weight?</string>
+    <string name="add_pet_button">Add Pet</string>
+    <string name="question_pet_type">What type of pet do you have?</string>
+    <string name="question_pet_breed">What breed is your pet?</string>
+    <string name="add_notes_button">Add Notes</string>
+    <string-array name="pets_types">
+        <item>"Dog"</item>
+        <item>"Cat"</item>
+    </string-array>
+    <string name="pet_description_placeholder">How is your pet?</string>
+    <string name="pet_description_help_text">Please provide a description of your pet, including physical and psychological traits. Let us know if your pet is friendly!</string>
+
 </resources>

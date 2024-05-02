@@ -33,7 +33,7 @@ class UserDataObject : IFirebaseObject<UserData> {
     }
 
     override fun delete(obj: UserData): Task<Void> {
-        throw NotImplementedError()
+        TODO("Not yet implemented")
     }
 
     override fun cast(doc: DocumentSnapshot): UserData {

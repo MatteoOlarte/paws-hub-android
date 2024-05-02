@@ -22,7 +22,16 @@
         android:id="@+id/profileFragment"
         android:name="com.software3.paws_hub_android.view.main_activity.ProfileFragment"
         android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_petPublishFragment"
+            app:destination="@id/petPublishFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/petFinderFragment"
         android:name="com.software3.paws_hub_android.view.main_activity.PetFinderFragment"
@@ -46,4 +55,9 @@
         android:name="com.software3.paws_hub_android.PostingFragment"
         android:label="@string/post_page_title"
         tools:layout="@layout/fragment_posting" />
+    <fragment
+        android:id="@+id/petPublishFragment"
+        android:name="com.software3.paws_hub_android.view.main_activity.PetPublishFragment"
+        android:label="@string/publish"
+        tools:layout="@layout/fragment_pet_publish" />
 </navigation>

@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.FragmentProfileBinding
 import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.view.EditProfileActivity
@@ -42,8 +44,11 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.editProfileButton.setOnClickListener {
+        binding.btnEditProfile.setOnClickListener {
             Intent(this.context, EditProfileActivity::class.java).also { startActivity(it) }
+        }
+        binding.btnAddPet.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_petPublishFragment)
         }
     }
 

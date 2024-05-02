@@ -15,6 +15,7 @@
     <string name="username_hint">Nombre de Usuario</string>
     <string name="first_name_hint">Nombres</string>
     <string name="last_name_hint">Apellidos</string>
+
     <string name="edit_profile">Editar Perfil</string>
     <string name="share_profile">Compartir</string>
     <string name="error_msg_title">Error</string>
@@ -35,6 +36,7 @@
     <string name="profile_update_error">Se produjo un error al actualizar tu perfil. Por favor, inténtalo de nuevo más tarde.</string>
     <string name="username_taken_error">This username is already taken. Please choose a different one.</string>
     <string name="deceptive_title_lost_pets">Buscar</string>
+
     <string name="preferred_pet">Mascota Preferida</string>
     <string name="post_page_title">Publicar</string>
     <string name="question_pet_name">¿Cuál es el nombre de tu mascota?</string>
@@ -43,4 +45,15 @@
     <string name="post_body_hint">Escribe algo aquí…</string>
     <string name="years_old">años</string>
     <string name="publish">Publicar</string>
+    <string name="question_pet_weight">¿Cuál es el peso de tu mascota?</string>
+    <string name="add_pet_button">Nueva Mascota</string>
+    <string name="question_pet_type">¿Qué tipo de mascota tienes?</string>
+    <string name="question_pet_breed">¿Cuál es la raza de tu mascota?</string>
+    <string name="add_notes_button">Agregar Notas</string>
+    <string-array name="pets_types">
+        <item>"Perro"</item>
+        <item>"Gato"</item>
+    </string-array>
+    <string name="pet_description_placeholder">¿Cómo es tu mascota?</string>
+    <string name="pet_description_help_text">Por favor, proporciona una descripción de tu mascota, incluyendo rasgos físicos y psicológicos. ¡Cuéntanos si tu mascota es amigable!</string>
 </resources>

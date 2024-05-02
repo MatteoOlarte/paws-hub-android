@@ -2,6 +2,7 @@ package com.software3.paws_hub_android.model
 
 import android.net.Uri
 import com.google.type.DateTime
+import java.util.Date
 
 data class UserData(
     val _id: String,
@@ -22,12 +23,34 @@ data class UserSignIn(
     var phone: String?
 )
 
+data class Pet(
+    val petID: String,
+    var name: String,
+    var weight: Float,
+    var type: String,
+    var breed: String,
+    var notes: String?,
+    val birthDate: Date,
+    val ownerID: String
+)
+
+data class PetType(
+    val typeID: String,
+    val breeds: List<String>
+)
+
+data class PetPublish(
+    val name: String,
+    val weight: Float,
+    val breed: String,
+    val notes: String?
+)
+
 data class Post(
     val _id: String,
-    val authorName: String,
-    val authorUsername: String,
-    val author: UserData,
     val image: Uri,
     val body: String,
-    val pupDate: DateTime
+    val pupDate: DateTime,
+    val authorID: String?,
+    val petID: String?
 )
