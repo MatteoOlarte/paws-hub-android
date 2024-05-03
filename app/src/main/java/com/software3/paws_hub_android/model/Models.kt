@@ -48,10 +48,13 @@ data class PetPublish(
 )
 
 data class Post(
-    val _id: String,
+    val postID: String,
     val image: Uri,
     val body: String,
     val pupDate: DateTime,
+    val authorFullName: String,
+    val authorUsername: String,
+    val petName: String,
     val authorID: String?,
     val petID: String?
 )

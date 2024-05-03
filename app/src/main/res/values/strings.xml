@@ -58,5 +58,6 @@
     <string name="pet_description_help_text">Please provide a description of your pet, including physical and psychological traits. Let us know if your pet is friendly!</string>
     <string name="pet_upload_success_message">Pet uploaded successfully!</string>
     <string name="pet_upload_failure_message">Failed to upload pet. Please try again later.</string>
+    <string name="select_your_pet">Select your pet</string>
 
 </resources>

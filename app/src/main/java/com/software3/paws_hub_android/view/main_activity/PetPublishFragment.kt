@@ -117,6 +117,7 @@ class PetPublishFragment : Fragment() {
         val msg = getString(R.string.pet_upload_success_message)
         activityViewModel.stopProgressIndicator()
         activityViewModel.createSimpleSnackbarMessage(msg)
+        activityViewModel.fetchUserdata()
     }
 
     private fun onPendingState() {
