@@ -51,9 +51,10 @@ data class Post(
     val postID: String,
     val image: Uri,
     val body: String,
-    val pupDate: DateTime,
+    val pupDate: Date,
     val authorFullName: String,
     val authorUsername: String,
+    val authorProfilePicture: Uri?,
     val petName: String,
     val authorID: String?,
     val petID: String?

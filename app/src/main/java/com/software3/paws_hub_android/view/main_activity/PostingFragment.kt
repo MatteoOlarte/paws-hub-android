@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -26,7 +27,7 @@ class PostingFragment : Fragment() {
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
     private val imageResult = registerForActivityResult(
         ActivityResultContracts.GetContent()
-    ) {uri: Uri? ->
+    ) { uri: Uri? ->
         uri?.let { viewmodel.setPostImage(it) }
     }
 
@@ -50,7 +51,7 @@ class PostingFragment : Fragment() {
     }
 
     private fun initUI() {
-
+        binding.tfLayoutPostPet.isEnabled = false
     }
 
     private fun initObservers() {
@@ -62,14 +63,29 @@ class PostingFragment : Fragment() {
             setTfPostPetItems(items)
             binding.tfLayoutPostPet.isEnabled = true
         }
+        viewmodel.selectedPet.observe(viewLifecycleOwner) {
+            mainActivityViewModel.createSimpleSnackbarMessage("Mascota Cargada")
+        }
+        viewmodel.publishState.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initListeners() {
         binding.cardPostPhoto.setOnClickListener { imageResult.launch("image/*") }
+        binding.btnPublishPost.setOnClickListener { onPublish() }
+        binding.tfPostPet.setOnItemClickListener { _, _, position, _ ->
+            viewmodel.setSelectedPet(position)
+        }
     }
 
     private fun setTfPostPetItems(items: List<String>) {
         val adapter = ArrayAdapter(requireContext(), R.layout.layout_list_adapter, items)
         with(binding) { tfPostPet.setAdapter(adapter) }
+    }
+
+    private fun onPublish() {
+        val userdata: UserData? = mainActivityViewModel.userdata.value
+        userdata?.let { viewmodel.publishPost(it, binding.tfPostBody.text.toString()) }
     }
 }

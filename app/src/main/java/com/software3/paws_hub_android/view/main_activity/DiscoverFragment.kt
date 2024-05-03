@@ -1,17 +1,21 @@
 package com.software3.paws_hub_android.view.main_activity
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.software3.paws_hub_android.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.software3.paws_hub_android.adapters.PostAdapter
 import com.software3.paws_hub_android.databinding.FragmentDiscoverBinding
+import com.software3.paws_hub_android.viewmodel.DiscoverViewModel
 
 
 class DiscoverFragment : Fragment() {
     private var _biding: FragmentDiscoverBinding? = null
     private val binding get() = _biding!!
+    private val viewmodel: DiscoverViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,11 +23,29 @@ class DiscoverFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _biding = FragmentDiscoverBinding.inflate(inflater, container, false)
+        initUI()
+        initObservers()
+        initListeners()
+        viewmodel.fetchAllPosts()
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _biding = null
+    }
+
+    fun initUI() {
+        binding.recyclerViewPosts.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    fun initObservers() {
+        viewmodel.posts.observe(viewLifecycleOwner) {
+            binding.recyclerViewPosts.adapter = PostAdapter(it)
+        }
+    }
+
+    fun initListeners() {
+
     }
 }
