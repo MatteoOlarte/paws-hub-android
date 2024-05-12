@@ -54,9 +54,11 @@
         <item>"Perro"</item>
         <item>"Gato"</item>
     </string-array>
-    <string name="pet_description_placeholder">¿Cómo es tu mascota?</string>
+    <string name="pet_description_placeholder">¿Cómo es tu mascota? (opcional)</string>
     <string name="pet_description_help_text">Por favor, proporciona una descripción de tu mascota, incluyendo rasgos físicos y psicológicos. ¡Cuéntanos si tu mascota es amigable!</string>
     <string name="pet_upload_success_message">¡Mascota subida correctamente!</string>
     <string name="pet_upload_failure_message">Error al subir la mascota. Por favor, inténtalo de nuevo más tarde.</string>
     <string name="select_your_pet">Selecciona tu mascota</string>
+    <string name="enter_pet_breed">Ingresa la raza de tu mascota</string>
+    <string name="pet_breed_helper_text">Por favor, ingresa la raza y el tipo de tu mascota</string>
 </resources>

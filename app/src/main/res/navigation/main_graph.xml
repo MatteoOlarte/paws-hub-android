@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="com.software3.paws_hub_android.view.main_activity.DiscoverFragment"
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.DiscoverFragment"
         android:label="@string/discover"
         tools:layout="@layout/fragment_discover" >
         <action
@@ -20,21 +20,21 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.software3.paws_hub_android.view.main_activity.ProfileFragment"
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_petPublishFragment"
             app:destination="@id/petPublishFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="false"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/petFinderFragment"
-        android:name="com.software3.paws_hub_android.view.main_activity.PetFinderFragment"
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.PetFinderFragment"
         android:label="@string/deceptive_title_support_fragment"
         tools:layout="@layout/fragment_pet_finder" >
         <action
@@ -47,17 +47,17 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.software3.paws_hub_android.view.main_activity.SearchFragment"
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.SearchFragment"
         android:label="@string/deceptive_title_lost_pets"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/postingFragment"
-        android:name="com.software3.paws_hub_android.view.main_activity.PostingFragment"
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.PostingFragment"
         android:label="@string/post_page_title"
         tools:layout="@layout/fragment_posting" />
     <fragment
         android:id="@+id/petPublishFragment"
-        android:name="com.software3.paws_hub_android.view.main_activity.PetPublishFragment"
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.PetCreatorFragment"
         android:label="@string/publish"
         tools:layout="@layout/fragment_pet_publish" />
 </navigation>

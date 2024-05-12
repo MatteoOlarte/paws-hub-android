@@ -54,10 +54,11 @@
         <item>"Dog"</item>
         <item>"Cat"</item>
     </string-array>
-    <string name="pet_description_placeholder">How is your pet?</string>
+    <string name="pet_description_placeholder">How is your pet? (optional)</string>
     <string name="pet_description_help_text">Please provide a description of your pet, including physical and psychological traits. Let us know if your pet is friendly!</string>
     <string name="pet_upload_success_message">Pet uploaded successfully!</string>
     <string name="pet_upload_failure_message">Failed to upload pet. Please try again later.</string>
     <string name="select_your_pet">Select your pet</string>
-
+    <string name="enter_pet_breed">Enter your pet\'s breed</string>
+    <string name="pet_breed_helper_text">Please enter your pet\'s breed and type</string>
 </resources>

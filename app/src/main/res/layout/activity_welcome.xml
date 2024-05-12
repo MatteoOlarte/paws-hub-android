@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_welcome__layout"
-    tools:context=".view.WelcomeActivity">
+    tools:context=".ui.view.WelcomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

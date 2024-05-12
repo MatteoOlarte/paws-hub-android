@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main_activity.PetPublishFragment">
+    tools:context=".ui.view.activity_main.PetCreatorFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -19,18 +19,20 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingHorizontal="24dp"
-            android:paddingVertical="20dp"
-            android:orientation="vertical">
+            android:paddingVertical="20dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tf_layout_pet_name"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="8dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/question_pet_name">
+                android:layout_marginBottom="5dp"
+                android:hint="@string/question_pet_name"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_error_24">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tf_pet_name"
                     android:layout_width="match_parent"
@@ -42,13 +44,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tf_layout_pet_age"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="5dp"
                 android:hint="@string/question_pet_age"
                 app:endIconDrawable="@drawable/ic_calendar_month_24"
-                app:endIconMode="custom">
+                app:endIconMode="custom"
+                app:errorEnabled="true" >
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tf_pet_age"
                     android:layout_width="match_parent"
@@ -60,12 +63,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tf_layout_pet_weight"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:hint="@string/question_pet_weight"
-                android:layout_marginBottom="8dp"
-                app:suffixText="KG">
+                app:suffixText="KG"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_error_24">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tf_pet_weight"
                     android:layout_width="match_parent"
@@ -77,12 +83,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tf_layout_pet_type"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:hint="@string/question_pet_type"
-                android:layout_marginBottom="8dp">
-                <AutoCompleteTextView
+                app:errorEnabled="true" >
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/tf_pet_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,12 +100,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tf_layout_pet_breed"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:hint="@string/question_pet_breed"
-                android:layout_marginBottom="8dp">
-                <AutoCompleteTextView
+                app:errorEnabled="true" >
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/tf_pet_breed"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,35 +114,53 @@
                     tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp" />
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tf_layout_pet_notes"
+                android:id="@+id/tf_layout_alternative_pet_type"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pet_description_placeholder"
-                android:layout_marginBottom="8dp"
-                app:helperText="@string/pet_description_help_text">
-
+                android:layout_marginBottom="5dp"
+                android:hint="@string/enter_pet_breed"
+                app:helperText="@string/pet_breed_helper_text"
+                android:visibility="gone">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tf_pet_notes"
+                    android:id="@+id/tf_pet_alternative_pet_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="350dp"
                     android:inputType="none"
-                    android:gravity="top"
                     tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp" />
+                android:layout_marginVertical="20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tf_layout_pet_notes"
+
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/pet_description_placeholder"
+                app:helperText="@string/pet_description_help_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tf_pet_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:inputType="none"
+                    android:minHeight="350dp"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_publish"
