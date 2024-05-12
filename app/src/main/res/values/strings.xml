@@ -36,6 +36,29 @@
     <string name="profile_update_error">An error occurred while updating your profile. Please try again later.</string>
     <string name="username_taken_error">This username is already taken. Please choose a different one.</string>
     <string name="deceptive_title_lost_pets">Search</string>
-    <string name="deceptive_title_support_fragment">Help</string>
+    <string name="deceptive_title_support_fragment" translatable="false">Pet Finder</string>
     <string name="preferred_pet">Preferred Pet</string>
+    <string name="post_page_title">Post</string>
+    <string name="question_pet_name">What is your pet\'s name?</string>
+    <string name="question_pet_age">How old is your pet?</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="post_body_hint">Write something here…</string>
+    <string name="years_old">years old</string>
+    <string name="publish">Publish</string>
+    <string name="question_pet_weight">What is your pet\'s weight?</string>
+    <string name="add_pet_button">Add Pet</string>
+    <string name="question_pet_type">What type of pet do you have?</string>
+    <string name="question_pet_breed">What breed is your pet?</string>
+    <string name="add_notes_button">Add Notes</string>
+    <string-array name="pets_types">
+        <item>"Dog"</item>
+        <item>"Cat"</item>
+    </string-array>
+    <string name="pet_description_placeholder">How is your pet? (optional)</string>
+    <string name="pet_description_help_text">Please provide a description of your pet, including physical and psychological traits. Let us know if your pet is friendly!</string>
+    <string name="pet_upload_success_message">Pet uploaded successfully!</string>
+    <string name="pet_upload_failure_message">Failed to upload pet. Please try again later.</string>
+    <string name="select_your_pet">Select your pet</string>
+    <string name="enter_pet_breed">Enter your pet\'s breed</string>
+    <string name="pet_breed_helper_text">Please enter your pet\'s breed and type</string>
 </resources>

@@ -6,3 +6,10 @@ fun List<String?>.containsBlackOrNulls(): Boolean {
     }
     return false
 }
+
+fun List<Any?>.containsNulls(): Boolean {
+    for (f in this) {
+        if (f == null) return true
+    }
+    return false
+}

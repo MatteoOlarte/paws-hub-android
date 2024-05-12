@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.model.dal.entity
+package com.software3.paws_hub_android.model.dal.entity.user
 
 class CityObject {
     fun getAll(): List<String> {

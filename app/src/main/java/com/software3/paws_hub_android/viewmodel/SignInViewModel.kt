@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.software3.paws_hub_android.core.enums.AuthProvider
 import com.software3.paws_hub_android.core.enums.TransactionState
-import com.software3.paws_hub_android.model.UserData
 import com.software3.paws_hub_android.model.UserSignIn
 import com.software3.paws_hub_android.model.dal.auth.FirebaseEmailAuth
 import com.software3.paws_hub_android.model.dal.auth.IFirebaseAuth

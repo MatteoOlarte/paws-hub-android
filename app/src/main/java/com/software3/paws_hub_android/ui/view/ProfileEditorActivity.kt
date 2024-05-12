@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.view
+package com.software3.paws_hub_android.ui.view
 
 import android.os.Bundle
 import android.view.View
@@ -7,27 +7,26 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.databinding.ActivityEditProfileBinding
-import com.software3.paws_hub_android.model.UserData
-import com.software3.paws_hub_android.viewmodel.CityViewModel
-import com.software3.paws_hub_android.viewmodel.EditProfileViewModel
+import com.software3.paws_hub_android.model.Profile
+import com.software3.paws_hub_android.viewmodel.ProfileEditorViewModel
 import com.software3.paws_hub_android.viewmodel.UserViewModel
 import com.squareup.picasso.Picasso
 
 
-class EditProfileActivity : AppCompatActivity() {
+class ProfileEditorActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
-    private val profileViewModel: EditProfileViewModel by viewModels()
+    private val profileViewModel: ProfileEditorViewModel by viewModels()
     private val userViewModel: UserViewModel by viewModels()
-    private val cityViewModel: CityViewModel by viewModels()
     private val imageResult = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) {
-        profileViewModel.setProfilePhotoURI(it)
+        profileViewModel.setPhotoURL(it)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +36,7 @@ class EditProfileActivity : AppCompatActivity() {
         initObservers()
         initListeners()
         userViewModel.fetchUserData()
-        cityViewModel.fetchCityData()
+        profileViewModel.fetchCityData()
     }
 
     private fun initUI() {
@@ -49,18 +48,20 @@ class EditProfileActivity : AppCompatActivity() {
     private fun initObservers() {
         userViewModel.userdata.observe(this) {
             it?.let(::updateUI)
+            profileViewModel.setUserdata(it)
         }
-        profileViewModel.photoURI.observe(this) {
+        profileViewModel.userPhotoURI.observe(this) {
             Picasso.get().load(it).into(binding.profileImage)
         }
-        profileViewModel.usernameAvailability.observe(this) {
+        profileViewModel.isNameAvailable.observe(this) {
             if (it) {
-                binding.userNameInput.error = null
+                binding.tfLayoutUsername.error = null
                 return@observe
             }
-            binding.userNameInput.error = getString(R.string.username_taken_error)
+            val msg = getString(R.string.username_taken_error)
+            binding.tfLayoutUsername.error = msg
         }
-        profileViewModel.state.observe(this) {
+        profileViewModel.updateState.observe(this) {
             when (it) {
                 TransactionState.PENDING -> onPendingState()
                 TransactionState.SUCCESS -> onSuccessState()
@@ -68,11 +69,11 @@ class EditProfileActivity : AppCompatActivity() {
                 else -> onFailureState()
             }
         }
-        cityViewModel.cites.observe(this) {
+        profileViewModel.citiesList.observe(this) {
             val adapter = ArrayAdapter(this, R.layout.layout_list_adapter, it)
             with(binding) {
-                if (userCityInput is MaterialAutoCompleteTextView) {
-                    userCityInput.setAdapter(adapter)
+                if (tfCity is MaterialAutoCompleteTextView) {
+                    tfCity.setAdapter(adapter)
                 }
             }
         }
@@ -81,26 +82,21 @@ class EditProfileActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.editPhotoButton.setOnClickListener { imageResult.launch("image/*") }
         binding.confirmButton.setOnClickListener { onConfirmButtonClick() }
-        binding.userNameInput.doOnTextChanged { text, _, _, _ ->
-            profileViewModel.verifyUsernameAvailability(text.toString())
+        binding.tfUsername.doOnTextChanged { text, _, _, _ ->
+            profileViewModel.checkUsername(text.toString())
         }
-        binding.userCityInput.setOnFocusChangeListener { _, _ -> binding.userCityInput.text = null }
+        binding.tfCity.setOnFocusChangeListener { _, _ -> binding.tfCity.text = null }
     }
 
-    private fun updateUI(data: UserData) {
-        profileViewModel.setProfilePhotoURI(data.photo)
-        binding.userFirstNameInput.setText(data.fName)
-        binding.userLastNameInput.setText(data.lName)
-        binding.userEmailInput.setText(data.email)
-        binding.userPhoneNumberInput.setText(data.phoneNumber)
-        binding.userNameInput.setText(data.uName)
-        binding.userPreferredPet.setText(data.preferredPet)
-        binding.userCityInput.setText(data.city)
-    }
-
-    private fun onPendingState() {
-        binding.toolbarProgressIndicator.visibility = View.VISIBLE
-        enableFieldsAndButtons(false)
+    private fun updateUI(data: Profile) {
+        profileViewModel.setPhotoURL(data.photo)
+        binding.tfFirstName.setText(data.fName)
+        binding.tfLastName.setText(data.lName)
+        binding.tfEmail.setText(data.email)
+        binding.tfPhoneNumber.setText(data.phoneNumber)
+        binding.tfUsername.setText(data.uName)
+        binding.tfPreferredPet.setText(data.preferredPet)
+        binding.tfCity.setText(data.city)
     }
 
     private fun onSuccessState() {
@@ -108,9 +104,17 @@ class EditProfileActivity : AppCompatActivity() {
         binding.toolbarProgressIndicator.visibility = View.GONE
         enableFieldsAndButtons(true)
         Snackbar.make(this, binding.coordinatorLayout, msg, Snackbar.LENGTH_SHORT).also {
-            it.setAction("OK") { _ -> it.dismiss() }
+            it.setAction("OK") { _ ->
+
+                it.dismiss()
+            }
             it.show()
         }
+    }
+
+    private fun onPendingState() {
+        binding.toolbarProgressIndicator.visibility = View.VISIBLE
+        enableFieldsAndButtons(false)
     }
 
     private fun onFailureState() {
@@ -125,26 +129,26 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun onConfirmButtonClick() {
         with(binding) {
-            profileViewModel.updateProfile(
-                fName = userFirstNameInput.text.toString(),
-                lName = userLastNameInput.text.toString(),
-                uName = userNameInput.text.toString(),
-                email = userEmailInput.text.toString(),
-                city = userCityInput.text.toString(),
-                phone = userPhoneNumberInput.text.toString(),
-                preferredPet = userPreferredPet.text.toString().lowercase()
+            profileViewModel.saveProfile(
+                fName = tfFirstName.text.toString(),
+                lName = tfLastName.text.toString(),
+                uName = tfUsername.text.toString(),
+                email = tfEmail.text.toString(),
+                city = tfCity.text.toString(),
+                phone = tfPhoneNumber.text.toString(),
+                preferredPet = tfPreferredPet.text.toString().lowercase()
             )
         }
     }
 
     private fun enableFieldsAndButtons(isEnabled: Boolean) {
         with(binding) {
-            userFirstNameInput.isEnabled = isEnabled
-            userLastNameInput.isEnabled = isEnabled
+            tfFirstName.isEnabled = isEnabled
+            tfLastName.isEnabled = isEnabled
             //userEmailInput.isEnabled = isEnabled
-            userPhoneNumberInput.isEnabled = isEnabled
-            userNameInput.isEnabled = isEnabled
-            userCityInput.isEnabled = isEnabled
+            tfPhoneNumber.isEnabled = isEnabled
+            tfUsername.isEnabled = isEnabled
+            tfCity.isEnabled = isEnabled
             confirmButton.isEnabled = isEnabled
             editPhotoButton.isEnabled = isEnabled
         }

@@ -25,6 +25,7 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="5dp">
             <ImageView
+                android:id="@+id/iv_author_photo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:scaleType="centerCrop"
@@ -33,6 +34,7 @@
                 android:layout_width="8dp"
                 android:layout_height="match_parent"/>
             <TextView
+                android:id="@+id/tv_author_full_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
@@ -42,22 +44,26 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/iv_post_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
             tools:srcCompat="@drawable/ic_launcher_background" />
         <TextView
+            android:id="@+id/tv_pet_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="@color/material_on_surface_emphasis_high_type"
             android:text="Post Title"/>
+
         <TextView
+            android:id="@+id/tv_post_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="7"
-            android:textColor="@color/material_on_surface_emphasis_medium"
-            android:text="Sample description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+            android:text="Sample description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            android:textColor="@color/material_on_surface_emphasis_medium" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"

@@ -2,7 +2,6 @@
 activityKtx = "1.8.2"
 agp = "8.3.0"
 fragmentKtx = "1.6.2"
-googleMaterial = "1.13.0-alpha01"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
 junit = "4.13.2"
@@ -14,10 +13,10 @@ material = "1.11.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
 picasso = "2.71828"
-materialVersion = "1.6.0"
 playServicesAuth = "21.1.0"
 navigationFragmentKtx = "2.7.7"
 navigationUiKtx = "2.7.7"
+
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -33,11 +32,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 picasso = { module = "com.squareup.picasso:picasso", version.ref = "picasso" }
-material-v1130alpha01 = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
-material-v160 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

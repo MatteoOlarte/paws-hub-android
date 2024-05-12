@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseUser
 import com.software3.paws_hub_android.core.enums.AuthProvider
 import com.software3.paws_hub_android.core.enums.TransactionState
-import com.software3.paws_hub_android.model.UserData
-import com.software3.paws_hub_android.model.dal.entity.UserDataObject
+import com.software3.paws_hub_android.model.Profile
+import com.software3.paws_hub_android.model.dal.entity.user.UserDataDAL
 import com.software3.paws_hub_android.model.dal.auth.FirebaseEmailAuth
 import com.software3.paws_hub_android.model.dal.auth.IFirebaseAuth
 
@@ -18,7 +18,7 @@ class SignUpViewModel : ViewModel() {
 
 
     fun createUser(
-        userData: UserData,
+        userData: Profile,
         password: String,
         passwordConfirm: String,
         provider: AuthProvider
@@ -34,7 +34,7 @@ class SignUpViewModel : ViewModel() {
 
     private fun createUserWithProvider(
         auth: IFirebaseAuth,
-        data: UserData,
+        data: Profile,
         password1: String,
         password2: String
     ) {
@@ -56,9 +56,9 @@ class SignUpViewModel : ViewModel() {
         }
     }
 
-    private fun createUserData(firebaseUser: FirebaseUser, data: UserData) {
-        val userData = UserData(
-            _id = firebaseUser.uid,
+    private fun createUserData(firebaseUser: FirebaseUser, data: Profile) {
+        val userData = Profile(
+            profileID = firebaseUser.uid,
             fName = data.fName,
             lName = data.lName,
             uName = data.uName,
@@ -67,7 +67,7 @@ class SignUpViewModel : ViewModel() {
             email = data.email,
             phoneNumber = data.phoneNumber
         )
-        val dal = UserDataObject()
+        val dal = UserDataDAL()
 
         dal.save(userData).addOnFailureListener {
             errorstr = "user_creation_error"

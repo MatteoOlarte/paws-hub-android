@@ -1,16 +1,21 @@
-package com.software3.paws_hub_android.view.main_activity
+package com.software3.paws_hub_android.ui.view.activity_main
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.software3.paws_hub_android.R
+import com.software3.paws_hub_android.ui.adapters.PetAdapter
 import com.software3.paws_hub_android.databinding.FragmentProfileBinding
-import com.software3.paws_hub_android.model.UserData
-import com.software3.paws_hub_android.view.EditProfileActivity
+import com.software3.paws_hub_android.model.Profile
+import com.software3.paws_hub_android.ui.view.ProfileEditorActivity
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.UserViewModel
 import com.squareup.picasso.Picasso
 
@@ -19,6 +24,8 @@ class ProfileFragment : Fragment() {
     private var _biding: FragmentProfileBinding? = null
     private val binding get() = _biding!!
     private val userViewModel: UserViewModel by viewModels()
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,9 +33,9 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _biding = FragmentProfileBinding.inflate(inflater, container, false)
+        initUI()
         initObservers()
         initListeners()
-        userViewModel.fetchUserData()
         return binding.root
     }
 
@@ -37,17 +44,31 @@ class ProfileFragment : Fragment() {
         _biding = null
     }
 
-    private fun initObservers() {
-        userViewModel.userdata.observe(viewLifecycleOwner) { it?.let(::updateProfileCard) }
-    }
-
-    private fun initListeners() {
-        binding.editProfileButton.setOnClickListener {
-            Intent(this.context, EditProfileActivity::class.java).also { startActivity(it) }
+    private fun initUI() {
+        val userdata: Profile? = mainActivityViewModel.profileData.value
+        binding.rcvPetsList.layoutManager = LinearLayoutManager(requireContext())
+        userdata?.let {
+            updateProfileCard(it)
+            userViewModel.fetchUserPets(it)
         }
     }
 
-    private fun updateProfileCard(user: UserData) {
+    private fun initObservers() {
+        userViewModel.pets.observe(viewLifecycleOwner) {
+            binding.rcvPetsList.adapter = PetAdapter(it)
+        }
+    }
+
+    private fun initListeners() {
+        binding.btnEditProfile.setOnClickListener {
+            Intent(this.context, ProfileEditorActivity::class.java).also { startActivity(it) }
+        }
+        binding.btnAddPet.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_petPublishFragment)
+        }
+    }
+
+    private fun updateProfileCard(user: Profile) {
         with(binding.profileContainer) {
             Picasso.get().load(user.photo).into(profilePhoto)
             txtViewFullName.text = user.fullName
