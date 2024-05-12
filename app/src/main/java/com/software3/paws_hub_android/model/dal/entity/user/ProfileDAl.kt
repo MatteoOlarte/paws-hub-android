@@ -1,8 +1,8 @@
 package com.software3.paws_hub_android.model.dal.entity.user
 
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.core.ex.slugify
-import com.software3.paws_hub_android.core.ex.toPet
 import com.software3.paws_hub_android.core.ex.toProfile
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.model.dal.FirebaseResult
@@ -10,6 +10,7 @@ import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseDELETE
 import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseGET
 import com.software3.paws_hub_android.model.dal.entity.api.IFirebasePOST
 import kotlinx.coroutines.tasks.await
+
 
 class ProfileDAl : IFirebaseGET<Profile>, IFirebasePOST<Profile>, IFirebaseDELETE<Profile> {
     private val db = FirebaseFirestore.getInstance()
@@ -59,5 +60,11 @@ class ProfileDAl : IFirebaseGET<Profile>, IFirebasePOST<Profile>, IFirebaseDELET
             //FirebaseCrashlytics.getInstance().recordException(ex)
             FirebaseResult(false, ex)
         }
+    }
+
+    suspend fun isUserNameAvailable(userID: String, username: String): Boolean {
+        val document: CollectionReference = db.collection("users")
+        val result = document.whereNotEqualTo("_id", userID).whereEqualTo("user_name", username).get().await()
+        return runCatching { result.isEmpty }.getOrDefault(false)
     }
 }

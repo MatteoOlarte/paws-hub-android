@@ -14,8 +14,8 @@ import androidx.fragment.app.viewModels
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.FragmentPostingBinding
 import com.software3.paws_hub_android.model.Profile
-import com.software3.paws_hub_android.ui.viewmodel.MainActivityViewModel
-import com.software3.paws_hub_android.ui.viewmodel.PostViewModel
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
+import com.software3.paws_hub_android.viewmodel.PostViewModel
 import com.squareup.picasso.Picasso
 
 
@@ -35,7 +35,7 @@ class PostingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val userdata: Profile? = mainActivityViewModel.userdata.value
+        val userdata: Profile? = mainActivityViewModel.profileData.value
         _biding = FragmentPostingBinding.inflate(inflater, container, false)
         initUI()
         initObservers()
@@ -84,7 +84,7 @@ class PostingFragment : Fragment() {
     }
 
     private fun onPublish() {
-        val userdata: Profile? = mainActivityViewModel.userdata.value
+        val userdata: Profile? = mainActivityViewModel.profileData.value
         userdata?.let { viewmodel.publishPost(it, binding.tfPostBody.text.toString()) }
     }
 }

@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.software3.paws_hub_android.ui.adapters.PostAdapter
 import com.software3.paws_hub_android.databinding.FragmentDiscoverBinding
-import com.software3.paws_hub_android.ui.viewmodel.DiscoverViewModel
+import com.software3.paws_hub_android.viewmodel.DiscoverViewModel
 
 
 class DiscoverFragment : Fragment() {

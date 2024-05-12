@@ -14,9 +14,9 @@ import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.ui.adapters.PetAdapter
 import com.software3.paws_hub_android.databinding.FragmentProfileBinding
 import com.software3.paws_hub_android.model.Profile
-import com.software3.paws_hub_android.ui.view.EditProfileActivity
-import com.software3.paws_hub_android.ui.viewmodel.MainActivityViewModel
-import com.software3.paws_hub_android.ui.viewmodel.UserViewModel
+import com.software3.paws_hub_android.ui.view.ProfileEditorActivity
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
+import com.software3.paws_hub_android.viewmodel.UserViewModel
 import com.squareup.picasso.Picasso
 
 
@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initUI() {
-        val userdata: Profile? = mainActivityViewModel.userdata.value
+        val userdata: Profile? = mainActivityViewModel.profileData.value
         binding.rcvPetsList.layoutManager = LinearLayoutManager(requireContext())
         userdata?.let {
             updateProfileCard(it)
@@ -61,7 +61,7 @@ class ProfileFragment : Fragment() {
 
     private fun initListeners() {
         binding.btnEditProfile.setOnClickListener {
-            Intent(this.context, EditProfileActivity::class.java).also { startActivity(it) }
+            Intent(this.context, ProfileEditorActivity::class.java).also { startActivity(it) }
         }
         binding.btnAddPet.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_petPublishFragment)

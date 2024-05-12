@@ -83,12 +83,17 @@
                     android:layout_marginVertical="8dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:id="@+id/tf_layout_first_name"
+
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/first_name_hint">
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/first_name_hint"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error_24">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/user_first_name_input"
+                        android:id="@+id/tf_first_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="name"
@@ -96,31 +101,36 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:id="@+id/tf_layout_last_name"
+
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/last_name_hint">
+                    android:hint="@string/last_name_hint"
+                    android:layout_marginBottom="5dp"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error_24">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/user_last_name_input"
+                        android:id="@+id/tf_last_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="name"
                         android:inputType="textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp" />
-
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:id="@+id/tf_layout_email"
+
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:hint="@string/text_email">
+                    android:hint="@string/text_email"
+                    android:layout_marginBottom="5dp"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error_24">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/user_email_input"
+                        android:id="@+id/tf_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="emailAddress"
@@ -128,12 +138,18 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:id="@+id/tf_layout_phone_number"
+
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txt_phone_number">
+                    android:hint="@string/txt_phone_number"
+                    android:layout_marginBottom="5dp"
+                    app:prefixText="+57"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error_24">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/user_phone_number_input"
+                        android:id="@+id/tf_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="phone"
@@ -141,15 +157,18 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:id="@+id/tf_layout_username"
+
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/username_hint"
                     app:helperText="@string/username_helper_text"
                     app:startIconDrawable="@drawable/baseline_alternate_email_24"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error_24">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/user_name_input"
+                        android:id="@+id/tf_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="username"
@@ -159,7 +178,7 @@
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp" />
+                    android:layout_marginVertical="24dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -176,34 +195,41 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:id="@+id/tf_layout_city"
+
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/txt_city"
-                    app:endIconMode="dropdown_menu">
+                    app:endIconMode="dropdown_menu"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error_24">
                     <AutoCompleteTextView
-                        android:id="@+id/user_city_input"
+                        android:id="@+id/tf_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
-                        android:labelFor="@id/user_city_input" />
+                        android:labelFor="@id/tf_city" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:id="@+id/tf_layout_preferred_pet"
+                    style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/preferred_pet">
+                    android:hint="@string/preferred_pet"
+                    app:errorEnabled="true"
+                    app:errorIconDrawable="@drawable/ic_error_24">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/user_preferred_pet"
+                        android:id="@+id/tf_preferred_pet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="none"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
 
+        </androidx.core.widget.NestedScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.button.MaterialButton

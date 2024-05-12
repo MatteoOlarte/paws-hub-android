@@ -12,7 +12,7 @@ import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.databinding.ActivitySignUpBinding
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.ui.view.activity_main.MainActivity
-import com.software3.paws_hub_android.ui.viewmodel.SignUpViewModel
+import com.software3.paws_hub_android.viewmodel.SignUpViewModel
 
 
 class SignUpActivity : AppCompatActivity() {

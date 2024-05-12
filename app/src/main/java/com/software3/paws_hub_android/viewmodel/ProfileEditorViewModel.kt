@@ -1,17 +1,19 @@
-package com.software3.paws_hub_android.ui.viewmodel
+package com.software3.paws_hub_android.viewmodel
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.model.dal.entity.user.CityObject
-import com.software3.paws_hub_android.model.dal.entity.user.UserDataDAL
+import com.software3.paws_hub_android.model.dal.entity.user.ProfileDAl
 import com.software3.paws_hub_android.model.dal.storage.CloudStorage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ProfileEditorViewModel : ViewModel() {
@@ -33,12 +35,13 @@ class ProfileEditorViewModel : ViewModel() {
     private val _citiesList = MutableLiveData<List<String>>()
     val citiesList: LiveData<List<String>> = _citiesList
 
-    fun checkUsername(username: String) {
-        val userID = Firebase.auth.currentUser?.uid
-        val userDAL = UserDataDAL()
 
-        userID?.let {
-            userDAL.isUsernameAvailable(userID, username) { _isNameAvailable.postValue(it) }
+    fun checkUsername(username: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            Firebase.auth.currentUser?.uid?.let {
+                val result = ProfileDAl().isUserNameAvailable(it, username)
+                _isNameAvailable.postValue(result)
+            }
         }
     }
 
@@ -47,7 +50,7 @@ class ProfileEditorViewModel : ViewModel() {
         _citiesList.postValue(cityObject.getAll())
     }
 
-    fun addProfilePhotoURI(uri: Uri?) = uri?.let { _userPhotoURI.postValue(uri) }
+    fun setPhotoURL(uri: Uri?) = uri?.let { _userPhotoURI.postValue(uri) }
 
     fun setUserdata(data: Profile) = _userdata.postValue(data)
 
@@ -60,33 +63,25 @@ class ProfileEditorViewModel : ViewModel() {
         phone: String? = null,
         preferredPet: String? = null
     ) {
-        val data = _userdata.value
+        val userProfile = _userdata.value
         val photoURI = _userPhotoURI.value
-        val userDAL = UserDataDAL()
 
-        if (data == null || (_isNameAvailable.value == false)) {
-            Log.d("ViewModelUser", "username")
+        if (userProfile == null || (_isNameAvailable.value == false)) {
             _updateState.postValue(TransactionState.FAILED)
             _errorMSG.postValue("error_fill")
             return
         }
-
         _updateState.postValue(TransactionState.PENDING)
-        trySavePhotoInStorage(photoURI, data.profileID) {
-            data.fName = fName
-            data.lName = lName
-            data.uName = uName
-            data.email = email
-            data.city = city
-            data.phoneNumber = phone
-            data.preferredPet = preferredPet
-            data.photo = it ?: data.photo
-
-            userDAL.save(data).addOnSuccessListener {
-                _updateState.postValue(TransactionState.SUCCESS)
-            }.addOnFailureListener {
-                _updateState.postValue(TransactionState.FAILED)
-            }
+        trySavePhotoInStorage(photoURI, userProfile.profileID) {
+            userProfile.fName = fName
+            userProfile.lName = lName
+            userProfile.uName = uName
+            userProfile.email = email
+            userProfile.city = city
+            userProfile.phoneNumber = phone
+            userProfile.preferredPet = preferredPet
+            userProfile.photo = it ?: userProfile.photo
+            onProfileSave(userProfile)
         }
     }
 
@@ -95,11 +90,24 @@ class ProfileEditorViewModel : ViewModel() {
             callback(null)
             return
         }
-        val cloudStorage = CloudStorage(uri, userID)
-        cloudStorage.child("users").child("profile-photos").save().addOnSuccessListener {
-            it.storage.downloadUrl.addOnSuccessListener { downloadURL -> callback(downloadURL)}
+        val storage = CloudStorage(uri, userID).child("users")
+        storage.child("profile-photos").save().addOnSuccessListener {
+            it.storage.downloadUrl.addOnSuccessListener { downloadURL -> callback(downloadURL) }
         }.addOnFailureListener {
             callback(null)
+        }
+    }
+
+    private fun onProfileSave(profile: Profile) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = ProfileDAl().save(profile)
+
+            if (result.result) {
+                _updateState.postValue(TransactionState.SUCCESS)
+            } else {
+                _updateState.postValue(TransactionState.FAILED)
+                _errorMSG.postValue(result.error?.message)
+            }
         }
     }
 }

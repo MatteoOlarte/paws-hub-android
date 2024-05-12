@@ -21,8 +21,8 @@ import com.software3.paws_hub_android.databinding.FragmentPetPublishBinding
 import com.software3.paws_hub_android.model.PetBreed
 import com.software3.paws_hub_android.model.PetPublish
 import com.software3.paws_hub_android.model.PetType
-import com.software3.paws_hub_android.ui.viewmodel.MainActivityViewModel
-import com.software3.paws_hub_android.ui.viewmodel.PetCreatorViewModel
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
+import com.software3.paws_hub_android.viewmodel.PetCreatorViewModel
 import com.software3.paws_hub_android.ui.viewstate.PetCreatorViewState
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat

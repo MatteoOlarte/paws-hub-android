@@ -33,7 +33,7 @@
             android:name=".ui.view.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.view.EditProfileActivity"
+            android:name=".ui.view.ProfileEditorActivity"
             android:exported="false"
             android:parentActivityName=".ui.view.activity_main.MainActivity" />
     </application>

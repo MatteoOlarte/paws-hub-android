@@ -18,8 +18,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
 import com.software3.paws_hub_android.ui.view.WelcomeActivity
-import com.software3.paws_hub_android.ui.viewmodel.MainActivityViewModel
-import com.software3.paws_hub_android.ui.viewmodel.UserViewModel
+import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
+import com.software3.paws_hub_android.viewmodel.UserViewModel
 
 
 class MainActivity : AppCompatActivity() {

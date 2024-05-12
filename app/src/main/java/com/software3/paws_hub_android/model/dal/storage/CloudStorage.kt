@@ -4,16 +4,13 @@ import android.net.Uri
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
+import kotlinx.coroutines.tasks.await
 
-class CloudStorage (uri: Uri, name: String) {
+class CloudStorage (private val uri: Uri, private val name: String) {
     private val instance: FirebaseStorage = FirebaseStorage.getInstance()
-    private val uri: Uri
-    private val name: String
     private var storageRef: StorageReference
 
     init {
-        this.uri = uri
-        this.name = name
         this.storageRef = instance.reference
     }
 
@@ -24,5 +21,9 @@ class CloudStorage (uri: Uri, name: String) {
 
     fun save(): UploadTask {
         return storageRef.child(name).putFile(uri)
+    }
+
+    suspend fun saveAsync(): UploadTask.TaskSnapshot {
+        return storageRef.child(name).putFile(uri).await()
     }
 }

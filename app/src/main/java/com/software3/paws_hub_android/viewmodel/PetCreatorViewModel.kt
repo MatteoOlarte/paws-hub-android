@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.ui.viewmodel
+package com.software3.paws_hub_android.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
