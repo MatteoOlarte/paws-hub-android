@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.enums.TransactionState
+import com.software3.paws_hub_android.core.ex.getStringResource
 import com.software3.paws_hub_android.databinding.FragmentPetPublishBinding
 import com.software3.paws_hub_android.model.PetBreed
 import com.software3.paws_hub_android.model.PetPublish
@@ -145,7 +146,7 @@ class PetCreatorFragment : Fragment() {
     }
 
     private fun setTfPetTypeItems(items: List<PetType>) {
-        val array = items.map { it.typeID }.toTypedArray()
+        val array = items.map { it.typeID }.map { it.getStringResource(requireContext()) }.toTypedArray()
         val adapter = ArrayAdapter(requireContext(), R.layout.layout_list_adapter, array)
         with(binding) {
             tfPetType.setAdapter(adapter)
@@ -162,7 +163,7 @@ class PetCreatorFragment : Fragment() {
 
     private fun onPublish() {
         val petPublish = PetPublish(
-            name =  binding.tfPetName.text.toString(),
+            name = binding.tfPetName.text.toString(),
             weight = binding.tfPetWeight.text.toString().toFloatOrNull() ?: 0f,
             breed = binding.tfPetBreed.text.toString(),
             notes = binding.tfPetNotes.text.toString(),

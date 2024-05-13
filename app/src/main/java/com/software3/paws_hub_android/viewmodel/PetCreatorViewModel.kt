@@ -102,11 +102,10 @@ class PetCreatorViewModel : ViewModel() {
                 name = publish.name,
                 weight = publish.weight,
                 typeID = type?.typeID,
-                breedID = breed?.breedID,
+                breed = mapOf("_id" to breed?.breedID, "name" to (breed?.breedName ?: publish.alternativeBreed)),
                 notes = publish.notes,
                 birthDate = birth,
                 ownerID = userID,
-                alternativeBreed = if (type == null) publish.alternativeBreed else null
             )
             val uploadResult = PetDAl().save(pet)
             val profileResult = ProfileDAl().get(userID)

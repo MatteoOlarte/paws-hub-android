@@ -13,38 +13,63 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="24dp">
 
-        <TextView
-            android:id="@+id/txt_view_pet_name"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_text_views"
+
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Pet Name" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txt_view_pet_age"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_view_pet_name"
-            tools:text="Pet Age" />
+            <TextView
+                android:id="@+id/tv_pet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/material_on_surface_emphasis_high_type"
+                android:layout_marginBottom="5dp"
+                tools:text="\@PetName" />
 
-        <TextView
-            android:id="@+id/txt_view_pet_weight"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_view_pet_age"
-            tools:text="Pet Age" />
 
+            <TextView
+                android:id="@+id/tv_pet_birth_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/material_on_surface_emphasis_medium"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/baseline_cake_24"
+                app:drawableTint="@color/material_on_surface_emphasis_medium"
+                tools:text="\@PetBirthDate" />
+
+            <TextView
+                android:id="@+id/tv_pet_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/material_on_surface_emphasis_medium"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_weight_24"
+                app:drawableTint="@color/material_on_surface_emphasis_medium"
+                tools:text="\@PetWeight" />
+
+            <TextView
+                android:id="@+id/tv_pet_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/material_on_surface_emphasis_medium"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_pet"
+                app:drawableTint="@color/material_on_surface_emphasis_medium"
+                tools:text="\@PetType" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

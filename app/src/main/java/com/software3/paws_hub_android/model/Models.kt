@@ -44,8 +44,7 @@ data class Pet(
     val birthDate: Date,
     val ownerID: String,
     val typeID: String?,
-    val breedID: String?,
-    val alternativeBreed: String? = null
+    val breed: Map<String, String?>?
 )
 
 data class PetType(

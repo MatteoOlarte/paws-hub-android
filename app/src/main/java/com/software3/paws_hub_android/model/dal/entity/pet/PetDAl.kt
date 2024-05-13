@@ -38,16 +38,22 @@ class PetDAl : IFirebaseGET<Pet>, IFirebasePOST<Pet>, IFirebaseDELETE<Pet> {
     }
 
     override suspend fun save(obj: Pet): FirebaseResult<Boolean> {
+        val breed = mapOf(
+            "_id" to obj.breed?.get("_id"),
+            "name" to obj.breed?.get("name")
+        )
+        val owner = mapOf(
+            "_id" to obj.ownerID
+        )
         val map = mapOf(
             "_id" to obj.petID,
             "name" to obj.name,
             "birth_date" to obj.birthDate,
             "weight" to obj.weight,
             "type" to obj.typeID,
-            "breed" to obj.breedID,
+            "breed" to breed,
             "notes" to obj.notes,
-            "owner_id" to obj.ownerID,
-            "alternative_breed" to obj.alternativeBreed
+            "owner_id" to obj.ownerID
         )
         return try {
             db.collection("pets").document(obj.petID).set(map).await()

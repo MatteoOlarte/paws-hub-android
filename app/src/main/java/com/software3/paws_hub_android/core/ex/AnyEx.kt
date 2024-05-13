@@ -7,3 +7,11 @@ inline fun <reified T> Any?.toListOrEmpty(): List<T> {
 inline fun <reified T> Any?.toMutableListOrEmpty(): MutableList<T> {
     return (this as? MutableList<*>)?.filterIsInstance<T>()?.toMutableList() ?: mutableListOf()
 }
+
+inline fun <reified T> Any?.toMapOrEmpty(): Map<String, T?> {
+    val map = (this as? Map<*, *>)
+        ?.filterKeys { it is String }
+        ?.filterValues { it is T? }
+        ?.map { it.key as String to it.value as T? }?.toMap() ?: mapOf()
+    return map
+}

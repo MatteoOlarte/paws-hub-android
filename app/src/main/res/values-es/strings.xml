@@ -53,6 +53,7 @@
     <string-array name="pets_types">
         <item>"Perro"</item>
         <item>"Gato"</item>
+        <item>"Otro (espesifica)"</item>
     </string-array>
     <string name="pet_description_placeholder">¿Cómo es tu mascota? (opcional)</string>
     <string name="pet_description_help_text">Por favor, proporciona una descripción de tu mascota, incluyendo rasgos físicos y psicológicos. ¡Cuéntanos si tu mascota es amigable!</string>

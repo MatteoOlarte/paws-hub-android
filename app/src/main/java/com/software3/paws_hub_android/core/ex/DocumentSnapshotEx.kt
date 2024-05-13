@@ -21,16 +21,20 @@ fun DocumentSnapshot.toProfile(): Profile = Profile(
     pets = this.get("pets").toMutableListOrEmpty<String>()
 )
 
-fun DocumentSnapshot.toPet(): Pet = Pet(
-    petID = this.get("_id") as String,
-    name = this.get("name") as String,
-    birthDate = (this.get("birth_date") as Timestamp).toDate(),
-    weight = (this.get("weight") as Double).toFloat(),
-    typeID = this.get("type") as String?,
-    breedID = this.get("breed") as String?,
-    notes = this.get("notes") as String?,
-    ownerID = this.get("owner_id") as String
-)
+fun DocumentSnapshot.toPet(): Pet {
+    val breed = this.get("breed").toMapOrEmpty<String>()
+    val pet = Pet(
+        petID = this.get("_id") as String,
+        name = this.get("name") as String,
+        birthDate = (this.get("birth_date") as Timestamp).toDate(),
+        weight = (this.get("weight") as Double).toFloat(),
+        typeID = this.get("type") as String?,
+        breed = breed,
+        notes = this.get("notes") as String?,
+        ownerID = this.get("owner_id") as String
+    )
+    return pet
+}
 
 fun DocumentSnapshot.toPetType(): PetType = PetType(
     typeID = this.get("_id") as String
