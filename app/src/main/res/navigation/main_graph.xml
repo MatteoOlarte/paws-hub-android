@@ -47,9 +47,9 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.SearchFragment"
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.UserSearchFragment"
         android:label="@string/deceptive_title_lost_pets"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_profile_search" />
     <fragment
         android:id="@+id/postingFragment"
         android:name="com.software3.paws_hub_android.ui.view.activity_main.PostingFragment"
