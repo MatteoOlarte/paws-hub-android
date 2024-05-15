@@ -29,46 +29,71 @@
                 android:clickable="true"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="2dp">
-
-                <ImageView
-                    android:id="@+id/img_post_photo"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/profile_image_content_description"
-                    android:scaleType="fitXY"
-                    tools:layout_editor_absoluteX="39dp"
-                    tools:layout_editor_absoluteY="12dp" />
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/img_post_photo"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:contentDescription="@string/profile_image_content_description"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:scaleType="fitXY" />
+                    <ImageView
+                        android:id="@+id/img_post_photo_icon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/profile_image_content_description"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/ic_camera_alt_24"
+                        android:scaleType="fitXY"
+                        app:tint="?attr/colorPrimaryContainer"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tf_layout_post_pet"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="5dp"
                 android:hint="@string/select_your_pet"
-                android:enabled="false">
-
+                android:enabled="false"
+                app:helperText="@string/select_pet_hint"
+                app:errorEnabled="true">
                 <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/tf_post_pet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints="name"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:labelFor="@id/tf_post_pet"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp" />
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tf_layout_post_body"
 
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="@string/post_body_hint">
+                android:layout_marginBottom="5dp"
+                android:hint="@string/post_body_hint"
+                app:errorEnabled="true">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tf_post_body"
-
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:gravity="top"
@@ -83,5 +108,4 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

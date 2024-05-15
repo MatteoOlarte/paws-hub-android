@@ -7,12 +7,12 @@
     android:id="@+id/card_container"
     app:cardCornerRadius="12dp"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingVertical="16dp"
         android:paddingHorizontal="24dp">
 
@@ -20,7 +20,7 @@
             android:id="@+id/layout_text_views"
 
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

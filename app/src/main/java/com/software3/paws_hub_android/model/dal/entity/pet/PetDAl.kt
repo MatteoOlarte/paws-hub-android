@@ -4,9 +4,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.core.ex.toPet
 import com.software3.paws_hub_android.model.Pet
 import com.software3.paws_hub_android.model.dal.FirebaseResult
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseDELETE
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseGET
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebasePOST
+import com.software3.paws_hub_android.model.dal.entity.IFirebaseDELETE
+import com.software3.paws_hub_android.model.dal.entity.IFirebaseGET
+import com.software3.paws_hub_android.model.dal.entity.IFirebasePOST
 import kotlinx.coroutines.tasks.await
 
 
@@ -64,6 +64,7 @@ class PetDAl : IFirebaseGET<Pet>, IFirebasePOST<Pet>, IFirebaseDELETE<Pet> {
         }
     }
 
+    @Deprecated("use filterByIDin() instead")
     fun filterByOwner(ids: List<String>, callback: (List<Pet>) -> Any) {
         if (ids.isEmpty()) {
             callback(emptyList())
@@ -79,6 +80,22 @@ class PetDAl : IFirebaseGET<Pet>, IFirebasePOST<Pet>, IFirebaseDELETE<Pet> {
             callback(pets)
         }.addOnFailureListener {
             callback(emptyList())
+        }
+    }
+
+    suspend fun filterByIDin(ids: List<String>): FirebaseResult<List<Pet>> {
+        if (ids.isEmpty()) {
+            return FirebaseResult(emptyList(), null)
+        }
+
+        return try {
+            val result = db.collection("pets").whereIn("_id", ids).get().await()
+            val documents = result.documents
+            val pets = mutableListOf<Pet>()
+            documents.forEach { pets.add(it.toPet()) }
+            FirebaseResult(pets, null)
+        } catch (ex: Exception) {
+            FirebaseResult(emptyList(), ex)
         }
     }
 }

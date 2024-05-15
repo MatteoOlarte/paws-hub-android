@@ -5,8 +5,25 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.software3.paws_hub_android.model.Pet
 import com.software3.paws_hub_android.model.PetBreed
 import com.software3.paws_hub_android.model.PetType
+import com.software3.paws_hub_android.model.Post
 import com.software3.paws_hub_android.model.Profile
 
+
+fun DocumentSnapshot.toPost(): Post {
+    val author = this.get("author").toMapOrEmpty<String>()
+    val pet = this.get("pet").toMapOrEmpty<String>()
+    val post = Post(
+        postID = this.get("_id") as String,
+        image = (this.get("image_url") as String).toURI(),
+        body = this.get("post_body") as String,
+        created = (this.get("pub_date") as Timestamp).toDate(),
+        author = author,
+        pet = pet,
+        type = this.get("type") as String?,
+        location = this.get("location") as String?
+    )
+    return post
+}
 
 fun DocumentSnapshot.toProfile(): Profile = Profile(
     profileID = this.id,

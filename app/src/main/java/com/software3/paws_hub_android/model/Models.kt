@@ -27,13 +27,11 @@ data class Post(
     val postID: String,
     val image: Uri,
     val body: String,
-    val pupDate: Date,
-    val authorFullName: String,
-    val authorUsername: String,
-    val authorProfilePicture: Uri?,
-    val petName: String,
-    val authorID: String?,
-    val petID: String?
+    val created: Date,
+    val type: String?,
+    val location: String? = null,
+    val author: Map<String, String?>,
+    val pet: Map<String, String?>
 )
 
 data class Pet(

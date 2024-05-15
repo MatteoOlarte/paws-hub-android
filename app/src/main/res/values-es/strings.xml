@@ -62,4 +62,6 @@
     <string name="select_your_pet">Selecciona tu mascota</string>
     <string name="enter_pet_breed">Ingresa la raza de tu mascota</string>
     <string name="pet_breed_helper_text">Por favor, ingresa la raza y el tipo de tu mascota</string>
+    <string name="select_pet_hint">Selecciona tu mascota, si no tienes ninguna mascota, por favor agrega una nueva en la sección de perfil</string>
+
 </resources>

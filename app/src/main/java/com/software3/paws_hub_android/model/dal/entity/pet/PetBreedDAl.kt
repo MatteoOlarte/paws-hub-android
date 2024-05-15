@@ -5,7 +5,7 @@ import com.software3.paws_hub_android.core.ex.toPetBreed
 import com.software3.paws_hub_android.model.PetBreed
 import com.software3.paws_hub_android.model.PetType
 import com.software3.paws_hub_android.model.dal.FirebaseResult
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseGET
+import com.software3.paws_hub_android.model.dal.entity.IFirebaseGET
 import kotlinx.coroutines.tasks.await
 
 

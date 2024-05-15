@@ -16,10 +16,10 @@ class PostAdapter(val list: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewH
         private val picasso: Picasso = Picasso.get()
 
         fun render(item: Post) {
-            biding.tvAuthorFullName.text = item.authorFullName
+            biding.tvAuthorFullName.text = item.author["full_name"]
             biding.tvPostBody.text = item.body
-            biding.tvPetName.text = item.petName
-            picasso.load(item.authorProfilePicture).into(biding.ivAuthorPhoto)
+            biding.tvPetName.text = item.pet["name"]
+            picasso.load(item.author["profile_photo"]).into(biding.ivAuthorPhoto)
             picasso.load(item.image).into(biding.ivPostImage)
         }
     }

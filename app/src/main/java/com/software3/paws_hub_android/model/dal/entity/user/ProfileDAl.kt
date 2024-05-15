@@ -6,9 +6,9 @@ import com.software3.paws_hub_android.core.ex.slugify
 import com.software3.paws_hub_android.core.ex.toProfile
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.model.dal.FirebaseResult
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseDELETE
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseGET
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebasePOST
+import com.software3.paws_hub_android.model.dal.entity.IFirebaseDELETE
+import com.software3.paws_hub_android.model.dal.entity.IFirebaseGET
+import com.software3.paws_hub_android.model.dal.entity.IFirebasePOST
 import kotlinx.coroutines.tasks.await
 
 

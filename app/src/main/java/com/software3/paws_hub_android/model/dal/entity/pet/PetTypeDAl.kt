@@ -4,7 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.core.ex.toPetType
 import com.software3.paws_hub_android.model.PetType
 import com.software3.paws_hub_android.model.dal.FirebaseResult
-import com.software3.paws_hub_android.model.dal.entity.api.IFirebaseGET
+import com.software3.paws_hub_android.model.dal.entity.IFirebaseGET
 import kotlinx.coroutines.tasks.await
 
 

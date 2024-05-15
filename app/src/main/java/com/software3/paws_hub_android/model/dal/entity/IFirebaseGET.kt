@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.model.dal.entity.api
+package com.software3.paws_hub_android.model.dal.entity
 
 import com.software3.paws_hub_android.model.dal.FirebaseResult
 
