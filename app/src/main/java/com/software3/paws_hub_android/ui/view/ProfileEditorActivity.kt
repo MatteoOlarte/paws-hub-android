@@ -7,7 +7,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.software3.paws_hub_android.R
@@ -15,14 +14,14 @@ import com.software3.paws_hub_android.core.enums.TransactionState
 import com.software3.paws_hub_android.databinding.ActivityEditProfileBinding
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.viewmodel.ProfileEditorViewModel
-import com.software3.paws_hub_android.viewmodel.UserViewModel
+import com.software3.paws_hub_android.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
 
 class ProfileEditorActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     private val profileViewModel: ProfileEditorViewModel by viewModels()
-    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: ProfileViewModel by viewModels()
     private val imageResult = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) {
@@ -35,7 +34,7 @@ class ProfileEditorActivity : AppCompatActivity() {
         initUI()
         initObservers()
         initListeners()
-        userViewModel.fetchUserData()
+        userViewModel.fetchProfileData()
         profileViewModel.fetchCityData()
     }
 
@@ -46,7 +45,7 @@ class ProfileEditorActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        userViewModel.userdata.observe(this) {
+        userViewModel.profile.observe(this) {
             it?.let(::updateUI)
             profileViewModel.setUserdata(it)
         }

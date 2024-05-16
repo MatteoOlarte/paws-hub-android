@@ -71,6 +71,10 @@
         tools:layout="@layout/fragment_pet_publish" />
     <fragment
         android:id="@+id/profileViewerFragment"
-        android:name="com.software3.paws_hub_android.ProfileViewerFragment"
-        android:label="ProfileViewerFragment" />
+        android:name="com.software3.paws_hub_android.ui.view.activity_main.ProfileViewerFragment"
+        android:label="ProfileViewerFragment" >
+        <argument
+            android:name="profileID"
+            app:argType="string" />
+    </fragment>
 </navigation>

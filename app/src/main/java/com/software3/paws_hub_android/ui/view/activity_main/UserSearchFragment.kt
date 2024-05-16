@@ -84,8 +84,8 @@ class UserSearchFragment : Fragment() {
         }
         viewmodel.selectedProfile.observe(viewLifecycleOwner) {profile ->
             profile?.let {
-                Toast.makeText(requireContext(), it.uName, Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_searchFragment_to_profileViewerFragment)
+                val direction = UserSearchFragmentDirections.actionSearchFragmentToProfileViewerFragment(profile.profileID)
+                findNavController().navigate(direction)
                 viewmodel.onItemSelected(null)
             }
         }

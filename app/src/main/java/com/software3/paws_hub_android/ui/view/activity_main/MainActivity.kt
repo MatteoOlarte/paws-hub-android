@@ -19,14 +19,14 @@ import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
 import com.software3.paws_hub_android.ui.view.WelcomeActivity
 import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
-import com.software3.paws_hub_android.viewmodel.UserViewModel
+import com.software3.paws_hub_android.viewmodel.ProfileViewModel
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val userViewModel: UserViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        userViewModel.checkUserLoggedInStatus()
+        profileViewModel.checkUserLoggedInStatus()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.activity_main__logout -> {
-            userViewModel.logoutCurrentUser()
+            profileViewModel.logoutCurrentUser()
             true
         }
 
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        userViewModel.isGuestUser.observe(this) { isGuestUser ->
+        profileViewModel.isGuestUser.observe(this) { isGuestUser ->
             isGuestUser?.let { if (it) navigateToWelcomeActivity() }
         }
         mainActivityViewModel.showProgressIndicator.observe(this) {

@@ -16,13 +16,13 @@ import com.software3.paws_hub_android.databinding.FragmentProfileManagementBindi
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.ui.view.ProfileEditorActivity
 import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
-import com.software3.paws_hub_android.viewmodel.UserViewModel
+import com.software3.paws_hub_android.viewmodel.ProfileViewModel
 import com.squareup.picasso.Picasso
 
 class ProfileManagementFragment : Fragment() {
     private var _biding: FragmentProfileManagementBinding? = null
     private val binding get() = _biding!!
-    private val userViewModel: UserViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -47,12 +47,12 @@ class ProfileManagementFragment : Fragment() {
         binding.rcvPetsList.layoutManager = LinearLayoutManager(requireContext())
         userdata?.let {
             updateProfileCard(it)
-            userViewModel.fetchUserPets(it)
+            profileViewModel.fetchUserPets(it)
         }
     }
 
     private fun initObservers() {
-        userViewModel.pets.observe(viewLifecycleOwner) {
+        profileViewModel.pets.observe(viewLifecycleOwner) {
             binding.rcvPetsList.adapter = PetAdapter(it)
         }
     }
