@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.ex.getStringResource
@@ -13,7 +12,7 @@ import com.software3.paws_hub_android.model.Pet
 import java.text.SimpleDateFormat
 
 
-class PetAdapter(private val list: List<Pet>) : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
+open class PetAdapter(private val list: List<Pet>) : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return ViewHolder(layoutInflater.inflate(R.layout.layout_pet_item, parent, false))
@@ -26,8 +25,8 @@ class PetAdapter(private val list: List<Pet>) : RecyclerView.Adapter<PetAdapter.
 
     override fun getItemCount(): Int = list.size
 
-    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        private val binding = LayoutPetItemBinding.bind(view)
+    open inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+        protected val binding = LayoutPetItemBinding.bind(view)
 
         @SuppressLint("SetTextI18n")
         fun render(pet: Pet, gap: Int = 0) {
