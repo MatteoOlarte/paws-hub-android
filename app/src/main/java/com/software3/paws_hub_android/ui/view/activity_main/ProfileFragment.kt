@@ -19,13 +19,11 @@ import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.UserViewModel
 import com.squareup.picasso.Picasso
 
-
 class ProfileFragment : Fragment() {
     private var _biding: FragmentProfileBinding? = null
     private val binding get() = _biding!!
     private val userViewModel: UserViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +69,7 @@ class ProfileFragment : Fragment() {
     private fun updateProfileCard(user: Profile) {
         with(binding.profileContainer) {
             Picasso.get().load(user.photo).into(profilePhoto)
-            txtViewFullName.text = user.fullName
+            tvFullName.text = user.fullName
             txtViewUsername.text = user.uName
             txtViewCity.text = user.city
             txtViewPreferredPet.text = user.preferredPet

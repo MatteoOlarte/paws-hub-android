@@ -1,6 +1,5 @@
 package com.software3.paws_hub_android.model.dal.entity.user
 
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.core.ex.slugify
 import com.software3.paws_hub_android.core.ex.toProfile
@@ -63,8 +62,22 @@ class ProfileDAl : IFirebaseGET<Profile>, IFirebasePOST<Profile>, IFirebaseDELET
     }
 
     suspend fun isUserNameAvailable(userID: String, username: String): Boolean {
-        val document: CollectionReference = db.collection("users")
-        val result = document.whereNotEqualTo("_id", userID).whereEqualTo("user_name", username).get().await()
-        return runCatching { result.isEmpty }.getOrDefault(false)
+        val ref = db.collection("users")
+        val query = ref.whereNotEqualTo("_id", userID).whereEqualTo("user_name", username)
+        val docs = query.get().await()
+        return runCatching { docs.isEmpty }.getOrDefault(false)
+    }
+
+    suspend fun filterByUsernameContains(value: String): FirebaseResult<List<Profile>> {
+        val ref = db.collection("users")
+        val query = ref.orderBy("user_name").startAt(value).endAt("${value}\uf8ff")
+        val docs = query.get().await().documents
+        return try {
+            val profiles = mutableListOf<Profile>()
+            docs.forEach { profiles.add(it.toProfile()) }
+            FirebaseResult(profiles, null)
+        } catch (ex: Exception) {
+            FirebaseResult(emptyList(), ex)
+        }
     }
 }
