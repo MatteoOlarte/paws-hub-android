@@ -12,15 +12,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.ui.adapters.PetAdapter
-import com.software3.paws_hub_android.databinding.FragmentProfileBinding
+import com.software3.paws_hub_android.databinding.FragmentProfileManagementBinding
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.ui.view.ProfileEditorActivity
 import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.UserViewModel
 import com.squareup.picasso.Picasso
 
-class ProfileFragment : Fragment() {
-    private var _biding: FragmentProfileBinding? = null
+class ProfileManagementFragment : Fragment() {
+    private var _biding: FragmentProfileManagementBinding? = null
     private val binding get() = _biding!!
     private val userViewModel: UserViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
@@ -30,7 +30,7 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _biding = FragmentProfileBinding.inflate(inflater, container, false)
+        _biding = FragmentProfileManagementBinding.inflate(inflater, container, false)
         initUI()
         initObservers()
         initListeners()

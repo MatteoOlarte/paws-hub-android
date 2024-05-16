@@ -18,8 +18,8 @@ class UserSearchViewModel: ViewModel() {
     private val _profilesResult = MutableLiveData<List<Profile>>()
     val profilesResult: LiveData<List<Profile>> = _profilesResult
 
-    private val _selectedProfile = MutableLiveData<Profile>()
-    val selectedProfile: LiveData<Profile> = _selectedProfile
+    private val _selectedProfile = MutableLiveData<Profile?>(null)
+    val selectedProfile: LiveData<Profile?> = _selectedProfile
 
     private val _viewState = MutableStateFlow(ViewState())
     val viewState: StateFlow<ViewState> = _viewState
@@ -34,7 +34,7 @@ class UserSearchViewModel: ViewModel() {
         }
     }
 
-    fun onItemSelected(profile: Profile) {
+    fun onItemSelected(profile: Profile?) {
         _selectedProfile.value = profile
     }
 }

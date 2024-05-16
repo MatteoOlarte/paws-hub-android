@@ -82,8 +82,12 @@ class UserSearchFragment : Fragment() {
         viewmodel.profilesResult.observe(viewLifecycleOwner) {
             binding.rcvSearchResults.adapter = ProfileSearchAdapter(it, viewmodel::onItemSelected)
         }
-        viewmodel.selectedProfile.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.uName, Toast.LENGTH_LONG).show()
+        viewmodel.selectedProfile.observe(viewLifecycleOwner) {profile ->
+            profile?.let {
+                Toast.makeText(requireContext(), it.uName, Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_searchFragment_to_profileViewerFragment)
+                viewmodel.onItemSelected(null)
+            }
         }
     }
 
