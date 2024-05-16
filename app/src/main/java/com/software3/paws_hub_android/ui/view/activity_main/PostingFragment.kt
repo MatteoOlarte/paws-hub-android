@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -28,8 +27,8 @@ import kotlinx.coroutines.launch
 
 
 class PostingFragment : Fragment() {
-    private var _biding: FragmentPostingBinding? = null
-    private val binding get() = _biding!!
+    private var _binding: FragmentPostingBinding? = null
+    private val binding get() = _binding!!
     private val viewmodel: PostingViewModel by viewModels()
     private val activityViewmodel: MainActivityViewModel by activityViewModels()
     private val imageResult = registerForActivityResult(
@@ -43,7 +42,7 @@ class PostingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _biding = FragmentPostingBinding.inflate(inflater, container, false)
+        _binding = FragmentPostingBinding.inflate(inflater, container, false)
 
         val profile: Profile? = activityViewmodel.profileData.value
         initUI()
@@ -55,7 +54,7 @@ class PostingFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _biding = null
+        _binding = null
     }
 
     private fun initUI() {
