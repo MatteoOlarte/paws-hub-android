@@ -1,16 +1,16 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.software3.paws_hub_android.databinding.FragmentProfileViewerBinding
@@ -49,6 +49,7 @@ class ProfileViewerFragment : Fragment() {
 
     private fun initUI() {
         binding.rcvPetsList.layoutManager = LinearLayoutManager(requireContext())
+        (this.activity as? AppCompatActivity)?.supportActionBar?.title = ""
     }
 
     private fun initObservers() {
@@ -94,6 +95,7 @@ class ProfileViewerFragment : Fragment() {
             txtViewCity.visibility = if (profile.city.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
             txtViewPreferredPet.visibility = if (profile.preferredPet.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
         }
+        (this.activity as? AppCompatActivity)?.supportActionBar?.title = profile.fullName
     }
 
     private fun onSuccess() {

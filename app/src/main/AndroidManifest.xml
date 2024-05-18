@@ -14,7 +14,7 @@
         android:theme="@style/Theme.PawsHubAndroid"
         tools:targetApi="31">
         <activity
-            android:name=".ui.view.activity_main.MainActivity"
+            android:name=".ui.view.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,19 +23,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.view.WelcomeActivity"
+            android:name=".ui.view.activities.WelcomeActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.view.SignUpActivity"
+            android:name=".ui.view.activities.SignUpActivity"
             android:exported="false"
-            android:parentActivityName=".ui.view.WelcomeActivity" />
+            android:parentActivityName=".ui.view.activities.WelcomeActivity" />
         <activity
-            android:name=".ui.view.SignInActivity"
+            android:name=".ui.view.activities.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.view.ProfileEditorActivity"
+            android:name=".ui.view.activities.ProfileEditorActivity"
             android:exported="false"
-            android:parentActivityName=".ui.view.activity_main.MainActivity" />
+            android:parentActivityName=".ui.view.activities.MainActivity" />
     </application>
 
 </manifest>

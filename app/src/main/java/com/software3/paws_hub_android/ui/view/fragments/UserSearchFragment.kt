@@ -1,14 +1,12 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -21,7 +19,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.FragmentProfileSearchBinding
-import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.ui.adapters.ProfileSearchAdapter
 import com.software3.paws_hub_android.ui.viewstate.TransactionViewState
 import com.software3.paws_hub_android.viewmodel.MainActivityViewModel

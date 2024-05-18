@@ -26,18 +26,20 @@ class ProfileViewModel : ViewModel() {
     private val _profile = MutableLiveData<Profile>()
     val profile: LiveData<Profile> = _profile
 
-    private val _pets = MutableLiveData<List<Pet>>()
-    val pets: LiveData<List<Pet>> = _pets
+    private val _pets = MutableLiveData<MutableList<Pet>>()
+    val pets: LiveData<MutableList<Pet>> = _pets
 
     private val _posts = MutableLiveData<List<Post>>()
     val posts: LiveData<List<Post>> = _posts
+
+    private val _onPetRemoved = MutableLiveData<Int>()
+    val onPetRemoved: LiveData<Int> = _onPetRemoved
 
     private val _viewState = MutableStateFlow(TransactionViewState())
     val viewState: StateFlow<TransactionViewState> = _viewState
 
     fun fetchProfileData() {
         val user: FirebaseUser? = currentUser
-
         if (user == null) {
             _viewState.value = TransactionViewState(isFailure = true, error = "")
             return
@@ -65,13 +67,35 @@ class ProfileViewModel : ViewModel() {
         _viewState.value = TransactionViewState(isPending = true)
         viewModelScope.launch(Dispatchers.IO) {
             val pets = PetDAl().filterByIDin(petsIDs)
-            _pets.postValue(pets.result)
+            _pets.postValue(pets.result.toMutableList())
             _viewState.value = TransactionViewState(isSuccess = true)
         }
     }
 
     fun fetchUserPosts(data: Profile) {
         TODO()
+    }
+
+    fun deletePet(pet: Pet) {
+        val petsList = this.pets.value
+        petsList?.let {
+            val pos = it.indexOf(pet)
+
+            _viewState.value = TransactionViewState(isPending = true)
+            viewModelScope.launch(Dispatchers.IO) {
+                val result = PetDAl().delete(pet)
+
+                if (result.result) {
+                    _onPetRemoved.postValue(pos)
+                    _viewState.value = TransactionViewState(isSuccess = true)
+                } else {
+                    _viewState.value = TransactionViewState(
+                        isFailure = true,
+                        error = result.error?.message.toString()
+                    )
+                }
+            }
+        }
     }
 
     fun logoutCurrentUser() {

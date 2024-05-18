@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

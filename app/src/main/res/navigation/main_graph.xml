@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.DiscoverFragment"
+        android:name="com.software3.paws_hub_android.ui.view.fragments.DiscoverFragment"
         android:label="@string/discover"
         tools:layout="@layout/fragment_discover" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.ProfileManagementFragment"
+        android:name="com.software3.paws_hub_android.ui.view.fragments.ProfileManagementFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile_management" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/petFinderFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.PetFinderFragment"
+        android:name="com.software3.paws_hub_android.ui.view.fragments.PetFinderFragment"
         android:label="@string/deceptive_title_support_fragment"
         tools:layout="@layout/fragment_pet_finder" >
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.UserSearchFragment"
+        android:name="com.software3.paws_hub_android.ui.view.fragments.UserSearchFragment"
         android:label="@string/deceptive_title_lost_pets"
         tools:layout="@layout/fragment_profile_search" >
         <action
@@ -61,17 +61,17 @@
     </fragment>
     <fragment
         android:id="@+id/postingFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.PostingFragment"
+        android:name="com.software3.paws_hub_android.ui.view.fragments.PostingFragment"
         android:label="@string/post_page_title"
         tools:layout="@layout/fragment_posting" />
     <fragment
         android:id="@+id/petPublishFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.PetCreatorFragment"
+        android:name="com.software3.paws_hub_android.ui.view.fragments.PetCreatorFragment"
         android:label="@string/publish"
         tools:layout="@layout/fragment_pet_publish" />
     <fragment
         android:id="@+id/profileViewerFragment"
-        android:name="com.software3.paws_hub_android.ui.view.activity_main.ProfileViewerFragment"
+        android:name="com.software3.paws_hub_android.ui.view.fragments.ProfileViewerFragment"
         android:label="ProfileViewerFragment" >
         <argument
             android:name="profileID"

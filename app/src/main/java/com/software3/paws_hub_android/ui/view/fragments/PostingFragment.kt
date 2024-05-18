@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.fragments
 
 import android.net.Uri
 import android.os.Bundle
