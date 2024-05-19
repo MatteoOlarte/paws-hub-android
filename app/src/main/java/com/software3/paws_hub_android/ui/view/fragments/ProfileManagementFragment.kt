@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -18,7 +18,7 @@ import com.software3.paws_hub_android.databinding.FragmentProfileManagementBindi
 import com.software3.paws_hub_android.model.Pet
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.ui.adapters.PetManagementAdapter
-import com.software3.paws_hub_android.ui.view.ProfileEditorActivity
+import com.software3.paws_hub_android.ui.view.activities.ProfileEditorActivity
 import com.software3.paws_hub_android.ui.viewstate.TransactionViewState
 import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.ProfileViewModel

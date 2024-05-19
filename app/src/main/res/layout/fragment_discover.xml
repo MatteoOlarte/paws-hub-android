@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="5dp"
-    tools:context=".ui.view.activity_main.DiscoverFragment">
+    tools:context=".ui.view.fragments.DiscoverFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_posts"

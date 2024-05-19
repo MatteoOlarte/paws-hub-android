@@ -1,5 +1,6 @@
 package com.software3.paws_hub_android.viewmodel
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,8 +32,8 @@ class PetCreatorViewModel : ViewModel() {
     private val _petBreeds = MutableLiveData<List<PetBreed>>()
     val petBreeds: LiveData<List<PetBreed>> get() = _petBreeds
 
-    private val _birthdate = MutableLiveData<Date>()
-    val birthdate: LiveData<Date> get() = _birthdate
+    private val _birthdate = MutableLiveData<Date?>()
+    val birthdate: LiveData<Date?> get() = _birthdate
 
     private val _transactionState = MutableLiveData<TransactionState>()
     val transactionState: LiveData<TransactionState> get() = _transactionState
@@ -51,8 +52,8 @@ class PetCreatorViewModel : ViewModel() {
     private var _selectedPetBreed: PetBreed? = null
 
 
-    fun setBirthDate(date: Date) {
-        this._birthdate.postValue(date)
+    fun setBirthDate(date: Date?) {
+        this._birthdate.value = date
     }
 
     fun setPetType(position: Int) {

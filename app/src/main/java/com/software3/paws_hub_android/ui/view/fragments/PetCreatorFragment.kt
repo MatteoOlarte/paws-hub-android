@@ -1,10 +1,11 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -67,7 +68,9 @@ class PetCreatorFragment : Fragment() {
 
     private fun initObservers() {
         viewmodel.birthdate.observe(viewLifecycleOwner) {
-            binding.tfPetAge.setText(SimpleDateFormat.getDateInstance().format(it))
+            it?.let { date: Date ->
+                binding.tfPetAge.setText(SimpleDateFormat.getDateInstance().format(date))
+            }
         }
         viewmodel.petTypes.observe(viewLifecycleOwner) {
             binding.tfLayoutPetType.isEnabled = true
@@ -115,7 +118,8 @@ class PetCreatorFragment : Fragment() {
         binding.tfPetName.doOnTextChanged { _, _, _, _ ->
             viewmodel.onNameFieldChanged(binding.tfPetName.text.toString())
         }
-        binding.tfPetAge.doOnTextChanged { _, _, _, _ ->
+        binding.tfPetAge.doOnTextChanged { _, start, before, _ ->
+            if (start > 0 && before > 0) viewmodel.setBirthDate(null)
             viewmodel.onDateFieldChanged(binding.tfPetAge.text.toString())
         }
         binding.tfPetWeight.doOnTextChanged { _, _, _, _ ->

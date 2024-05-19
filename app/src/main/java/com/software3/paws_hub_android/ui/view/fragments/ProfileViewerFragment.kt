@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -95,6 +95,7 @@ class ProfileViewerFragment : Fragment() {
             txtViewCity.visibility = if (profile.city.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
             txtViewPreferredPet.visibility = if (profile.preferredPet.isNullOrBlank()) View.INVISIBLE else View.VISIBLE
         }
+        (this.activity as? AppCompatActivity)?.supportActionBar?.title = profile.fullName
     }
 
     private fun onSuccess() {

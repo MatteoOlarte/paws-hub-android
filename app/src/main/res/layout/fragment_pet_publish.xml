@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.activity_main.PetCreatorFragment">
+    tools:context=".ui.view.fragments.PetCreatorFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"

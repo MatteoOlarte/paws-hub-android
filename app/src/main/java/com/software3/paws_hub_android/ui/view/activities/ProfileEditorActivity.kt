@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.ui.view
+package com.software3.paws_hub_android.ui.view.activities
 
 import android.os.Bundle
 import android.view.View

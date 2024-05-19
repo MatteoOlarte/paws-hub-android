@@ -1,4 +1,4 @@
-package com.software3.paws_hub_android.ui.view.activity_main
+package com.software3.paws_hub_android.ui.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +17,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
-import com.software3.paws_hub_android.ui.view.WelcomeActivity
 import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.ProfileViewModel
 
