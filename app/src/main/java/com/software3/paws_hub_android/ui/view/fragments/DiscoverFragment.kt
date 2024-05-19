@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.software3.paws_hub_android.ui.adapters.PostAdapter
 import com.software3.paws_hub_android.databinding.FragmentDiscoverBinding
@@ -35,17 +36,23 @@ class DiscoverFragment : Fragment() {
         _biding = null
     }
 
-    fun initUI() {
-        binding.recyclerViewPosts.layoutManager = LinearLayoutManager(requireContext())
+    private fun initUI() {
+        val manager = LinearLayoutManager(requireContext())
+        val declaration = DividerItemDecoration(requireContext(), manager.orientation)
+        binding.recyclerViewPosts.layoutManager = manager
+        binding.recyclerViewPosts.addItemDecoration(declaration)
     }
 
-    fun initObservers() {
+    private fun initObservers() {
         viewmodel.posts.observe(viewLifecycleOwner) {
+            binding.sprLayoutDiscoverPosts.isRefreshing = false
             binding.recyclerViewPosts.adapter = PostAdapter(it)
         }
     }
 
-    fun initListeners() {
-
+    private fun initListeners() {
+        binding.sprLayoutDiscoverPosts.setOnRefreshListener {
+            viewmodel.fetchAllPosts()
+        }
     }
 }

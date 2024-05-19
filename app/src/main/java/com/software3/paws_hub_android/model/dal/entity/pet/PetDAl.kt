@@ -1,5 +1,7 @@
 package com.software3.paws_hub_android.model.dal.entity.pet
 
+import android.util.Log
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.software3.paws_hub_android.core.ex.toPet
 import com.software3.paws_hub_android.model.Pet
@@ -89,12 +91,17 @@ class PetDAl : IFirebaseGET<Pet>, IFirebasePOST<Pet>, IFirebaseDELETE<Pet> {
         }
 
         return try {
-            val result = db.collection("pets").whereIn("_id", ids).get().await()
+            val query = db.collection("pets").where(Filter.and(
+                Filter.inArray("_id", ids)
+            )).orderBy("name")
+            val result = query.get().await()
             val documents = result.documents
             val pets = mutableListOf<Pet>()
             documents.forEach { pets.add(it.toPet()) }
+            Log.d("petdall", pets.toString())
             FirebaseResult(pets, null)
         } catch (ex: Exception) {
+            Log.d("petdall", ex.message!!)
             FirebaseResult(emptyList(), ex)
         }
     }

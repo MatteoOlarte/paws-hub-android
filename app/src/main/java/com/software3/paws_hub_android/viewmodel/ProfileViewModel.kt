@@ -68,7 +68,14 @@ class ProfileViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val pets = PetDAl().filterByIDin(petsIDs)
             _pets.postValue(pets.result.toMutableList())
-            _viewState.value = TransactionViewState(isSuccess = true)
+            if (pets.error == null) {
+                _viewState.value = TransactionViewState(isSuccess = true)
+            } else {
+                _viewState.value = TransactionViewState(
+                    isFailure = true,
+                    error = pets.error.message
+                )
+            }
         }
     }
 

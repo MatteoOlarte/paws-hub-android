@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.ex.getStringResource
+import com.software3.paws_hub_android.core.ex.yearsSince
 import com.software3.paws_hub_android.databinding.LayoutPetItemBinding
 import com.software3.paws_hub_android.model.Pet
 import java.text.SimpleDateFormat
@@ -30,8 +31,10 @@ open class PetAdapter(private val list: List<Pet>) : RecyclerView.Adapter<PetAda
 
         @SuppressLint("SetTextI18n")
         fun render(pet: Pet, gap: Int = 0) {
+            val format = SimpleDateFormat.getDateInstance()
+            val years = "${pet.birthDate.yearsSince()} ${view.context.getString(R.string.years_old)}"
             binding.tvPetName.text = pet.name
-            binding.tvPetBirthDate.text = SimpleDateFormat.getDateInstance().format(pet.birthDate)
+            binding.tvPetBirthDate.text = "${format.format(pet.birthDate)} ($years)"
             binding.tvPetWeight.text = "${pet.weight} KG"
             if (pet.typeID == "type_other") {
                 binding.tvPetType.text = "${pet.breed?.get("name")}"

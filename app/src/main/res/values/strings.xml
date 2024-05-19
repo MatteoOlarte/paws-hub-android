@@ -63,7 +63,8 @@
     <string name="enter_pet_breed">Enter your pet\'s breed</string>
     <string name="pet_breed_helper_text">Please enter your pet\'s breed and type</string>
     <string name="select_pet_hint">Select your pet, If you don\'t have any pets, please add a new one in the profile section</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="view">View</string>
+    <string name="like" translatable="false">Like</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -49,9 +49,9 @@ class ProfileManagementFragment : Fragment() {
     }
 
     private fun initUI() {
-        val userdata: Profile? = activityViewModel.profileData.value
+        val userProfile = activityViewModel.profileData.value
         binding.rcvPetsList.layoutManager = LinearLayoutManager(requireContext())
-        userdata?.let {
+        userProfile?.let {
             updateProfileCard(it)
             profileViewModel.fetchUserPets(it)
         }
@@ -59,6 +59,7 @@ class ProfileManagementFragment : Fragment() {
 
     private fun initObservers() {
         profileViewModel.pets.observe(viewLifecycleOwner) {
+            binding.sprLayoutPets.isRefreshing = false
             binding.rcvPetsList.adapter = PetManagementAdapter(it, onDelete = this::onItemDelete)
         }
         profileViewModel.onPetRemoved.observe(viewLifecycleOwner) {
@@ -69,6 +70,10 @@ class ProfileManagementFragment : Fragment() {
                     binding.rcvPetsList.adapter?.notifyItemRemoved(it)
                 }
             }
+        }
+        profileViewModel.profile.observe(viewLifecycleOwner) {
+            updateProfileCard(it)
+            profileViewModel.fetchUserPets(it)
         }
     }
 
@@ -93,6 +98,9 @@ class ProfileManagementFragment : Fragment() {
         }
         binding.btnAddPet.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_petPublishFragment)
+        }
+        binding.sprLayoutPets.setOnRefreshListener {
+            profileViewModel.fetchProfileData()
         }
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
