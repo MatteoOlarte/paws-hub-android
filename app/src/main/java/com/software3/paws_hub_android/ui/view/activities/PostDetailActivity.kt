@@ -2,6 +2,7 @@ package com.software3.paws_hub_android.ui.view.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
@@ -17,9 +18,11 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.core.ex.getStringResource
 import com.software3.paws_hub_android.core.ex.yearsSince
+import com.software3.paws_hub_android.core.util.PhoneFormat
 import com.software3.paws_hub_android.databinding.ActivityPostDetailBinding
 import com.software3.paws_hub_android.model.Pet
 import com.software3.paws_hub_android.model.Post
+import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.ui.viewstate.TransactionViewState
 import com.software3.paws_hub_android.viewmodel.PostDetailsViewModel
 import com.squareup.picasso.Picasso
@@ -29,7 +32,7 @@ import java.text.SimpleDateFormat
 class PostDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPostDetailBinding
     private lateinit var picasso: Picasso
-    private val viewModels: PostDetailsViewModel by viewModels()
+    private val viewModel: PostDetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +44,7 @@ class PostDetailActivity : AppCompatActivity() {
             initUI()
             initObservers()
             initListeners()
-            viewModels.fetchPostByID(postID)
+            viewModel.fetchPostByID(postID)
         } else {
             navigateUpTo(intent)
         }
@@ -66,21 +69,25 @@ class PostDetailActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        viewModels.post.observe(this) { post ->
+        viewModel.post.observe(this) { post ->
             val petID = post.pet["_id"]
             //Toast.makeText(this, petID, Toast.LENGTH_SHORT).show()
             onPostLoaded(post)
-            petID?.let { viewModels.fetchPetByID(it) }
+            petID?.let { viewModel.fetchPetByID(it) }
         }
-        viewModels.pet.observe(this) { pet ->
+        viewModel.pet.observe(this) { pet ->
             onPetLoaded(pet)
+            viewModel.fetchOwner(pet)
+        }
+        viewModel.ownerProfile.observe(this) {profile ->
+            profile?.let { onOwnerLoaded(it) }
         }
     }
 
     private fun initListeners() {
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModels.viewState.collect { updateUI(it) }
+                viewModel.viewState.collect { updateUI(it) }
             }
         }
     }
@@ -96,22 +103,36 @@ class PostDetailActivity : AppCompatActivity() {
     private fun onPetLoaded(pet: Pet) {
         val format = SimpleDateFormat.getDateInstance()
         val years = "${pet.birthDate.yearsSince()} ${getString(R.string.years_old)}"
+        val type: String = if (pet.typeID == "type_other") {
+            "${pet.breed?.get("name")}"
+        } else {
+            "${pet.typeID?.getStringResource(this@PostDetailActivity)}, ${pet.breed?.get("name")}"
+        }
 
-            this.supportActionBar?.title = pet.name
+        this.supportActionBar?.title = pet.name
+        this.supportActionBar?.subtitle = type
         with(binding.layoutBody) {
             tvPetBirthDate.text = "${format.format(pet.birthDate)} ($years)"
             tvPetWeight.text = "${pet.weight} KG"
-            if (pet.typeID == "type_other") {
-                tvPetType.text = "${pet.breed?.get("name")}"
-            } else {
-                tvPetType.text = "${pet.typeID?.getStringResource(this@PostDetailActivity)}, ${pet.breed?.get("name")}"
-            }
+            tvPetType.text = type
             if (pet.notes.isNullOrEmpty()) {
                 tvPetNotes.visibility = View.GONE
                 tvNotesLabel.visibility = View.GONE
             } else {
                 tvPetNotes.text = pet.notes
             }
+        }
+    }
+
+    private fun onOwnerLoaded(profile: Profile) {
+        val phoneNumber = if (profile.phoneNumber != null) {
+            profile.phoneNumber?.let { PhoneFormat().format(it) }
+        } else {
+            PhoneFormat().format("0000000000")
+        }
+        with(binding.layoutBody) {
+            tvUserFullName.text = profile.fullName
+            tvUserPhoneNumber.text = phoneNumber
         }
     }
 
@@ -140,5 +161,6 @@ class PostDetailActivity : AppCompatActivity() {
 
     private fun onFailure(error: String) {
         binding.toolbarProgressIndicator.visibility = View.GONE
+
     }
 }

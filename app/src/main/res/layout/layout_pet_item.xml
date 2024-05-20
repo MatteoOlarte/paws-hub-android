@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
-    style="@style/Widget.App.CardView"
+    style="@style/Widget.Material3.CardView.Filled"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_container"
-    app:cardCornerRadius="12dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
-
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp" >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="16dp"
         android:paddingHorizontal="24dp">
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layout_text_views"
 

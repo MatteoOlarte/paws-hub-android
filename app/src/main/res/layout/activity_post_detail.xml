@@ -33,8 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
+                app:title="\@Pet Name"
                 app:layout_collapseMode="pin"
-                app:title="Paws Hub"
                 app:menu="@menu/activity_post_detail_menu"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
         <com.google.android.material.progressindicator.LinearProgressIndicator
