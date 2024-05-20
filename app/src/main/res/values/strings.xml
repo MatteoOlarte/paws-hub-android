@@ -67,4 +67,7 @@
     <string name="like" translatable="false">Like</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="log_out">Log Out</string>
+    <string name="information">Information</string>
+    <string name="notes">Notes</string>
 </resources>

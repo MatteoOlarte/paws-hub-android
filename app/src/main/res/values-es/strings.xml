@@ -67,4 +67,7 @@
 
     <string name="save">Guardar</string>
     <string name="delete">Eliminar</string>
+    <string name="log_out">Cerrar Sesión</string>
+    <string name="information">Información</string>
+    <string name="notes">Notas</string>
 </resources>

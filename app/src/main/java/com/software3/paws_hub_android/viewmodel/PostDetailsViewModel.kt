@@ -14,33 +14,41 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class DiscoverViewModel: ViewModel() {
-    private val _posts = MutableLiveData<List<Post>>()
-    val posts: LiveData<List<Post>> = _posts
+class PostDetailsViewModel: ViewModel() {
+    private val _post = MutableLiveData<Post>()
+    val post: LiveData<Post> = _post
+
+    private val _pet = MutableLiveData<Pet>()
+    val pet: LiveData<Pet> = _pet
 
     private val _viewState = MutableStateFlow(TransactionViewState())
     val viewState: StateFlow<TransactionViewState> get() = _viewState
 
-    fun fetchAllPosts() {
+    fun fetchPostByID(postID: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _viewState.value = TransactionViewState(isPending = true)
 
-            val result = PostDAl().getAll()
-            if (result.error == null) {
-                _posts.postValue(result.result)
+            val result = PostDAl().get(postID)
+            if (result.result != null) {
+                _post.postValue(result.result)
                 _viewState.value = TransactionViewState(isSuccess = true)
             } else {
-                _posts.postValue(result.result)
-                _viewState.value = TransactionViewState(isFailure = true, error = result.error.message)
+                _viewState.value = TransactionViewState(isFailure = true, error = result.error!!.message)
             }
         }
     }
 
-    fun likePost() {
-        TODO()
-    }
+    fun fetchPetByID(petID: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _viewState.value = TransactionViewState(isPending = true)
 
-    fun savePost() {
-        TODO()
+            val result = PetDAl().get(petID)
+            if (result.result != null) {
+                _pet.postValue(result.result)
+                _viewState.value = TransactionViewState(isSuccess = true)
+            } else {
+                _viewState.value = TransactionViewState(isFailure = true, error = result.error!!.message)
+            }
+        }
     }
 }

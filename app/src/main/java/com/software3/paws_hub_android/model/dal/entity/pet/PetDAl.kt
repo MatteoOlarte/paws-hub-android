@@ -27,7 +27,7 @@ class PetDAl : IFirebaseGET<Pet>, IFirebasePOST<Pet>, IFirebaseDELETE<Pet> {
 
     override suspend fun get(id: String): FirebaseResult<Pet?> {
         return try {
-            val result = db.collection("pet_breeds").document(id).get().await()
+            val result = db.collection("pets").document(id).get().await()
             FirebaseResult(result.toPet(), null)
         } catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)

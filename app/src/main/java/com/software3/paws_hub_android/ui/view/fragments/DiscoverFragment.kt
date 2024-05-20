@@ -1,5 +1,6 @@
 package com.software3.paws_hub_android.ui.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.software3.paws_hub_android.ui.adapters.PostAdapter
 import com.software3.paws_hub_android.databinding.FragmentDiscoverBinding
+import com.software3.paws_hub_android.model.Post
+import com.software3.paws_hub_android.ui.view.activities.PostDetailActivity
 import com.software3.paws_hub_android.viewmodel.DiscoverViewModel
 
 
@@ -45,8 +48,12 @@ class DiscoverFragment : Fragment() {
 
     private fun initObservers() {
         viewmodel.posts.observe(viewLifecycleOwner) {
+            val adapter = PostAdapter(
+                list = it,
+                onViewClick = this::onBtnViewClick
+            )
             binding.sprLayoutDiscoverPosts.isRefreshing = false
-            binding.recyclerViewPosts.adapter = PostAdapter(it)
+            binding.recyclerViewPosts.adapter = adapter
         }
     }
 
@@ -54,5 +61,20 @@ class DiscoverFragment : Fragment() {
         binding.sprLayoutDiscoverPosts.setOnRefreshListener {
             viewmodel.fetchAllPosts()
         }
+    }
+
+    private fun onBtnViewClick(post: Post) {
+        Intent(requireContext(), PostDetailActivity::class.java).also {
+            it.putExtra("postID", post.postID)
+            startActivity(it)
+        }
+    }
+
+    private fun onBtnLikeClick(post: Post) {
+
+    }
+
+    private fun onBtnSaveClick(post: Post) {
+
     }
 }

@@ -10,6 +10,7 @@ import com.software3.paws_hub_android.model.Pet
 import com.software3.paws_hub_android.model.Post
 import com.software3.paws_hub_android.model.Profile
 import com.software3.paws_hub_android.model.dal.entity.pet.PetDAl
+import com.software3.paws_hub_android.model.dal.entity.post.PostDAl
 import com.software3.paws_hub_android.model.dal.entity.user.ProfileDAl
 import com.software3.paws_hub_android.ui.viewstate.TransactionViewState
 import kotlinx.coroutines.Dispatchers

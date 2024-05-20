@@ -9,17 +9,29 @@ import com.software3.paws_hub_android.databinding.LayoutPostDiscoverBinding
 import com.software3.paws_hub_android.model.Post
 import com.squareup.picasso.Picasso
 
-class PostAdapter(val list: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
+class PostAdapter(
+    private val list: List<Post>,
+    private val onViewClick: (post: Post) -> Unit = {},
+    private val onLikeClick: (post: Post) -> Unit = {},
+    private val onSaveClick: (post: Post) -> Unit = {}
+) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val biding = LayoutPostDiscoverBinding.bind(view)
         private val picasso: Picasso = Picasso.get()
 
-        fun render(item: Post) {
+        fun render(
+            item: Post,
+            onViewClick: (post: Post) -> Unit,
+            onLikeClick: (post: Post) -> Unit,
+            onSaveClick: (post: Post) -> Unit
+        ) {
             biding.tvFullName.text = item.author["full_name"]
             biding.tvUsername.text = item.author["username"]
             biding.tvBody.text = item.body
-
+            biding.btnViewPost.setOnClickListener { onViewClick(item) }
+            biding.btnLikePost.setOnClickListener { onLikeClick(item) }
+            biding.btnSavePost.setOnClickListener { onSaveClick(item) }
             picasso.load(item.author["profile_photo"]).into(biding.imgProfilePhoto)
             picasso.load(item.image).into(biding.imgPostPhoto)
         }
@@ -32,7 +44,7 @@ class PostAdapter(val list: List<Post>) : RecyclerView.Adapter<PostAdapter.ViewH
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
-        holder.render(item)
+        holder.render(item, onViewClick, onLikeClick, onSaveClick)
     }
 
     override fun getItemCount(): Int = list.size
