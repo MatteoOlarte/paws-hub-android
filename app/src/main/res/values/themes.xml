@@ -62,4 +62,22 @@
     <style name="Theme.PawsHubAndroid.CollapsingToolbar.Large" parent="Widget.Material3.CollapsingToolbar.Large">
         <item name="android:background">@color/md_theme_light_surface</item>
     </style>
+
+    <style
+        name="ThemeOverlay.PawsHubAndroid.FiltersAlertDialog"
+        parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered"
+        >
+        <item name="materialAlertDialogTitleIconStyle">
+            @style/ThemeOverlay.PawsHubAndroid.FiltersAlertDialog.Icon
+        </item>
+    </style>
+
+    <style
+        name="ThemeOverlay.PawsHubAndroid.FiltersAlertDialog.Icon"
+        parent="MaterialAlertDialog.Material3.Title.Icon.CenterStacked"
+        >
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="tint">?attr/colorPrimary</item>
+    </style>
 </resources>

@@ -70,4 +70,5 @@
     <string name="log_out">Cerrar Sesión</string>
     <string name="information">Información</string>
     <string name="notes">Notas</string>
+    <string name="apply_filter">Filtros</string>
 </resources>

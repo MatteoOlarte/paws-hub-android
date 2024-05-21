@@ -14,7 +14,6 @@ import kotlinx.coroutines.tasks.await
 class ProfileDAl : IFirebaseGET<Profile>, IFirebasePOST<Profile>, IFirebaseDELETE<Profile> {
     private val db = FirebaseFirestore.getInstance()
 
-
     override suspend fun delete(obj: Profile): FirebaseResult<Boolean> {
         return try {
             db.collection("users").document(obj.profileID).delete().await()

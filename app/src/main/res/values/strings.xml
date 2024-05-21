@@ -70,4 +70,5 @@
     <string name="log_out">Log Out</string>
     <string name="information">Information</string>
     <string name="notes">Notes</string>
+    <string name="apply_filter">Filters</string>
 </resources>
