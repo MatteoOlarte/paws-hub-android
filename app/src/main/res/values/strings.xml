@@ -71,4 +71,6 @@
     <string name="information">Information</string>
     <string name="notes">Notes</string>
     <string name="apply_filter">Filters</string>
+    <string name="filter_dialog_positive">Apply</string>
+    <string name="filter_dialog_negative">Cancel</string>
 </resources>

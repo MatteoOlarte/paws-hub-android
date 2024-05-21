@@ -64,20 +64,53 @@
     </style>
 
     <style
-        name="ThemeOverlay.PawsHubAndroid.FiltersAlertDialog"
-        parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered"
+        name="ThemeOverlay.PawsHubAndroid.AlertDialog"
+        parent="ThemeOverlay.Material3.MaterialAlertDialog"
         >
-        <item name="materialAlertDialogTitleIconStyle">
-            @style/ThemeOverlay.PawsHubAndroid.FiltersAlertDialog.Icon
+        <item name="colorSurfaceContainerHigh">?attr/colorSurfaceVariant</item>
+        <item name="alertDialogStyle">
+            @style/MaterialAlertDialog.PawsHubAndroid
+        </item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/MaterialAlertDialog.PawsHubAndroid.Title.Text
+        </item>
+        <item name="buttonBarPositiveButtonStyle">
+            @style/Widget.PawsHubAndroid.Dialog.PositiveButtonStyle
+        </item>
+        <item name="buttonBarNegativeButtonStyle">
+            @style/Widget.PawsHubAndroid.Dialog.NegativeButtonStyle
         </item>
     </style>
 
-    <style
-        name="ThemeOverlay.PawsHubAndroid.FiltersAlertDialog.Icon"
-        parent="MaterialAlertDialog.Material3.Title.Icon.CenterStacked"
-        >
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginBottom">2dp</item>
-        <item name="tint">?attr/colorPrimary</item>
+    <style name="MaterialAlertDialog.PawsHubAndroid" parent="MaterialAlertDialog.Material3">
+        <item name="shapeAppearance">@style/ShapeAppearance.PawsHubAndroid.MediumComponent</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+    </style>
+
+    <style name="ShapeAppearance.PawsHubAndroid.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="MaterialAlertDialog.PawsHubAndroid.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.PawsHubAndroid.Dialog.PositiveButtonStyle" parent="Widget.Material3.Button">
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.PawsHubAndroid.DialogButton
+        </item>
+        <item name="android:layout_marginStart">5dp</item>
+    </style>
+
+    <style name="Widget.PawsHubAndroid.Dialog.NegativeButtonStyle" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="shapeAppearance">
+            @style/ShapeAppearance.PawsHubAndroid.DialogButton
+        </item>
+    </style>
+
+    <style name="ShapeAppearance.PawsHubAndroid.DialogButton" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
     </style>
 </resources>
