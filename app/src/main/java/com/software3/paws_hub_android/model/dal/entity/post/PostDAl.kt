@@ -1,5 +1,6 @@
 package com.software3.paws_hub_android.model.dal.entity.post
 
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.software3.paws_hub_android.core.ex.toPost
@@ -73,6 +74,28 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
         } catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)
             FirebaseResult(false, ex)
+        }
+    }
+
+    suspend fun filterByPetType(type: String): FirebaseResult<List<Post>> {
+        return try {
+            val result = db.collection("posts")
+                .where(Filter.equalTo("pet.type", type))
+                .orderBy("pub_date", Query.Direction.DESCENDING)
+                .get()
+                .await()
+            val docs = result.documents
+            val elements = mutableListOf<Post>()
+
+            if (docs.isEmpty()) {
+                FirebaseResult(emptyList(), null)
+            } else {
+                docs.forEach { elements.add(it.toPost()) }
+                FirebaseResult(elements, null)
+            }
+        } catch (ex: Exception) {
+            //FirebaseCrashlytics.getInstance().recordException(ex)
+            FirebaseResult(emptyList(), ex)
         }
     }
 }

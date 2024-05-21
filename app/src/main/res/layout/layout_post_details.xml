@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="15dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginBottom="8dp"
+        app:cardElevation="0dp">
+        <ImageView
+            android:id="@+id/img_post_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/profile_image_content_description"
+            android:scaleType="fitXY" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_post_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="34sp"
+        android:textSize="17sp"
+        android:textColor="@color/material_on_surface_emphasis_medium"
+        tools:text="@tools:sample/lorem" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        android:textColor="@color/material_on_surface_emphasis_high_type"
+        android:text="@string/information"
+        tools:text="Information"/>
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.App.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="24dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_user_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/colorOnTertiaryContainer"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/baseline_person_24"
+                app:drawableTint="?attr/colorOnTertiaryContainer"
+                tools:text="\@Full Name"/>
+            <TextView
+                android:id="@+id/tv_user_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/colorOnTertiaryContainer"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_call_24"
+                app:drawableTint="?attr/colorOnTertiaryContainer"
+                tools:text="\@Phone Number"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.App.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17sp">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="24dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_pet_birth_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/colorOnTertiaryContainer"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/baseline_cake_24"
+                app:drawableTint="?attr/colorOnTertiaryContainer"
+                tools:text="\@PetBirthDate" />
+            <TextView
+                android:id="@+id/tv_pet_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/colorOnTertiaryContainer"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_weight_24"
+                app:drawableTint="?attr/colorOnTertiaryContainer"
+                tools:text="\@PetWeight" />
+            <TextView
+                android:id="@+id/tv_pet_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/colorOnTertiaryContainer"
+                android:drawablePadding="5dp"
+                app:drawableStartCompat="@drawable/ic_pet"
+                app:drawableTint="?attr/colorOnTertiaryContainer"
+                tools:text="\@PetType" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tv_notes_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        android:textColor="@color/material_on_surface_emphasis_high_type"
+        android:text="@string/notes"
+        tools:text="Notes"/>
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.App.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17sp">
+        <TextView
+            android:id="@+id/tv_pet_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="24dp"
+            android:textSize="17sp"
+            android:textColor="?attr/colorOnTertiaryContainer"
+            android:drawablePadding="5dp"
+            tools:text="@tools:sample/lorem/random" />
+    </com.google.android.material.card.MaterialCardView>
+</androidx.appcompat.widget.LinearLayoutCompat>
