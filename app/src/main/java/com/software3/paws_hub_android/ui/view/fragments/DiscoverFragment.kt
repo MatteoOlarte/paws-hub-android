@@ -92,7 +92,9 @@ class DiscoverFragment : Fragment() {
         viewmodel.petTypes.observe(viewLifecycleOwner) { types ->
             types?.let { petsTypes ->
                 val items = petsTypes.mapNotNull { it.typeID.getStringResource(requireContext()) }
-                FilterDialog(requireContext()).setItems(items.toTypedArray()) {
+                FilterDialog(requireContext()) {
+                    viewmodel.cleanFilters()
+                }.setItems(items.toTypedArray()) {
                     viewmodel.setPetTypeFilter(petsTypes[it])
                     viewmodel.fetchAllPosts()
                 }.show()

@@ -77,6 +77,26 @@
                     android:labelFor="@id/tf_post_pet"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tf_layout_finder"
+
+                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:hint="Seleciona Localidad"
+                android:enabled="false"
+                app:helperText="Por el momento solo se tiene soporte para la cidudad de Bogota DC"
+                app:errorEnabled="true">
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/tf_post_finder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="name"
+                    android:inputType="none"
+                    android:labelFor="@id/tf_post_finder"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

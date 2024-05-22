@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
+import com.software3.paws_hub_android.ui.view.fragments.PetFinderFragmentDirections
 import com.software3.paws_hub_android.viewmodel.MainActivityViewModel
 import com.software3.paws_hub_android.viewmodel.ProfileViewModel
 
@@ -107,9 +108,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun onFloatingActionButtonClick() {
         with(navController) {
-            when (currentDestination?.id) {
+             when (currentDestination?.id) {
                 R.id.discoverFragment -> navigate(R.id.action_discoverFragment_to_postingFragment)
-                R.id.petFinderFragment -> navigate(R.id.action_petFinderFragment_to_postingFragment)
+                R.id.petFinderFragment -> navigate(PetFinderFragmentDirections.actionPetFinderFragmentToPostingFragment("TYPE_PET_FINDER"))
                 else -> {}
             }
         }

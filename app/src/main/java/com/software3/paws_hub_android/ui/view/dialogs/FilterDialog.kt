@@ -4,7 +4,7 @@ import android.content.Context
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.software3.paws_hub_android.R
 
-class FilterDialog(private val context: Context) {
+class FilterDialog(private val context: Context, onCancel: () -> Unit = {}) {
     private val dialog = MaterialAlertDialogBuilder(
         context,
         R.style.ThemeOverlay_PawsHubAndroid_AlertDialog
@@ -17,6 +17,7 @@ class FilterDialog(private val context: Context) {
             i.dismiss()
         }
         dialog.setNegativeButton(context.getString(R.string.filter_dialog_negative)) {i, _ ->
+            onCancel()
             i.dismiss()
         }
         //dialog.setIcon(R.drawable.ic_tune_24)

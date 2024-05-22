@@ -15,6 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.FragmentPostingBinding
 import com.software3.paws_hub_android.model.Pet
@@ -31,6 +32,7 @@ class PostingFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewmodel: PostingViewModel by viewModels()
     private val activityViewmodel: MainActivityViewModel by activityViewModels()
+    private val args: PostingFragmentArgs by navArgs()
     private val imageResult = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
@@ -48,7 +50,10 @@ class PostingFragment : Fragment() {
         initUI()
         initObservers()
         initListeners()
-        profile?.let { viewmodel.fetchPetsFromUser(it) }
+        profile?.let {
+            viewmodel.fetchPetsFromUser(it)
+            viewmodel.fetchLocations()
+        }
         return binding.root
     }
 
@@ -60,6 +65,7 @@ class PostingFragment : Fragment() {
     private fun initUI() {
         binding.tfLayoutPostPet.isEnabled = false
         binding.btnPublishPost.isEnabled = false
+        binding.tfLayoutFinder.isEnabled = (args.postType == "TYPE_PET_FINDER")
     }
 
     private fun initObservers() {
@@ -83,6 +89,9 @@ class PostingFragment : Fragment() {
         }
         viewmodel.isValidForm.observe(viewLifecycleOwner) {
             binding.btnPublishPost.isEnabled = it
+        }
+        viewmodel.locations.observe(viewLifecycleOwner) {
+            setTfPostLocationItems(it)
         }
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -110,9 +119,27 @@ class PostingFragment : Fragment() {
         with(binding) { tfPostPet.setAdapter(adapter) }
     }
 
+    private fun setTfPostLocationItems(locations: List<String>) {
+        val items: List<String> = locations.map { it }.toList()
+        val adapter = ArrayAdapter(requireContext(), R.layout.layout_list_adapter, items)
+        with(binding) { tfPostFinder.setAdapter(adapter) }
+    }
+
     private fun onPublishClick() {
-        val userdata: Profile? = activityViewmodel.profileData.value
-        userdata?.let { viewmodel.publishPost(it, binding.tfPostBody.text.toString()) }
+        when (args.postType) {
+            "TYPE_PET_FINDER" -> {
+                val userdata: Profile? = activityViewmodel.profileData.value
+                userdata?.let { viewmodel.publishPetFinderPost(
+                    it,
+                    binding.tfPostBody.text.toString(),
+                    binding.tfPostFinder.text.toString()
+                ) }
+            }
+            "TYPE_DISCOVER" -> {
+                val userdata: Profile? = activityViewmodel.profileData.value
+                userdata?.let { viewmodel.publishPost(it, binding.tfPostBody.text.toString()) }
+            }
+        }
     }
 
     private fun updateUI(state: TransactionViewState) {

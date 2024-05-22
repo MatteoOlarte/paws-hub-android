@@ -1,5 +1,6 @@
 package com.software3.paws_hub_android.model.dal.entity.post
 
+import android.util.Log
 import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -80,7 +81,10 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
     suspend fun filterByPetType(type: String): FirebaseResult<List<Post>> {
         return try {
             val result = db.collection("posts")
-                .where(Filter.equalTo("pet.type", type))
+                .where(Filter.and(
+                    Filter.equalTo("type", "TYPE_DISCOVER"),
+                    Filter.equalTo("pet.type", type)
+                ))
                 .orderBy("pub_date", Query.Direction.DESCENDING)
                 .get()
                 .await()
@@ -95,6 +99,30 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
             }
         } catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)
+            Log.d("POST_DALL", ex.message.toString())
+            FirebaseResult(emptyList(), ex)
+        }
+    }
+
+    suspend fun filterByPostType(type: String): FirebaseResult<List<Post>> {
+        return try {
+            val result = db.collection("posts")
+                .where(Filter.equalTo("type", type))
+                .orderBy("pub_date")
+                .get()
+                .await()
+            val docs = result.documents
+            val elements = mutableListOf<Post>()
+
+            if (docs.isEmpty()) {
+                FirebaseResult(emptyList(), null)
+            } else {
+                docs.forEach { elements.add(it.toPost()) }
+                FirebaseResult(elements, null)
+            }
+        } catch (ex: Exception) {
+            //FirebaseCrashlytics.getInstance().recordException(ex)
+            Log.d("POST_DALL", ex.message.toString())
             FirebaseResult(emptyList(), ex)
         }
     }

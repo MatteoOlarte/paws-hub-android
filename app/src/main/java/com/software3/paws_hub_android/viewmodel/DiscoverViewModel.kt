@@ -26,6 +26,11 @@ class DiscoverViewModel: ViewModel() {
 
     private var _typeFilter: PetType? = null
 
+    fun cleanFilters() {
+        _petTypes.value = null
+        _typeFilter = null
+    }
+
     fun onFiltersItemClick() {
         fetchPetTypes()
     }
@@ -41,7 +46,7 @@ class DiscoverViewModel: ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val filter = _typeFilter
             val result = if (filter == null) {
-                PostDAl().getAll()
+                PostDAl().filterByPostType("TYPE_DISCOVER")
             } else {
                 PostDAl().filterByPetType(filter.typeID)
             }
