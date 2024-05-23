@@ -54,6 +54,8 @@
         <item>"Dog"</item>
         <item>"Cat"</item>
         <item>"Other (specify)"</item>
+        <item>"Bunny"</item>
+        <item>"Bird"</item>
     </string-array>
     <string name="pet_description_placeholder">How is your pet? (optional)</string>
     <string name="pet_description_help_text">Please provide a description of your pet, including physical and psychological traits. Let us know if your pet is friendly!</string>

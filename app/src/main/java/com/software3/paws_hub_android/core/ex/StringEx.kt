@@ -24,5 +24,7 @@ fun String.getStringResource(context: Context): String = when(this) {
     "type_dog" -> context.resources.getStringArray(R.array.pets_types)[0]
     "type_cat" -> context.resources.getStringArray(R.array.pets_types)[1]
     "type_other" -> context.resources.getStringArray(R.array.pets_types)[2]
+    "type_bunny" -> context.resources.getStringArray(R.array.pets_types)[3]
+    "type_bird" -> context.resources.getStringArray(R.array.pets_types)[4]
     else -> this.toString()
 }

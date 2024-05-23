@@ -15,7 +15,6 @@
     <string name="username_hint">Nombre de Usuario</string>
     <string name="first_name_hint">Nombres</string>
     <string name="last_name_hint">Apellidos</string>
-
     <string name="edit_profile">Editar Perfil</string>
     <string name="share_profile">Compartir</string>
     <string name="error_msg_title">Error</string>
@@ -34,9 +33,8 @@
     <string name="txt_confirm">Confirmar</string>
     <string name="profile_updated_success">¡Perfil actualizado correctamente!</string>
     <string name="profile_update_error">Se produjo un error al actualizar tu perfil. Por favor, inténtalo de nuevo más tarde.</string>
-    <string name="username_taken_error">This username is already taken. Please choose a different one.</string>
+    <string name="username_taken_error">Este nombre de usuario ya está en uso. Por favor, elige otro diferente.</string>
     <string name="deceptive_title_lost_pets">Buscar</string>
-
     <string name="preferred_pet">Mascota Preferida</string>
     <string name="post_page_title">Publicar</string>
     <string name="question_pet_name">¿Cuál es el nombre de tu mascota?</string>
@@ -51,9 +49,11 @@
     <string name="question_pet_breed">¿Cuál es la raza de tu mascota?</string>
     <string name="add_notes_button">Agregar Notas</string>
     <string-array name="pets_types">
-        <item>"Perro"</item>
-        <item>"Gato"</item>
-        <item>"Otro (espesifica)"</item>
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Otro (especifica)</item>
+        <item>Conejo</item>
+        <item>Pájaro</item>
     </string-array>
     <string name="pet_description_placeholder">¿Cómo es tu mascota? (opcional)</string>
     <string name="pet_description_help_text">Por favor, proporciona una descripción de tu mascota, incluyendo rasgos físicos y psicológicos. ¡Cuéntanos si tu mascota es amigable!</string>
@@ -64,7 +64,6 @@
     <string name="pet_breed_helper_text">Por favor, ingresa la raza y el tipo de tu mascota</string>
     <string name="select_pet_hint">Selecciona tu mascota, si no tienes ninguna mascota, por favor agrega una nueva en la sección de perfil</string>
     <string name="view">Ver</string>
-
     <string name="save">Guardar</string>
     <string name="delete">Eliminar</string>
     <string name="log_out">Cerrar Sesión</string>
