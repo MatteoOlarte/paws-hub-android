@@ -3,20 +3,24 @@
     <item
         android:id="@+id/discoverFragment"
         android:title="@string/discover"
-        android:icon="@drawable/ic_pet"/>
+        android:icon="@drawable/ic_pet"
+        android:checkable="true"/>
 
     <item
         android:id="@+id/petFinderFragment"
         android:title="@string/deceptive_title_support_fragment"
-        android:icon="@drawable/ic_help_24"/>
+        android:icon="@drawable/ic_help_24"
+        android:checkable="true"/>
 
     <item
         android:id="@+id/searchFragment"
         android:title="@string/deceptive_title_lost_pets"
-        android:icon="@drawable/ic_search_24"/>
+        android:icon="@drawable/ic_search_24"
+        android:checkable="true"/>
 
     <item
         android:id="@+id/profileFragment"
         android:title="@string/profile"
-        android:icon="@drawable/baseline_person_24"/>
+        android:icon="@drawable/baseline_person_24"
+        android:checkable="true"/>
 </menu>

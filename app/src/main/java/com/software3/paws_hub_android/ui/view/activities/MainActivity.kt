@@ -14,6 +14,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.navigationrail.NavigationRailView
 import com.google.android.material.snackbar.Snackbar
 import com.software3.paws_hub_android.R
 import com.software3.paws_hub_android.databinding.ActivityMainBinding
@@ -70,7 +73,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navigationBar.setupWithNavController(navController)
+        initNavigation()
+    }
+
+    private fun initNavigation() {
+        val bottomNav = binding.navigationBar
+        val drawerNav = binding.navigationBarDrawer
+
+        bottomNav?.setupWithNavController(navController)
+        drawerNav?.setupWithNavController(navController)
     }
 
     private fun initObservers() {

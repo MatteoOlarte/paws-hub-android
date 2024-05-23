@@ -46,6 +46,10 @@
         <item name="android:background">@color/md_theme_light_surfaceVariant</item>
     </style>
 
+    <style name="Theme.PawsHubAndroid.Toolbar.SurfaceContainerLow" parent="Widget.Material3.Toolbar">
+        <item name="android:background">?attr/colorSurfaceContainerLow</item>
+    </style>
+
     <style name="ThemeOverlay.PawsHubAndroid.BottomNavigation" parent="">
         <item name="colorSurfaceContainer">@color/md_theme_light_background</item>
         <item name="colorPrimary">@color/md_theme_light_background</item>
