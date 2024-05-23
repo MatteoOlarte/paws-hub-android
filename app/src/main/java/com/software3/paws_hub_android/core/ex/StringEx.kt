@@ -20,9 +20,9 @@ fun String.slugify(): String {
     return this.replace(" ", "_").lowercase()
 }
 
-fun String.getStringResource(context: Context): String? = when(this) {
+fun String.getStringResource(context: Context): String = when(this) {
     "type_dog" -> context.resources.getStringArray(R.array.pets_types)[0]
     "type_cat" -> context.resources.getStringArray(R.array.pets_types)[1]
     "type_other" -> context.resources.getStringArray(R.array.pets_types)[2]
-    else -> null
+    else -> this.toString()
 }

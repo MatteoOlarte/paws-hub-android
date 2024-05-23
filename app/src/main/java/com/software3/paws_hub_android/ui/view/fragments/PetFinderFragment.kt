@@ -94,7 +94,9 @@ class PetFinderFragment : Fragment() {
     }
 
     private fun initListeners() {
-
+        binding.sprLayoutPosts.setOnRefreshListener {
+            viewModel.fetchPosts()
+        }
     }
 
     private fun updateUI() {
