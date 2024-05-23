@@ -65,21 +65,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/profile_image_content_description"
-            android:scaleType="fitXY"
-            tools:layout_editor_absoluteX="39dp"
-            tools:layout_editor_absoluteY="12dp" />
+            android:scaleType="fitXY" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_tv_last_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_post_photo">
+        <TextView
+            android:id="@+id/tv_last_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:background="?attr/colorError"
+            android:textColor="?colorOnError"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:drawablePadding="10dp"
+            app:drawableStartCompat="@drawable/ic_help_24"
+            app:drawableTint="?colorOnError"
+            tools:text="Bogota DC" />
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tv_body"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginTop="10sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_view_post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_post_photo"
+        app:layout_constraintTop_toBottomOf="@id/card_tv_last_location"
         tools:text="@tools:sample/lorem/random" />
 
     <com.google.android.material.button.MaterialButton

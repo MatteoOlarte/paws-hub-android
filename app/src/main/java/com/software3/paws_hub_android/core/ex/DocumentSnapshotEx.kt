@@ -20,7 +20,7 @@ fun DocumentSnapshot.toPost(): Post {
         author = author,
         pet = pet,
         type = this.get("type") as String?,
-        location = this.get("location") as String?
+        location = this.get("last_location") as String?
     )
     return post
 }

@@ -9,18 +9,18 @@ import com.software3.paws_hub_android.databinding.LayoutPostDiscoverBinding
 import com.software3.paws_hub_android.model.Post
 import com.squareup.picasso.Picasso
 
-class PostAdapter(
+open class PostAdapter(
     private val list: List<Post>,
-    private val onViewClick: (post: Post) -> Unit = {},
-    private val onLikeClick: (post: Post) -> Unit = {},
-    private val onSaveClick: (post: Post) -> Unit = {}
+    protected val onViewClick: (post: Post) -> Unit = {},
+    protected val onLikeClick: (post: Post) -> Unit = {},
+    protected val onSaveClick: (post: Post) -> Unit = {}
 ) : RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    open inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val biding = LayoutPostDiscoverBinding.bind(view)
         private val picasso: Picasso = Picasso.get()
 
-        fun render(
+        open fun render(
             item: Post,
             onViewClick: (post: Post) -> Unit,
             onLikeClick: (post: Post) -> Unit,

@@ -10,6 +10,7 @@ import com.software3.paws_hub_android.model.dal.FirebaseResult
 import com.software3.paws_hub_android.model.dal.entity.IFirebaseGET
 import com.software3.paws_hub_android.model.dal.entity.IFirebasePOST
 import kotlinx.coroutines.tasks.await
+import org.jetbrains.annotations.ApiStatus.Experimental
 
 
 class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
@@ -19,7 +20,8 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
         return try {
             val result = db.collection("posts").document(id).get().await()
             FirebaseResult(result.toPost(), null)
-        } catch (ex: Exception) {
+        }
+        catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)
             FirebaseResult(null, ex)
         }
@@ -36,11 +38,13 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
 
             if (docs.isEmpty()) {
                 FirebaseResult(emptyList(), null)
-            } else {
+            }
+            else {
                 docs.forEach { elements.add(it.toPost()) }
                 FirebaseResult(elements, null)
             }
-        } catch (ex: Exception) {
+        }
+        catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)
             FirebaseResult(emptyList(), ex)
         }
@@ -72,7 +76,8 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
         return try {
             db.collection("posts").document(obj.postID).set(post).await()
             FirebaseResult(true, null)
-        } catch (ex: Exception) {
+        }
+        catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)
             FirebaseResult(false, ex)
         }
@@ -81,10 +86,12 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
     suspend fun filterByPetType(type: String): FirebaseResult<List<Post>> {
         return try {
             val result = db.collection("posts")
-                .where(Filter.and(
-                    Filter.equalTo("type", "TYPE_DISCOVER"),
-                    Filter.equalTo("pet.type", type)
-                ))
+                .where(
+                    Filter.and(
+                        Filter.equalTo("type", "TYPE_DISCOVER"),
+                        Filter.equalTo("pet.type", type)
+                    )
+                )
                 .orderBy("pub_date", Query.Direction.DESCENDING)
                 .get()
                 .await()
@@ -93,11 +100,13 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
 
             if (docs.isEmpty()) {
                 FirebaseResult(emptyList(), null)
-            } else {
+            }
+            else {
                 docs.forEach { elements.add(it.toPost()) }
                 FirebaseResult(elements, null)
             }
-        } catch (ex: Exception) {
+        }
+        catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)
             Log.d("POST_DALL", ex.message.toString())
             FirebaseResult(emptyList(), ex)
@@ -106,21 +115,52 @@ class PostDAl : IFirebaseGET<Post>, IFirebasePOST<Post> {
 
     suspend fun filterByPostType(type: String): FirebaseResult<List<Post>> {
         return try {
-            val result = db.collection("posts")
+            val query = db.collection("posts")
                 .where(Filter.equalTo("type", type))
                 .orderBy("pub_date")
                 .get()
                 .await()
-            val docs = result.documents
+            val docs = query.documents
             val elements = mutableListOf<Post>()
 
             if (docs.isEmpty()) {
                 FirebaseResult(emptyList(), null)
-            } else {
+            }
+            else {
                 docs.forEach { elements.add(it.toPost()) }
                 FirebaseResult(elements, null)
             }
-        } catch (ex: Exception) {
+        }
+        catch (ex: Exception) {
+            //FirebaseCrashlytics.getInstance().recordException(ex)
+            Log.d("POST_DALL", ex.message.toString())
+            FirebaseResult(emptyList(), ex)
+        }
+    }
+
+    @Experimental
+    suspend fun filterByPostLocation(location: String): FirebaseResult<List<Post>> {
+        return try {
+            val query = db.collection("posts")
+                .where(Filter.and(
+                    Filter.equalTo("type", "TYPE_FINDER"),
+                    Filter.equalTo("last_location", location)
+                ))
+                .orderBy("pub_date")
+                .get()
+                .await()
+            val docs = query.documents
+            val elements = mutableListOf<Post>()
+
+            if (docs.isEmpty()) {
+                FirebaseResult(emptyList(), null)
+            }
+            else {
+                docs.forEach { elements.add(it.toPost()) }
+                FirebaseResult(elements, null)
+            }
+        }
+        catch (ex: Exception) {
             //FirebaseCrashlytics.getInstance().recordException(ex)
             Log.d("POST_DALL", ex.message.toString())
             FirebaseResult(emptyList(), ex)

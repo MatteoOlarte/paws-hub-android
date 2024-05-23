@@ -67,7 +67,6 @@ class DiscoverFragment : Fragment() {
             viewmodel.onFiltersItemClick()
             true
         }
-
         else -> {
             false
         }
